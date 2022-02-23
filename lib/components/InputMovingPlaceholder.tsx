@@ -10,7 +10,7 @@ export interface inputLabelProps {
   isFocused: boolean
 }
 
-const InputMovingPlaceholder = (props: inputLabelProps) => {
+export const InputMovingPlaceholder = (props: inputLabelProps) => {
   return (
     <StyledLabel
       hasValue={props.hasValue}
@@ -21,8 +21,6 @@ const InputMovingPlaceholder = (props: inputLabelProps) => {
     </StyledLabel>
   )
 }
-
-export default InputMovingPlaceholder
 
 interface args {
   hasValue: boolean

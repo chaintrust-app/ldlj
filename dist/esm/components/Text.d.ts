@@ -1,7 +1,7 @@
 /// <reference types="react" />
 import { colors } from "../design.config";
 declare type FontWeight = 400 | 500 | 600 | 700;
-interface TextProps {
+export interface TextProps {
     text: string;
     textStyle?: {
         color?: keyof typeof colors;

@@ -1,6 +1,6 @@
-/// <reference types="react" />
-export declare const SpinningLoader: import("styled-components").StyledComponent<any, any, object & {
+import * as React from "react";
+export declare const SpinningLoader: import("styled-components").StyledComponent<React.FC<React.SVGProps<SVGSVGElement>>, any, {
     spinnersize?: number | undefined;
-}, string | number | symbol>;
+}, never>;
 export declare const SpinningLoaderShadow: () => JSX.Element;
-export declare const StyledLoaderShadow: import("styled-components").StyledComponent<any, any, object, string | number | symbol>;
+export declare const StyledLoaderShadow: import("styled-components").StyledComponent<React.FC<React.SVGProps<SVGSVGElement>>, any, {}, never>;

@@ -1,4 +1,4 @@
-/// <reference types="react" />
+import * as React from "react";
 export declare const Modal: ({ isDisplayed, onClose, children, ...rest }: ModalProps) => JSX.Element;
 interface ModalStyleProps {
     isDisplayed: boolean;

@@ -1,10 +1,11 @@
-import { ChangeEventHandler, RefObject } from "react";
+import * as React from "react";
+import { ChangeEventHandler } from "react";
 import { FieldValues, RegisterOptions, UseFormRegister } from "react-hook-form";
 export interface BaseInputProps {
     label: string;
     name?: string;
     register?: UseFormRegister<FieldValues>;
-    validations?: RegisterOptions<FieldValues>;
+    validations?: RegisterOptions;
     type?: "password" | "text" | "checkbox" | "email" | "number";
     value: string;
     showError?: boolean;
@@ -32,5 +33,5 @@ export interface BaseInputProps {
 interface InputProps extends BaseInputProps {
     suffix?: JSX.Element;
 }
-export declare const Input: import("react").ForwardRefExoticComponent<InputProps & import("react").RefAttributes<RefObject<HTMLInputElement>>>;
+export declare const Input: React.ForwardRefExoticComponent<InputProps & React.RefAttributes<React.RefObject<HTMLInputElement>>>;
 export {};

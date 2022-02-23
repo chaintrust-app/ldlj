@@ -5,5 +5,4 @@ export interface inputLabelProps {
     disabled: boolean;
     isFocused: boolean;
 }
-declare const InputMovingPlaceholder: (props: inputLabelProps) => JSX.Element;
-export default InputMovingPlaceholder;
+export declare const InputMovingPlaceholder: (props: inputLabelProps) => JSX.Element;

@@ -5,7 +5,7 @@ import { components, SingleValue } from "react-select"
 import { ReactComponent as Down } from "../../assets/down.svg"
 import { colors } from "../design.config"
 import { useState } from "react"
-import InputMovingPlaceholder from "./InputMovingPlaceholder";
+import {InputMovingPlaceholder} from "./InputMovingPlaceholder";
 
 export interface selectOption {
   value: string

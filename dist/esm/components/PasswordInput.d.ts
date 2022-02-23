@@ -1,2 +1,3 @@
 /// <reference types="react" />
-export declare const PasswordInput: (props: Commons.BaseInputProps) => JSX.Element;
+import { BaseInputProps } from "./Input";
+export declare const PasswordInput: (props: BaseInputProps) => JSX.Element;

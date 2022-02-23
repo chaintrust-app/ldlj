@@ -2,7 +2,6 @@ import * as React from "react"
 import styled from "styled-components/macro"
 import { colors } from "../design.config"
 
-export default Switch
 export type { SwitchProps }
 
 interface SwitchProps {
@@ -11,7 +10,7 @@ interface SwitchProps {
   onToggle: () => void
 }
 
-function Switch({ id, value, onToggle }: SwitchProps) {
+export function Switch({ id, value, onToggle }: SwitchProps) {
   return (
     <SwitchStyled
       onClick={() => {

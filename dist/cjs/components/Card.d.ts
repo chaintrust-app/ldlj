@@ -1,3 +1,4 @@
+import * as React from "react";
 import { colors } from "../design.config";
 import { VFC } from "react";
 declare type trianglePosition = {
