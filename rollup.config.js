@@ -1,8 +1,10 @@
 import resolve from "@rollup/plugin-node-resolve";
 import commonjs from "@rollup/plugin-commonjs";
-import typescript from "@rollup/plugin-typescript";
 import json from "@rollup/plugin-json";
+import image from '@rollup/plugin-image';
+import typescript from "rollup-plugin-typescript2";
 import dts from "rollup-plugin-dts";
+import flatDts from 'rollup-plugin-flat-dts';
 import { terser } from "rollup-plugin-terser";
 import peerDepsExternal from 'rollup-plugin-peer-deps-external';
 
@@ -24,12 +26,17 @@ export default [
             },
         ],
         plugins: [
-            peerDepsExternal(),
             resolve(),
             commonjs(),
-            typescript({ tsconfig: "./tsconfig.json" }),
+            peerDepsExternal(),
+            image({
+                extensions: /\.(png|jpg|jpeg|gif|svg)$/,
+                limit: 10000
+            }),
+            json(),
             terser(),
-            json()
+            flatDts(),
+            typescript({ tsconfig: "./tsconfig.json" }),
         ],
         external: ["react", "react-dom", "styled-components"]
     },

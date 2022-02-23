@@ -12,12 +12,12 @@
     "moduleResolution": "node",
     "emitDeclarationOnly": true,
     "allowSyntheticDefaultImports": true,
-    "forceConsistentCasingInFileNames": true,
+    "forceConsistentCasingInFileNames": true
   },
   "exclude": [
     "dist",
     "node_modules",
     "lib/**/*.test.tsx",
-    "lib/**/*.stories.tsx",
-  ],
+    "lib/**/*.stories.tsx"
+  ]
 }
