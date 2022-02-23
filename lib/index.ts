@@ -2,7 +2,7 @@ import {Alert} from "./components/Alert"
 import {Background} from "./components/Background"
 import {Bar} from "./components/Bar"
 import {Button, LoadingStatus} from "./components/Button"
-import {Card} from "./components/Card"
+import {Card, CardProps} from "./components/Card"
 import {Checkbox} from "./components/Checkbox"
 import {CircleNotifier} from "./components/CircleNotifier"
 import {CreatableSelect} from "./components/CreatableSelect"
@@ -132,6 +132,7 @@ export {
 }
 
 export type {
+    CardProps,
     LoadingStatus,
     displayPreviewParams,
     BaseInputProps,
