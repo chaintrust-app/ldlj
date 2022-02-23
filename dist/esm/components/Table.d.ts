@@ -1,5 +1,5 @@
 import { ReactNode } from "react";
-import { colors } from "../../styles/design.config";
+import { colors } from "../design.config";
 export interface TableBuilder<T> {
     headerText: string;
     flexGrow?: string;

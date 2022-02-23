@@ -1,8 +1,8 @@
 import * as React from "react"
 import styled from "styled-components/macro"
+import {Text} from "./Text"
 
 import { ReactComponent as FileDownload } from "../../assets/fileDownload.svg"
-import * as Commons from "../../components/Commons"
 
 interface FileProps {
   url: string
@@ -20,7 +20,7 @@ export const FileDownloader = ({ url, text, fileName }: FileProps) => {
       rel="noreferrer"
     >
       <StyledFileDownload />
-      <Commons.Text
+      <Text
         text={text}
         textStyle={{
           textAlign: "center",

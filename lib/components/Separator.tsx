@@ -1,6 +1,6 @@
 import * as React from "react"
 import styled from "styled-components/macro"
-import { colors } from "../../styles/design.config"
+import { colors } from "../design.config"
 
 type SeparatorSize = "half" | "full"
 

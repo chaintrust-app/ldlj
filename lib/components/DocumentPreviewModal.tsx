@@ -1,9 +1,12 @@
 import * as React from "react"
 import { ReactComponent as CloseCrossSVG } from "../../assets/close-cross.svg"
 import styled from "styled-components/macro"
-import * as Commons from "../Commons"
 import { useRef } from "react"
-import { fileExtensionOfString } from "../../utils/string"
+import {Modal, ModalComponentsProps} from "./Modal";
+import {Spacer} from "./Spacer";
+import {Title} from "./Title";
+import {Card} from "./Card";
+import {fileExtensionOfString} from "../utils/string";
 
 export interface displayPreviewParams {
   isDisplayed: boolean
@@ -12,7 +15,7 @@ export interface displayPreviewParams {
   displayInvoice?: boolean
 }
 
-interface DocumentPreviewModalParams extends Commons.ModalComponentsProps {
+interface DocumentPreviewModalParams extends ModalComponentsProps {
   documentToDisplay: string
   elementName: string
   displayInvoice?: boolean
@@ -27,18 +30,18 @@ export const DocumentPreviewModal = ({
 }: DocumentPreviewModalParams) => {
   const currentRef = useRef<HTMLIFrameElement | null>(null)
   return (
-    <Commons.Modal isDisplayed={isDisplayed} onClose={onClose} top="16rem">
+    <Modal isDisplayed={isDisplayed} onClose={onClose} top="16rem">
       <StyledCard width="58vw" height={100}>
-        <Commons.Spacer height={2} />
+        <Spacer height={2} />
         <HeaderPreviewModal>
           <TextWrapper>
-            <Commons.Title text={elementName} size={3} />
+            <Title text={elementName} size={3} />
           </TextWrapper>
           <CrossWrapper onClick={() => onClose()}>
             <CloseCrossSVG />
           </CrossWrapper>
         </HeaderPreviewModal>
-        <Commons.Spacer height={2} />
+        <Spacer height={2} />
         <StyledIframe
           src={documentToDisplay}
           ref={currentRef}
@@ -52,7 +55,7 @@ export const DocumentPreviewModal = ({
           }}
         />
       </StyledCard>
-    </Commons.Modal>
+    </Modal>
   )
 }
 
@@ -61,7 +64,7 @@ const StyledIframe = styled.iframe`
   height: 100%;
   box-sizing: border-box;
 `
-const StyledCard = styled(Commons.Card)`
+const StyledCard = styled(Card)`
   padding: 0;
   border-radius: 1rem;
 `

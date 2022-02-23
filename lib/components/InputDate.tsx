@@ -3,8 +3,7 @@ import { useState } from "react"
 import { FieldValues, UseFormRegister } from "react-hook-form"
 import styled from "styled-components/macro"
 import { ReactComponent as Calendar } from "../../assets/calendar.svg"
-import { colors } from "../../styles/design.config"
-import { sizes } from "../../styles/design.config"
+import {colors, sizes} from "../design.config"
 
 interface InputDateProps {
   name: string

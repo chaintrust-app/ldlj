@@ -1,10 +1,8 @@
 import * as React from "react"
 import styled from "styled-components/macro"
-
-import { colors } from "../../styles/design.config"
-import * as Commons from "../../components/Commons"
-
+import { colors } from "../design.config"
 import { ReactComponent as CheckedSvg } from "../../assets/checked.svg"
+import {Spacer} from "./Spacer";
 
 interface RowCheckboxProps {
   label: string
@@ -29,7 +27,7 @@ export const RowCheckbox = ({
       />
       <StyledInput onClick={onChange}>
         <StyledInputLabel>{label}</StyledInputLabel>
-        <Commons.Spacer height={0} width={1} />
+        <Spacer height={0} width={1} />
         <StyledSquare checked={isChecked}>
           {isChecked && (
             <StyledChecked>

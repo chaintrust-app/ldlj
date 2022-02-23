@@ -8,7 +8,7 @@ import {
 import { FieldValues, RegisterOptions, UseFormRegister } from "react-hook-form"
 import styled from "styled-components/macro"
 
-import { boxShadow, colors } from "../../styles/design.config"
+import { boxShadow, colors } from "../design.config"
 import { ReactComponent as Exclamation } from "../../assets/exclamation-mark.svg"
 import { ReactComponent as Remove } from "../../assets/remove.svg"
 import { ReactComponent as Check } from "../../assets/check.svg"
@@ -17,7 +17,7 @@ export interface BaseInputProps {
   label: string
   name?: string
   register?: UseFormRegister<FieldValues>
-  validations?: RegisterOptions<FieldValues>
+  validations?: RegisterOptions
   type?: "password" | "text" | "checkbox" | "email" | "number"
   value: string
   showError?: boolean

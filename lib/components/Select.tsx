@@ -1,13 +1,15 @@
 import * as React from "react"
 import { components, default as ReactSelect } from "react-select"
-import { boxShadow, colors } from "../../styles/design.config"
+import { boxShadow, colors } from "../design.config"
 import { ReactComponent as ChevronDown } from "../../assets/chevron-down.svg"
 import { ReactComponent as Down } from "../../assets/down.svg"
-import * as Commons from "../../components/Commons"
 import styled from "styled-components/macro"
 import { useIntl } from "react-intl"
 import { useState } from "react"
 import { ReactComponent as LocationArrow } from "../../assets/location-arrow.svg"
+import {Row} from "./Flex"
+import {Spacer} from "./Spacer";
+import {Text} from "./Text"
 
 interface SelectProps {
   options: Array<Option<string>>
@@ -88,16 +90,16 @@ export function Select(props: SelectProps) {
   // eslint-disable-next-line @typescript-eslint/no-explicit-any
   const SingleValue = ({ children, ...props }: any) => (
     <components.SingleValue {...props}>
-      <Commons.Row>
-        <Commons.Spacer width={0.5} />
-        <Commons.Text
+      <Row>
+        <Spacer width={0.5} />
+        <Text
           textStyle={{ color: "slateGrey" }}
           text={intl.formatMessage({ id: "office.sort" })}
         />
-        <Commons.Spacer width={0.5} />
+        <Spacer width={0.5} />
         <StyledSpan>{children}</StyledSpan>
         <LocationArrow />
-      </Commons.Row>
+      </Row>
     </components.SingleValue>
   )
 
@@ -139,13 +141,13 @@ export function Select(props: SelectProps) {
                 ? colors.cornflower
                 : colors.white,
             }),
-            control: (defaultOptions, selectState) => ({
+            control: (defaultOptions) => ({
               ...defaultOptions,
               backgroundColor: colors.white,
               borderRadius: "1.25rem",
               border: "0px",
             }),
-            dropdownIndicator: (defaultOptions, selectState) => ({
+            dropdownIndicator: (defaultOptions) => ({
               ...defaultOptions,
             }),
           }}
@@ -188,12 +190,12 @@ export function Select(props: SelectProps) {
                   ? colors.cornflower
                   : colors.white,
               }),
-              control: (defaultOptions, selectState) => ({
+              control: (defaultOptions) => ({
                 ...defaultOptions,
                 backgroundColor: colors.white,
                 borderRadius: "1.25rem",
               }),
-              dropdownIndicator: (defaultOptions, selectState) => ({
+              dropdownIndicator: (defaultOptions) => ({
                 ...defaultOptions,
               }),
             }}

@@ -1,7 +1,7 @@
 import * as React from "react"
 import { ReactComponent as TrashCan } from "../../assets/drop-documents/TrashCan.svg"
 import styled from "styled-components/macro"
-import { colors } from "../../styles/design.config"
+import { colors } from "../design.config"
 
 interface FileProps {
   disabled?: boolean

@@ -1,7 +1,7 @@
 import * as React from "react"
 import { Link as RouterLink } from "react-router-dom"
-import * as Commons from "../../components/Commons"
 import styled from "styled-components/macro"
+import {Text} from "./Text"
 
 interface LinkProps {
   text: string
@@ -11,7 +11,7 @@ interface LinkProps {
 export const Link = ({ text, href }: LinkProps) => {
   return (
     <StyledLink to={href}>
-      <Commons.Text
+      <Text
         text={text}
         textStyle={{
           fontWeight: 500,

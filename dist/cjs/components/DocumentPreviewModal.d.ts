@@ -1,5 +1,5 @@
 /// <reference types="react" />
-import * as Commons from "../Commons";
+
 export interface displayPreviewParams {
     isDisplayed: boolean;
     elementToDisplay: string;

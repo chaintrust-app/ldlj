@@ -3,9 +3,13 @@ import { Fragment, ReactNode } from "react"
 import { useIntl } from "react-intl"
 import styled from "styled-components/macro"
 
-import { colors } from "../../styles/design.config"
-import * as Commons from "../Commons"
+import { colors } from "../design.config"
 import ReactTooltip from "react-tooltip"
+import {Separator} from "./Separator";
+import {Spacer} from "./Spacer";
+import {Alert} from "./Alert";
+import {Card} from "./Card";
+import {Text} from "./Text"
 
 export interface TableBuilder<T> {
   headerText: string
@@ -71,7 +75,7 @@ export const Table = <T,>({
               key={keyBuilder ? keyBuilder(row, index) : `row-${index}`}
             >
               {index > 0 && (
-                <Commons.Separator size="full" color={"lavender"} />
+                <Separator size="full" color={"lavender"} />
               )}
               <RowWithPadding
                 backgroundColor={bgColors[index]}
@@ -94,14 +98,14 @@ export const Table = <T,>({
 
         {rows.length === 0 && alertMessage && (
           <>
-            <Commons.Spacer height={8} />
-            <Commons.Alert alertType="info">
-              <Commons.Text
+            <Spacer height={8} />
+            <Alert alertType="info">
+              <Text
                 text={intl.formatMessage({
                   id: alertMessage,
                 })}
               />
-            </Commons.Alert>
+            </Alert>
           </>
         )}
         {suffixContent}
@@ -129,7 +133,7 @@ const Wrapper = styled.div<WrapperStyle>`
 export const TitleTable = ({ tid }: { tid: string }) => {
   const intl = useIntl()
   return (
-    <Commons.Text
+      <Text
       text={intl.formatMessage({ id: tid })}
       textStyle={{
         fontWeight: 700,
@@ -188,7 +192,7 @@ const RowWithPadding = styled(Row)<WithColor>`
   align-items: ${({ alignItems }) => (alignItems ? alignItems : "normal")};
 `
 
-const ContentSection = styled(Commons.Card)<WithTransition>`
+const ContentSection = styled(Card)<WithTransition>`
   display: flex;
   justify-content: flex-start;
   width: 100%;

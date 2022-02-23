@@ -1,11 +1,11 @@
 import * as React from "react"
 import ReactCreatable from "react-select/creatable"
-import * as Commons from "../Commons"
 import styled from "styled-components/macro"
 import { components, SingleValue } from "react-select"
 import { ReactComponent as Down } from "../../assets/down.svg"
-import { colors } from "../../styles/design.config"
+import { colors } from "../design.config"
 import { useState } from "react"
+import InputMovingPlaceholder from "./InputMovingPlaceholder";
 
 export interface selectOption {
   value: string
@@ -48,14 +48,14 @@ export const CreatableSelect = (props: creatableSelectProps) => {
         id={"creatableSelect"}
         inputId={props.inputId}
       />
-      <Commons.InputMovingPlaceholder
+      <InputMovingPlaceholder
         hasValue={props.value !== null}
         disabled={props.disabled}
         isFocused={isFocused}
       >
         {" "}
         {props.placeholderText}{" "}
-      </Commons.InputMovingPlaceholder>
+      </InputMovingPlaceholder>
     </StyledCreatableContainer>
   )
 }

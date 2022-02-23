@@ -1,9 +1,9 @@
 import * as React from "react"
 import styled from "styled-components/macro"
 
-import { colors } from "../../styles/design.config"
-import * as Commons from "../../components/Commons"
+import { colors } from "../design.config"
 import { ReactComponent as CheckedSvg } from "../../assets/checked.svg"
+import {Spacer} from "./Spacer";
 
 interface CheckboxProps {
   label: string
@@ -42,7 +42,7 @@ export const Checkbox = ({
             </StyledChecked>
           )}
         </StyledSquare>
-        <Commons.Spacer height={0} width={1} />
+        <Spacer height={0} width={1} />
         <StyledInputLabel disabled={disabled}>{label}</StyledInputLabel>
       </StyledInput>
     </div>

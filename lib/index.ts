@@ -7,7 +7,6 @@ import {Checkbox} from "./components/Checkbox"
 import {CircleNotifier} from "./components/CircleNotifier"
 import {CreatableSelect} from "./components/CreatableSelect"
 import {DocumentPreviewModal,} from "./components/DocumentPreviewModal"
-import {DropFileUpload} from "./components/DropFile"
 import {FileDownloader} from "./components/FileDownloader"
 import {FilePreviewer} from "./components/FilePreviewer"
 import {FileTrash} from "./components/FileTrash"
@@ -70,7 +69,6 @@ export {
     CircleNotifier,
     CreatableSelect,
     DocumentPreviewModal,
-    DropFileUpload,
     FileDownloader,
     FilePreviewer,
     FileTrash,

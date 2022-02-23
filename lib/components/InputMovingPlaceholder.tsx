@@ -1,5 +1,5 @@
 import * as React from "react"
-import { colors } from "../../styles/design.config"
+import { colors } from "../design.config"
 import styled from "styled-components/macro"
 import { ReactNode } from "react"
 

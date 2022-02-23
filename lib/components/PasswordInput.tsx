@@ -3,10 +3,10 @@ import { useState } from "react"
 import styled from "styled-components/macro"
 import { ReactComponent as Eye } from "../../assets/eye.svg"
 import { ReactComponent as EyeClosed } from "../../assets/eye-closed.svg"
-import { colors } from "../../styles/design.config"
-import * as Commons from "../Commons"
+import { colors } from "../design.config"
+import {BaseInputProps, Input} from "./Input";
 
-export const PasswordInput = (props: Commons.BaseInputProps) => {
+export const PasswordInput = (props: BaseInputProps) => {
   const [type, setType] = useState<"password" | "text">("password")
 
   const toggleType = () => {
@@ -18,7 +18,7 @@ export const PasswordInput = (props: Commons.BaseInputProps) => {
   }
 
   return (
-    <Commons.Input
+    <Input
       {...props}
       type={type}
       suffix={

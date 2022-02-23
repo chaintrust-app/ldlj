@@ -1,5 +1,5 @@
 /// <reference types="react" />
-import { colors } from "../../styles/design.config";
+import { colors } from "../design.config";
 interface ProgressBarProps {
     color?: keyof typeof colors;
     progress: number;

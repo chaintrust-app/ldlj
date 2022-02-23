@@ -1,16 +1,16 @@
 import * as React from "react"
 import { components, default as ReactSelect } from "react-select"
-import { colors } from "../../styles/design.config"
+import { colors } from "../design.config"
 import styled from "styled-components/macro"
 import { useIntl } from "react-intl"
-import * as Commons from "../Commons"
+import {RowCheckbox} from "./RowCheckbox";
 
 // eslint-disable-next-line @typescript-eslint/no-explicit-any
 const Option = (props: any) => {
   return (
     <components.Option {...props}>
       <StyledDiv>
-        <Commons.RowCheckbox
+        <RowCheckbox
           label={props.label}
           name={props.label}
           isChecked={props.isSelected}
@@ -76,7 +76,7 @@ export function MultiSelect<T>(props: MultiSelectProps<T>) {
               ? colors.mist
               : colors.white,
           }),
-          control: (defaultOptions, selectState) => ({
+          control: (defaultOptions) => ({
             ...defaultOptions,
             backgroundColor: colors.white,
             borderRadius: "0.75rem",

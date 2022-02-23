@@ -1,4 +1,4 @@
-import { colors } from "../../styles/design.config";
+import { colors } from "../design.config";
 import { VFC } from "react";
 declare type trianglePosition = {
     position: "left" | "top";

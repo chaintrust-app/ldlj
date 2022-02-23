@@ -1,5 +1,5 @@
 /// <reference types="react" />
-import * as Commons from "../Commons";
+
 interface LockableInputProps extends Commons.BaseInputProps {
     locked: boolean;
 }

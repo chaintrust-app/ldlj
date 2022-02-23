@@ -2,7 +2,7 @@ import * as React from "react"
 import { ReactNode } from "react"
 import styled from "styled-components/macro"
 
-import { colors, gradients } from "../../styles/design.config"
+import { colors, gradients } from "../design.config"
 import { useNavigate } from "react-router-dom"
 
 export interface MenuItemProps {

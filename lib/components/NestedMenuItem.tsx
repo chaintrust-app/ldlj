@@ -2,7 +2,7 @@ import * as React from "react"
 import styled from "styled-components/macro"
 import { useNavigate } from "react-router-dom"
 
-import { colors } from "../../styles/design.config"
+import { colors } from "../design.config"
 
 export interface MenuItemProps {
   label: string

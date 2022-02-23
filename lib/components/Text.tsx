@@ -8,7 +8,7 @@ type FontWeight =
   | 600 // SemiBold
   | 700 // Bold
 
-interface TextProps {
+export interface TextProps {
   text: string
   textStyle?: {
     color?: keyof typeof colors

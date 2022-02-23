@@ -1,5 +1,5 @@
 import * as React from "react"
-import { boxShadow, colors, spacings } from "../../styles/design.config"
+import { boxShadow, colors, spacings } from "../design.config"
 import styled from "styled-components/macro"
 import { VFC } from "react"
 
