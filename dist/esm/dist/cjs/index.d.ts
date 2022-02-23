@@ -614,4 +614,5 @@ declare module "ldlj" {
 
 declare module "ldlj" {
     export { Alert, Background, Bar, Button, Card, Checkbox, CircleNotifier, CreatableSelect, DocumentPreviewModal, FileDownloader, FilePreviewer, FileTrash, SpacedBetween, SpacedBetweenCenter, SpacedBetweenEnd, FlexStart, FlexEnd, FlexShrinkZero, JustifyCenter, Column, ColumnStretch, ColumnSpacedBetween, ColumnCenter, ColumnCenterCenter, Row, RowCenter, AlignSelfStart, AlignSelfCenter, SelfAlignedColumn, StyledForm, Input, InputDate, StyledDuoInput, InputMovingPlaceholder, Link, LockableInput, MenuItem, Modal, MultiSelect, NestedMenuItem, PasswordInput, ProgressBar, RowCheckbox, ScrollableOutlet, Select, createOptionList, Separator, VerticalSeparator, SortButton, Spacer, SpinningLoader, SpinningLoaderShadow, StyledLoaderShadow, Subtitle, Switch, Table, Header, TitleTable, Tabs, Text, Title, StyledToastContainer, TableHeader, TableBody, StyledTitles, TableWrapper, WrapperRows, Cell, Counter, };
+    export type { LoadingStatus, displayPreviewParams, BaseInputProps, ModalComponentsProps, Option, OptionList, TableBuilder, TabObject, };
 }

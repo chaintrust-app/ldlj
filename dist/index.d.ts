@@ -152,6 +152,12 @@ interface ModalComponentsProps {
     onClose: () => void;
 }
 
+interface displayPreviewParams {
+    isDisplayed: boolean;
+    elementToDisplay: string;
+    elementName: string;
+    displayInvoice?: boolean;
+}
 interface DocumentPreviewModalParams extends ModalComponentsProps {
     documentToDisplay: string;
     elementName: string;
@@ -464,4 +470,4 @@ declare const Title: ({ text, size, className }: TitleProps) => JSX.Element;
 
 declare const StyledToastContainer: styled_components.StyledComponent<React.FC<react_toastify.ToastContainerProps>, any, {}, never>;
 
-export { Alert, AlignSelfCenter, AlignSelfStart, Background, Bar, Button, Card, Cell, Checkbox, CircleNotifier, Column, ColumnCenter, ColumnCenterCenter, ColumnSpacedBetween, ColumnStretch, Counter, CreatableSelect, DocumentPreviewModal, FileDownloader, FilePreviewer, FileTrash, FlexEnd, FlexShrinkZero, FlexStart, Header, Input, InputDate, InputMovingPlaceholder, JustifyCenter, Link, LockableInput, MenuItem, Modal, MultiSelect, NestedMenuItem, PasswordInput, ProgressBar, Row, RowCenter, RowCheckbox, ScrollableOutlet, Select, SelfAlignedColumn, Separator, SortButton, SpacedBetween, SpacedBetweenCenter, SpacedBetweenEnd, Spacer, SpinningLoader, SpinningLoaderShadow, StyledDuoInput, StyledForm, StyledLoaderShadow, StyledTitles, StyledToastContainer, Subtitle, Switch, Table, TableBody, TableHeader, TableWrapper, Tabs, Text, Title, TitleTable, VerticalSeparator, WrapperRows, createOptionList };
+export { Alert, AlignSelfCenter, AlignSelfStart, Background, Bar, BaseInputProps, Button, Card, Cell, Checkbox, CircleNotifier, Column, ColumnCenter, ColumnCenterCenter, ColumnSpacedBetween, ColumnStretch, Counter, CreatableSelect, DocumentPreviewModal, FileDownloader, FilePreviewer, FileTrash, FlexEnd, FlexShrinkZero, FlexStart, Header, Input, InputDate, InputMovingPlaceholder, JustifyCenter, Link, LoadingStatus, LockableInput, MenuItem, Modal, ModalComponentsProps, MultiSelect, NestedMenuItem, Option, OptionList, PasswordInput, ProgressBar, Row, RowCenter, RowCheckbox, ScrollableOutlet, Select, SelfAlignedColumn, Separator, SortButton, SpacedBetween, SpacedBetweenCenter, SpacedBetweenEnd, Spacer, SpinningLoader, SpinningLoaderShadow, StyledDuoInput, StyledForm, StyledLoaderShadow, StyledTitles, StyledToastContainer, Subtitle, Switch, TabObject, Table, TableBody, TableBuilder, TableHeader, TableWrapper, Tabs, Text, Title, TitleTable, VerticalSeparator, WrapperRows, createOptionList, displayPreviewParams };
