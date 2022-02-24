@@ -4,9 +4,9 @@ import json from "@rollup/plugin-json";
 import image from '@rollup/plugin-image';
 import typescript from "rollup-plugin-typescript2";
 import dts from "rollup-plugin-dts";
-import flatDts from 'rollup-plugin-flat-dts';
 import { terser } from "rollup-plugin-terser";
 import peerDepsExternal from 'rollup-plugin-peer-deps-external';
+import svgr from '@svgr/rollup'
 
 const packageJson = require("./package.json");
 
@@ -36,6 +36,7 @@ export default [
             json(),
             terser(),
             typescript({ tsconfig: "./tsconfig.json" }),
+            svgr()
         ],
         external: ["react", "react-dom", "styled-components"]
     },
