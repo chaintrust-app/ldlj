@@ -1,11 +1,11 @@
-import * as React from "react"
-import { ReactComponent as TrashCan } from "../../assets/drop-documents/TrashCan.svg"
-import styled from "styled-components/macro"
-import { colors } from "../design.config"
+import * as React from "react";
+import TrashCan from "../../assets/drop-documents/TrashCan.svg";
+import styled from "styled-components/macro";
+import { colors } from "../design.config";
 
 interface FileProps {
-  disabled?: boolean
-  onClick: () => void
+  disabled?: boolean;
+  onClick: () => void;
 }
 
 export const FileTrash = ({ disabled, onClick }: FileProps) => {
@@ -17,15 +17,15 @@ export const FileTrash = ({ disabled, onClick }: FileProps) => {
         <TrashStyled />
       )}
     </>
-  )
-}
+  );
+};
 
-const Trash = styled(TrashCan)`
+const Trash = styled((props) => <TrashCan {...props} />)`
   cursor: pointer;
-`
+`;
 
-const TrashStyled = styled(TrashCan)`
+const TrashStyled = styled((props) => <TrashCan {...props} />)`
   & path {
     fill: ${colors.lightBlueGrey};
   }
-`
+`;

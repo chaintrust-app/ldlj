@@ -1,38 +1,37 @@
-import * as React from "react"
-import { colors, gradients, rotate } from "../design.config"
-import styled, { css, keyframes } from "styled-components/macro"
-import { ReactNode } from "react"
-import { Spacer } from "./Spacer"
-import { ReactComponent as LocationArrow } from "../assets/location-arrow.svg"
-import { ReactComponent as Checked } from "../assets/checked.svg"
-import { StyledLoaderShadow } from ".."
+import * as React from "react";
+import { colors, gradients, rotate } from "../design.config";
+import styled, { css, keyframes } from "styled-components/macro";
+import { ReactNode } from "react";
+import { Spacer } from "./Spacer";
+import LocationArrow from "../assets/location-arrow.svg";
+import Checked from "../assets/checked.svg";
+import { StyledLoaderShadow } from "..";
 
-
-type ColorType = "Primary" | "Secondary" | "Tertiary" | "Quaternary"
+type ColorType = "Primary" | "Secondary" | "Tertiary" | "Quaternary";
 
 type ColorScheme = {
-  background: keyof typeof colors
-  color: keyof typeof colors
-  border: keyof typeof colors
-}
+  background: keyof typeof colors;
+  color: keyof typeof colors;
+  border: keyof typeof colors;
+};
 
-export type LoadingStatus = "idle" | "loading" | "success" | "error"
+export type LoadingStatus = "idle" | "loading" | "success" | "error";
 
 export interface ButtonProps {
-  label: ReactNode
-  onClick?: () => void
-  disabled?: boolean
-  type?: "submit"
-  colorType?: ColorType
-  width?: "auto" | number
-  height?: number
-  textTransform?: "uppercase" | "lowercase" | "capitalize" | "none"
-  prefix?: ReactNode
-  suffix?: ReactNode
-  loadingStatus?: LoadingStatus
-  colorScheme?: ColorScheme
-  id?: string
-  dataCy?: string
+  label: ReactNode;
+  onClick?: () => void;
+  disabled?: boolean;
+  type?: "submit";
+  colorType?: ColorType;
+  width?: "auto" | number;
+  height?: number;
+  textTransform?: "uppercase" | "lowercase" | "capitalize" | "none";
+  prefix?: ReactNode;
+  suffix?: ReactNode;
+  loadingStatus?: LoadingStatus;
+  colorScheme?: ColorScheme;
+  id?: string;
+  dataCy?: string;
 }
 export const Button = ({
   id,
@@ -209,13 +208,13 @@ export const Button = ({
       </StyledButtonQuaternary>
     )}
   </>
-)
+);
 
 const StyledSeparator = styled.div`
   width: 1px;
   height: 100%;
   background-color: ${colors.cornflower};
-`
+`;
 
 const sharedButtonProps = css`
   display: flex;
@@ -230,19 +229,19 @@ const sharedButtonProps = css`
   font-size: 1.5rem;
   transition: all 0.4s ease-in-out;
   overflow: hidden;
-`
+`;
 
 type ButtonStyleProps = Required<
   Pick<ButtonProps, "height" | "width" | "colorType" | "loadingStatus">
->
+>;
 
 type TertiaryButtonStyleProps = Required<
   Pick<
     ButtonProps,
     "height" | "width" | "colorType" | "loadingStatus" | "colorScheme"
   >
->
-const roundLoadingSize = "4rem"
+>;
+const roundLoadingSize = "4rem";
 
 const SVGColorWrapper = styled.div<
   Required<Pick<ButtonProps, "loadingStatus">>
@@ -267,7 +266,7 @@ const SVGColorWrapper = styled.div<
     width: 1.75rem;
     fill: ${colors.white};
   }
-`
+`;
 
 const RotatingWrapper = styled.div`
   position: absolute;
@@ -278,12 +277,12 @@ const RotatingWrapper = styled.div`
   width: ${roundLoadingSize};
   pointer-events: none;
   cursor: auto;
-`
+`;
 
 const AppearingSpinningLoader = styled((props) => (
   <StyledLoaderShadow {...props} />
 ))<{
-  $loadingStatus: LoadingStatus
+  $loadingStatus: LoadingStatus;
 }>`
   animation: 0.6s ${rotate} 0s linear infinite;
   transform-origin: center;
@@ -299,7 +298,7 @@ const AppearingSpinningLoader = styled((props) => (
   display: ${({ $loadingStatus }) =>
     ["success", "error"].includes($loadingStatus) ? "none" : "flex"};
   cursor: auto;
-`
+`;
 
 const FlexWrapper = styled.div<Required<Pick<ButtonProps, "width">>>`
   position: relative;
@@ -307,7 +306,7 @@ const FlexWrapper = styled.div<Required<Pick<ButtonProps, "width">>>`
   width: ${({ width }) => (width === "auto" ? "auto" : width + "rem")};
   align-items: center;
   justify-content: center;
-`
+`;
 
 export const bounce = keyframes`
   0% {
@@ -332,7 +331,7 @@ export const bounce = keyframes`
     width: 4rem;
     border-radius:50%;
   }
-`
+`;
 
 const OverFlowHiddenMask = styled.div<Omit<ButtonStyleProps, "colorType">>`
   display: flex;
@@ -363,7 +362,7 @@ const OverFlowHiddenMask = styled.div<Omit<ButtonStyleProps, "colorType">>`
     loadingStatus === "loading" ? "50%" : "1.25rem"};
   transition: 0.4s border-radius ease-in-out, 0.4s height ease-in-out,
     0.4s width ease-in-out;
-`
+`;
 
 const StyledButtonPrimary = styled.button<ButtonStyleProps>`
   ${sharedButtonProps};
@@ -407,7 +406,7 @@ const StyledButtonPrimary = styled.button<ButtonStyleProps>`
     right: 0;
     bottom: 0;
   }
-`
+`;
 
 const StyledButtonSecondary = styled.button<ButtonStyleProps>`
   ${sharedButtonProps};
@@ -417,7 +416,7 @@ const StyledButtonSecondary = styled.button<ButtonStyleProps>`
   color: ${({ disabled }) => (disabled ? colors.moon : colors.cornflower)};
   cursor: ${({ disabled }) => (disabled ? "not-allowed" : "pointer")};
   box-shadow: 0 4px 4px rgba(2, 76, 248, 0.2);
-`
+`;
 
 const StyledButtonTertiary = styled.button<TertiaryButtonStyleProps>`
   ${sharedButtonProps};
@@ -432,7 +431,7 @@ const StyledButtonTertiary = styled.button<TertiaryButtonStyleProps>`
       ? `1px solid ${colors.mist}`
       : `1px solid ${colors[colorScheme.border]}`};
   cursor: ${({ disabled }) => (disabled ? "not-allowed" : "pointer")};
-`
+`;
 
 const StyledButtonQuaternary = styled.button<ButtonStyleProps>`
   ${sharedButtonProps};
@@ -441,7 +440,7 @@ const StyledButtonQuaternary = styled.button<ButtonStyleProps>`
   background-color: ${colors.white};
   color: ${colors.slateGrey};
   cursor: pointer;
-`
+`;
 
 const Zindex = styled.div<
   Required<
@@ -486,4 +485,4 @@ const Zindex = styled.div<
   > svg {
     stroke: ${({ disabled }) => (disabled ? colors.moon : "auto")};
   }
-`
+`;

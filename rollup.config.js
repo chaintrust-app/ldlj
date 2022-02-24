@@ -36,7 +36,7 @@ export default [
             json(),
             terser(),
             typescript({ tsconfig: "./tsconfig.json" }),
-            svgr()
+            svgr({ icon: true })
         ],
         external: ["react", "react-dom", "styled-components"]
     },

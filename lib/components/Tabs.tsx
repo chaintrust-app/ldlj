@@ -1,19 +1,19 @@
-import styled, { css } from "styled-components/macro"
-import { Link, LinkProps, useMatch, useResolvedPath } from "react-router-dom"
-import { Fragment, ReactNode } from "react"
-import { bump, colors } from "../design.config"
-import * as React from "react"
+import styled, { css } from "styled-components/macro";
+import { Link, LinkProps, useMatch, useResolvedPath } from "react-router-dom";
+import { Fragment, ReactNode } from "react";
+import { bump, colors } from "../design.config";
+import * as React from "react";
 
 export interface TabObject {
-  to: string
-  title: string
-  icon: ReactNode
-  isDisplayed: boolean
+  to: string;
+  title: string;
+  icon: ReactNode;
+  isDisplayed: boolean;
 }
 
 const Tab = ({ children, to, ...props }: LinkProps) => {
-  let resolved = useResolvedPath(to)
-  let match = useMatch({ path: resolved.pathname, end: true })
+  let resolved = useResolvedPath(to);
+  let match = useMatch({ path: resolved.pathname, end: true });
 
   return (
     <>
@@ -22,11 +22,11 @@ const Tab = ({ children, to, ...props }: LinkProps) => {
       </StyledLink>
       <Underline match={match} />
     </>
-  )
-}
+  );
+};
 
 interface MatchingLink {
-  match: unknown
+  match: unknown;
 }
 
 export const Tabs = ({ tabs }: { tabs: TabObject[] }) => {
@@ -49,8 +49,8 @@ export const Tabs = ({ tabs }: { tabs: TabObject[] }) => {
         </TabsWrapper>
       </nav>
     </>
-  )
-}
+  );
+};
 
 const TabsWrapper = styled.ul`
   display: flex;
@@ -58,15 +58,15 @@ const TabsWrapper = styled.ul`
   justify-content: center;
   margin: 0;
   padding: 0;
-`
+`;
 
 const ListItem = styled.li`
   list-style-type: none;
   padding: 0 2.5rem;
-`
+`;
 
 // !important to override rsuite global css
-const StyledLink = styled(Link)<MatchingLink>`
+const StyledLink = styled((props) => <Link {...props} />)<MatchingLink>`
   font-family: "Poppins", sans-serif;
   font-weight: 600;
   font-size: 1.75rem;
@@ -98,11 +98,11 @@ const StyledLink = styled(Link)<MatchingLink>`
     fill: ${(props) =>
       props.match ? `${colors.cornflower}` : `${colors.steelBlue}`};
   }
-`
+`;
 
 const Underline = styled.div<MatchingLink>`
   border-top: ${(props) =>
     props.match ? `2px solid ${colors.cornflower}` : `2px solid transparent`};
   border-radius: 5px;
   transition: border-top 0.35s ease-in-out 0.1s;
-`
+`;

@@ -1,8 +1,8 @@
-import * as React from "react"
-import { ReactComponent as Eye } from "../../assets/eyeSimple.svg"
+import * as React from "react";
+import Eye from "../../assets/eyeSimple.svg";
 
 interface FileProps {
-  url: string
+  url: string;
 }
 
 export const FilePreviewer = ({ url }: FileProps) => {
@@ -15,5 +15,5 @@ export const FilePreviewer = ({ url }: FileProps) => {
     >
       <Eye />
     </a>
-  )
-}
+  );
+};

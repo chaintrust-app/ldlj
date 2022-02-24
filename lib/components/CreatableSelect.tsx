@@ -1,30 +1,30 @@
-import * as React from "react"
-import ReactCreatable from "react-select/creatable"
-import styled from "styled-components/macro"
-import { components, SingleValue } from "react-select"
-import { ReactComponent as Down } from "../../assets/down.svg"
-import { colors } from "../design.config"
-import { useState } from "react"
-import {InputMovingPlaceholder} from "./InputMovingPlaceholder";
+import * as React from "react";
+import ReactCreatable from "react-select/creatable";
+import styled from "styled-components/macro";
+import { components, SingleValue } from "react-select";
+import Down from "../../assets/down.svg";
+import { colors } from "../design.config";
+import { useState } from "react";
+import { InputMovingPlaceholder } from "./InputMovingPlaceholder";
 
 export interface selectOption {
-  value: string
-  label: string
+  value: string;
+  label: string;
 }
 
 export interface creatableSelectProps {
-  options: Array<selectOption>
-  value: selectOption | null
-  disabled: boolean
-  onChangeCallback?: (option: selectOption | null) => void
-  onCreateOption: (text: string) => void
-  placeholderText: string
-  formatCreateLabel: string
-  inputId?: string
+  options: Array<selectOption>;
+  value: selectOption | null;
+  disabled: boolean;
+  onChangeCallback?: (option: selectOption | null) => void;
+  onCreateOption: (text: string) => void;
+  placeholderText: string;
+  formatCreateLabel: string;
+  inputId?: string;
 }
 
 export const CreatableSelect = (props: creatableSelectProps) => {
-  const [isFocused, setIsFocused] = useState(false)
+  const [isFocused, setIsFocused] = useState(false);
 
   return (
     <StyledCreatableContainer disabled={props.disabled} isFocused={true}>
@@ -57,12 +57,12 @@ export const CreatableSelect = (props: creatableSelectProps) => {
         {props.placeholderText}{" "}
       </InputMovingPlaceholder>
     </StyledCreatableContainer>
-  )
-}
+  );
+};
 
 interface StyledCreatableContainerProps {
-  disabled: boolean
-  isFocused: boolean
+  disabled: boolean;
+  isFocused: boolean;
 }
 
 const StyledCreatableContainer = styled.div<StyledCreatableContainerProps>`
@@ -85,7 +85,7 @@ const StyledCreatableContainer = styled.div<StyledCreatableContainerProps>`
         ? `1px solid ${colors.disabledGrey}`
         : `1px solid ${isFocused ? colors.cornflower : colors.rock}`};
   }
-`
+`;
 
 // eslint-disable-next-line @typescript-eslint/no-explicit-any
 const DropdownIndicator = (props: any) => {
@@ -93,9 +93,11 @@ const DropdownIndicator = (props: any) => {
     <components.DropdownIndicator {...props}>
       <Down />
     </components.DropdownIndicator>
-  )
-}
-const StyledDropDownIndicator = styled(DropdownIndicator)`
+  );
+};
+const StyledDropDownIndicator = styled((props) => (
+  <DropdownIndicator {...props} />
+))`
   svg {
     transition: 0.5s fill ease-in-out;
     fill: ${({ disabled, isFocused }) =>
@@ -111,4 +113,4 @@ const StyledDropDownIndicator = styled(DropdownIndicator)`
       fill: ${colors.cornflower};
     }
   }
-`
+`;

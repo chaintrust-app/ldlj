@@ -1,39 +1,39 @@
-import * as React from "react"
-import { components, default as ReactSelect } from "react-select"
-import { boxShadow, colors } from "../design.config"
-import { ReactComponent as ChevronDown } from "../../assets/chevron-down.svg"
-import { ReactComponent as Down } from "../../assets/down.svg"
-import styled from "styled-components/macro"
-import { useIntl } from "react-intl"
-import { useState } from "react"
-import { ReactComponent as LocationArrow } from "../../assets/location-arrow.svg"
-import {Row} from "./Flex"
-import {Spacer} from "./Spacer";
-import {Text} from "./Text"
+import * as React from "react";
+import { components, default as ReactSelect } from "react-select";
+import { boxShadow, colors } from "../design.config";
+import ChevronDown from "../../assets/chevron-down.svg";
+import Down from "../../assets/down.svg";
+import styled from "styled-components/macro";
+import { useIntl } from "react-intl";
+import { useState } from "react";
+import LocationArrow from "../../assets/location-arrow.svg";
+import { Row } from "./Flex";
+import { Spacer } from "./Spacer";
+import { Text } from "./Text";
 
 interface SelectProps {
-  options: Array<Option<string>>
-  value: Option<string> | null
-  label?: string
-  domain?: string
-  optionType?: string
-  defaultValue?: Option<string> | null
-  field?: unknown
-  disabled?: boolean
-  selectType?: string
-  onChangeCallback?: (value: Option<string>) => void
-  shadowed?: boolean
-  isClearable?: boolean
-  dataCy?: string
-  customWidth?: string
+  options: Array<Option<string>>;
+  value: Option<string> | null;
+  label?: string;
+  domain?: string;
+  optionType?: string;
+  defaultValue?: Option<string> | null;
+  field?: unknown;
+  disabled?: boolean;
+  selectType?: string;
+  onChangeCallback?: (value: Option<string>) => void;
+  shadowed?: boolean;
+  isClearable?: boolean;
+  dataCy?: string;
+  customWidth?: string;
 }
 
 export type Option<T extends string> = {
-  value: T
-  label: string
-  disabled?: boolean
-}
-export type OptionList<T extends string> = Array<Option<T>>
+  value: T;
+  label: string;
+  disabled?: boolean;
+};
+export type OptionList<T extends string> = Array<Option<T>>;
 
 export function createOptionList<T extends string>(
   optionList: Array<[T, string, boolean?]>
@@ -42,7 +42,7 @@ export function createOptionList<T extends string>(
     value: key,
     label: value.toLowerCase(),
     disabled: disabled,
-  }))
+  }));
 }
 
 export function Select(props: SelectProps) {
@@ -61,13 +61,13 @@ export function Select(props: SelectProps) {
     isClearable = false,
     dataCy,
     customWidth,
-  } = props
+  } = props;
 
-  const intl = useIntl()
+  const intl = useIntl();
 
-  const [isFocused, setIsFocused] = useState(false)
+  const [isFocused, setIsFocused] = useState(false);
 
-  const CustomPlaceholder = () => <></>
+  const CustomPlaceholder = () => <></>;
 
   // eslint-disable-next-line @typescript-eslint/no-explicit-any
   const DropdownIndicatorSort = (props: any) => {
@@ -75,8 +75,8 @@ export function Select(props: SelectProps) {
       <components.DropdownIndicator {...props}>
         <ChevronDown />
       </components.DropdownIndicator>
-    )
-  }
+    );
+  };
 
   // eslint-disable-next-line @typescript-eslint/no-explicit-any
   const DropdownIndicator = (props: any) => {
@@ -84,8 +84,8 @@ export function Select(props: SelectProps) {
       <components.DropdownIndicator {...props}>
         <Down />
       </components.DropdownIndicator>
-    )
-  }
+    );
+  };
 
   // eslint-disable-next-line @typescript-eslint/no-explicit-any
   const SingleValue = ({ children, ...props }: any) => (
@@ -101,7 +101,7 @@ export function Select(props: SelectProps) {
         <LocationArrow />
       </Row>
     </components.SingleValue>
-  )
+  );
 
   return (
     <StyledSelect
@@ -117,10 +117,10 @@ export function Select(props: SelectProps) {
         <ReactSelect
           {...field}
           onFocus={() => {
-            setIsFocused(true)
+            setIsFocused(true);
           }}
           onBlur={() => {
-            setIsFocused(false)
+            setIsFocused(false);
           }}
           value={
             (field as { value: string })?.value || value ? value : defaultValue
@@ -153,7 +153,7 @@ export function Select(props: SelectProps) {
           }}
           // eslint-disable-next-line @typescript-eslint/no-explicit-any
           onChange={(e: any) => {
-            return onChangeCallback && onChangeCallback(e)
+            return onChangeCallback && onChangeCallback(e);
           }}
           data-cy={dataCy}
         />
@@ -162,11 +162,11 @@ export function Select(props: SelectProps) {
           <ReactSelect
             {...field}
             onFocus={() => {
-              setIsFocused(true)
+              setIsFocused(true);
             }}
             isOptionDisabled={(option) => option.disabled as boolean}
             onBlur={() => {
-              setIsFocused(false)
+              setIsFocused(false);
             }}
             value={
               ((field as { value: string })?.value || value) &&
@@ -201,7 +201,7 @@ export function Select(props: SelectProps) {
             }}
             // eslint-disable-next-line @typescript-eslint/no-explicit-any
             onChange={(e: any) => {
-              return onChangeCallback && onChangeCallback(e)
+              return onChangeCallback && onChangeCallback(e);
             }}
             data-cy={dataCy}
           />
@@ -211,22 +211,22 @@ export function Select(props: SelectProps) {
         </>
       )}
     </StyledSelect>
-  )
+  );
 }
 
 const StyledSpan = styled.span`
   font-weight: bold;
   color: ${colors.navy};
-`
+`;
 
 export interface Selector {
-  value: string | null
-  disabled: boolean
-  isFocused: boolean
-  selectType: string
-  shadowed: boolean
-  myDefaultValue: string | null
-  customWidth: string | undefined
+  value: string | null;
+  disabled: boolean;
+  isFocused: boolean;
+  selectType: string;
+  shadowed: boolean;
+  myDefaultValue: string | null;
+  customWidth: string | undefined;
 }
 
 export const StyledSelect = styled.div<Selector>`
@@ -338,4 +338,4 @@ export const StyledSelect = styled.div<Selector>`
   & div > [class*="Input"]:focus + label {
     top: -0.75rem;
   }
-`
+`;

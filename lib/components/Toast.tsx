@@ -1,8 +1,12 @@
-import { ToastContainer } from "react-toastify"
-import styled from "styled-components/macro"
-import { colors } from "../design.config"
+import { ToastContainer } from "react-toastify";
+import styled from "styled-components/macro";
+import * as React from "react";
 
-export const StyledToastContainer = styled(ToastContainer)`
+import { colors } from "../design.config";
+
+export const StyledToastContainer = styled((props) => (
+  <ToastContainer {...props} />
+))`
   .Toastify__toast {
     margin: 1rem;
     min-height: 8rem;
@@ -65,4 +69,4 @@ export const StyledToastContainer = styled(ToastContainer)`
       }
     }
   }
-`
+`;

@@ -1,13 +1,12 @@
-import styled from "styled-components/macro"
-import { ReactComponent as GradiantWall } from "../assets/gradient-wall.svg"
-import { ReactNode } from "react"
-import * as React from "react"
-
+import styled from "styled-components/macro";
+import GradiantWall from "../assets/gradient-wall.svg";
+import { ReactNode } from "react";
+import * as React from "react";
 
 export interface BackgroundProps {
-  children: ReactNode
-  centeredTop?: boolean
-  padding?: number
+  children: ReactNode;
+  centeredTop?: boolean;
+  padding?: number;
 }
 
 export const Background = ({
@@ -23,7 +22,7 @@ export const Background = ({
       {children}
     </StyledContent>
   </Absolute>
-)
+);
 
 const Absolute = styled.div`
   position: absolute;
@@ -33,11 +32,11 @@ const Absolute = styled.div`
   flex-grow: 1;
   align-items: center;
   justify-content: center;
-`
+`;
 
 interface WithCenteredTop {
-  centeredTop: boolean
-  padding: number
+  centeredTop: boolean;
+  padding: number;
 }
 
 const StyledContent = styled.div<WithCenteredTop>`
@@ -53,14 +52,14 @@ const StyledContent = styled.div<WithCenteredTop>`
   align-items: center;
   overflow: ${({ centeredTop }) => (centeredTop ? "inherit" : "auto")};
   flex-grow: 1;
-`
+`;
 
 const StyledEllipse = styled.div`
   position: absolute;
   height: 100%;
   width: 100%;
   background-color: #ecf1ff;
-`
+`;
 
 const StyledOverlay = styled.div`
   position: absolute;
@@ -72,10 +71,10 @@ const StyledOverlay = styled.div`
     rgba(255, 255, 255, 0.6) 0%,
     rgba(255, 255, 255, 0.06) 100%
   );
-`
+`;
 
-const StyledWall = styled(GradiantWall)`
+const StyledWall = styled((props) => <GradiantWall {...props} />)`
   position: absolute;
   height: 100%;
   width: 100%;
-`
+`;

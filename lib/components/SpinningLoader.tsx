@@ -1,10 +1,12 @@
-import * as React from "react"
-import styled from "styled-components/macro"
-import { ReactComponent as Loader } from "../../assets/loader.svg"
-import { ReactComponent as LoaderShadow } from "../../assets/loaderShadow.svg"
-import { colors, rotate } from "../design.config"
+import * as React from "react";
+import styled from "styled-components/macro";
+import Loader from "../../assets/loader.svg";
+import LoaderShadow from "../../assets/loaderShadow.svg";
+import { colors, rotate } from "../design.config";
 
-export const SpinningLoader = styled(Loader)<{ spinnersize?: number }>`
+export const SpinningLoader = styled((props) => <Loader {...props} />)<{
+  spinnersize?: number;
+}>`
   width: ${({ spinnersize }) => (spinnersize ? `${spinnersize}rem` : "2rem")};
   height: ${({ spinnersize }) => (spinnersize ? `${spinnersize}rem` : "2rem")};
   margin: 0;
@@ -12,10 +14,12 @@ export const SpinningLoader = styled(Loader)<{ spinnersize?: number }>`
   & path:nth-of-type(2) {
     fill: ${colors.cornflower};
   }
-`
+`;
 
-export const SpinningLoaderShadow = () => <StyledLoaderShadow />
-export const StyledLoaderShadow = styled(LoaderShadow)`
+export const SpinningLoaderShadow = () => <StyledLoaderShadow />;
+export const StyledLoaderShadow = styled((props) => (
+  <LoaderShadow {...props} />
+))`
   height: 2rem;
   width: 2rem;
   margin: 0;
@@ -23,4 +27,4 @@ export const StyledLoaderShadow = styled(LoaderShadow)`
   & path:nth-of-type(2) {
     fill: ${colors.cornflower};
   }
-`
+`;
