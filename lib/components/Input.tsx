@@ -6,12 +6,11 @@ import {
   RefObject,
 } from "react";
 import { FieldValues, RegisterOptions, UseFormRegister } from "react-hook-form";
-import styled from "styled-components/macro";
-
+import styled from "styled-components";
 import { boxShadow, colors } from "../design.config";
-import Exclamation from "../../assets/exclamation-mark.svg";
-import Remove from "../../assets/remove.svg";
-import Check from "../../assets/check.svg";
+import { ReactComponent as Exclamation } from "../assets/exclamation-mark.svg";
+import { ReactComponent as Remove } from "../assets/remove.svg";
+import { ReactComponent as Check } from "../assets/check.svg";
 
 export interface BaseInputProps {
   label: string;

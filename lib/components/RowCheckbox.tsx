@@ -1,7 +1,7 @@
 import * as React from "react";
-import styled from "styled-components/macro";
+import styled from "styled-components";
 import { colors } from "../design.config";
-import CheckedSvg from "../../assets/checked.svg";
+import { ReactComponent as CheckedSvg } from "../assets/checked.svg";
 import { Spacer } from "./Spacer";
 
 interface RowCheckboxProps {

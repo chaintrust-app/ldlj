@@ -3,7 +3,6 @@ import * as React from 'react';
 import { ReactNode, VFC, ChangeEventHandler } from 'react';
 import * as styled_components from 'styled-components';
 import { UseFormRegister, FieldValues, RegisterOptions } from 'react-hook-form';
-import * as react_toastify from 'react-toastify';
 
 interface AlertProps {
     children: React.ReactNode;
@@ -187,19 +186,19 @@ declare const SpacedBetween: styled_components.StyledComponent<"div", any, {}, n
 declare const FlexStart: styled_components.StyledComponent<"div", any, {}, never>;
 declare const FlexEnd: styled_components.StyledComponent<"div", any, {}, never>;
 declare const FlexShrinkZero: styled_components.StyledComponent<"div", any, {}, never>;
-declare const SpacedBetweenCenter: styled_components.StyledComponent<"div", any, {}, never>;
-declare const SpacedBetweenEnd: styled_components.StyledComponent<"div", any, {}, never>;
+declare const SpacedBetweenCenter: styled_components.StyledComponent<(props: any) => JSX.Element, any, {}, never>;
+declare const SpacedBetweenEnd: styled_components.StyledComponent<(props: any) => JSX.Element, any, {}, never>;
 declare const JustifyCenter: styled_components.StyledComponent<"div", any, {}, never>;
 declare const Column: styled_components.StyledComponent<"div", any, {}, never>;
 declare const ColumnSpacedBetween: styled_components.StyledComponent<"div", any, {}, never>;
 declare const ColumnStretch: styled_components.StyledComponent<"div", any, {}, never>;
 declare const ColumnCenter: styled_components.StyledComponent<"div", any, {}, never>;
-declare const ColumnCenterCenter: styled_components.StyledComponent<"div", any, {}, never>;
+declare const ColumnCenterCenter: styled_components.StyledComponent<(props: any) => JSX.Element, any, {}, never>;
 declare const Row: styled_components.StyledComponent<"div", any, {}, never>;
 declare const RowCenter: styled_components.StyledComponent<"div", any, {}, never>;
 declare const AlignSelfStart: styled_components.StyledComponent<"div", any, {}, never>;
 declare const AlignSelfCenter: styled_components.StyledComponent<"div", any, {}, never>;
-declare const SelfAlignedColumn: styled_components.StyledComponent<"div", any, {}, never>;
+declare const SelfAlignedColumn: styled_components.StyledComponent<(props: any) => JSX.Element, any, {}, never>;
 
 declare const StyledForm: styled_components.StyledComponent<"form", any, {}, never>;
 
@@ -379,11 +378,11 @@ interface CounterProps {
 }
 declare const Counter: ({ value, onPlus, onMinus, min }: CounterProps) => JSX.Element;
 
-declare const SpinningLoader: styled_components.StyledComponent<React.FC<React.SVGProps<SVGSVGElement>>, any, {
+declare const SpinningLoader: styled_components.StyledComponent<(props: any) => JSX.Element, any, {
     spinnersize?: number | undefined;
 }, never>;
 declare const SpinningLoaderShadow: () => JSX.Element;
-declare const StyledLoaderShadow: styled_components.StyledComponent<React.FC<React.SVGProps<SVGSVGElement>>, any, {}, never>;
+declare const StyledLoaderShadow: styled_components.StyledComponent<(props: any) => JSX.Element, any, {}, never>;
 
 interface SubtitleProps {
     text: string;
@@ -425,6 +424,23 @@ declare const TitleTable: ({ tid }: {
 }) => JSX.Element;
 declare const Header: styled_components.StyledComponent<"header", any, {}, never>;
 
+declare const TableHeader: styled_components.StyledComponent<"header", any, {}, never>;
+declare const TableBody: styled_components.StyledComponent<"div", any, {}, never>;
+declare const WrapperRows: styled_components.StyledComponent<"div", any, {}, never>;
+declare const StyledTitles: styled_components.StyledComponent<(props: any) => JSX.Element, any, {}, never>;
+declare const TableWrapper: styled_components.StyledComponent<"div", any, {}, never>;
+declare const Cell: styled_components.StyledComponent<"div", any, {}, never>;
+
+interface TabObject {
+    to: string;
+    title: string;
+    icon: ReactNode;
+    isDisplayed: boolean;
+}
+declare const Tabs: ({ tabs }: {
+    tabs: TabObject[];
+}) => JSX.Element;
+
 declare type FontWeight = 400 | 500 | 600 | 700;
 interface TextProps {
     text: string;
@@ -444,23 +460,6 @@ interface TextProps {
 }
 declare const Text: (props: TextProps) => JSX.Element;
 
-declare const TableHeader: styled_components.StyledComponent<"header", any, {}, never>;
-declare const TableBody: styled_components.StyledComponent<"div", any, {}, never>;
-declare const WrapperRows: styled_components.StyledComponent<"div", any, {}, never>;
-declare const StyledTitles: styled_components.StyledComponent<(props: TextProps) => JSX.Element, any, {}, never>;
-declare const TableWrapper: styled_components.StyledComponent<"div", any, {}, never>;
-declare const Cell: styled_components.StyledComponent<"div", any, {}, never>;
-
-interface TabObject {
-    to: string;
-    title: string;
-    icon: ReactNode;
-    isDisplayed: boolean;
-}
-declare const Tabs: ({ tabs }: {
-    tabs: TabObject[];
-}) => JSX.Element;
-
 interface TitleProps {
     text: string;
     size?: 3 | 7 | 2.25;
@@ -468,6 +467,6 @@ interface TitleProps {
 }
 declare const Title: ({ text, size, className }: TitleProps) => JSX.Element;
 
-declare const StyledToastContainer: styled_components.StyledComponent<React.FC<react_toastify.ToastContainerProps>, any, {}, never>;
+declare const StyledToastContainer: styled_components.StyledComponent<(props: any) => JSX.Element, any, {}, never>;
 
 export { Alert, AlignSelfCenter, AlignSelfStart, Background, Bar, BaseInputProps, Button, Card, CardProps, Cell, Checkbox, CircleNotifier, Column, ColumnCenter, ColumnCenterCenter, ColumnSpacedBetween, ColumnStretch, Counter, CreatableSelect, DocumentPreviewModal, FileDownloader, FilePreviewer, FileTrash, FlexEnd, FlexShrinkZero, FlexStart, Header, Input, InputDate, InputMovingPlaceholder, JustifyCenter, Link, LoadingStatus, LockableInput, MenuItem, Modal, ModalComponentsProps, MultiSelect, NestedMenuItem, Option, OptionList, PasswordInput, ProgressBar, Row, RowCenter, RowCheckbox, ScrollableOutlet, Select, SelfAlignedColumn, Separator, SortButton, SpacedBetween, SpacedBetweenCenter, SpacedBetweenEnd, Spacer, SpinningLoader, SpinningLoaderShadow, StyledDuoInput, StyledForm, StyledLoaderShadow, StyledTitles, StyledToastContainer, Subtitle, Switch, TabObject, Table, TableBody, TableBuilder, TableHeader, TableWrapper, Tabs, Text, Title, TitleTable, VerticalSeparator, WrapperRows, createOptionList, displayPreviewParams };

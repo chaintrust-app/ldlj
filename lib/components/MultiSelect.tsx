@@ -1,7 +1,7 @@
 import * as React from "react"
 import { components, default as ReactSelect } from "react-select"
 import { colors } from "../design.config"
-import styled from "styled-components/macro"
+import styled from "styled-components"
 import { useIntl } from "react-intl"
 import {RowCheckbox} from "./RowCheckbox";
 

@@ -1,6 +1,6 @@
 import * as React from "react";
-import TrashCan from "../../assets/drop-documents/TrashCan.svg";
-import styled from "styled-components/macro";
+import { ReactComponent as TrashCan } from "../assets/drop-documents/TrashCan.svg";
+import styled from "styled-components";
 import { colors } from "../design.config";
 
 interface FileProps {

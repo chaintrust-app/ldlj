@@ -1,10 +1,10 @@
 import * as React from "react";
 import { colors, gradients, rotate } from "../design.config";
-import styled, { css, keyframes } from "styled-components/macro";
+import styled, { css, keyframes } from "styled-components";
 import { ReactNode } from "react";
 import { Spacer } from "./Spacer";
-import LocationArrow from "../assets/location-arrow.svg";
-import Checked from "../assets/checked.svg";
+import { ReactComponent as LocationArrow } from "../assets/location-arrow.svg";
+import { ReactComponent as Checked } from "../assets/checked.svg";
 import { StyledLoaderShadow } from "..";
 
 type ColorType = "Primary" | "Secondary" | "Tertiary" | "Quaternary";

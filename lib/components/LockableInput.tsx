@@ -1,5 +1,5 @@
 import * as React from "react";
-import Lock from "../../assets/lock.svg";
+import { ReactComponent as Lock } from "../assets/lock.svg";
 import { BaseInputProps, Input } from "./Input";
 
 interface LockableInputProps extends BaseInputProps {

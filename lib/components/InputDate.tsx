@@ -1,8 +1,8 @@
 import * as React from "react";
 import { useState } from "react";
 import { FieldValues, UseFormRegister } from "react-hook-form";
-import styled from "styled-components/macro";
-import Calendar from "../../assets/calendar.svg";
+import styled from "styled-components";
+import { ReactComponent as Calendar } from "../assets/calendar.svg";
 import { colors, sizes } from "../design.config";
 
 interface InputDateProps {

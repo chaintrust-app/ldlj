@@ -1,7 +1,7 @@
 import * as React from "react";
 import { Fragment, ReactNode } from "react";
 import { useIntl } from "react-intl";
-import styled from "styled-components/macro";
+import styled from "styled-components";
 
 import { colors } from "../design.config";
 import ReactTooltip from "react-tooltip";

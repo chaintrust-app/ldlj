@@ -1,8 +1,8 @@
 import * as React from "react";
 import ReactCreatable from "react-select/creatable";
-import styled from "styled-components/macro";
+import styled from "styled-components";
 import { components, SingleValue } from "react-select";
-import Down from "../../assets/down.svg";
+import { ReactComponent as Down } from "../assets/down.svg";
 import { colors } from "../design.config";
 import { useState } from "react";
 import { InputMovingPlaceholder } from "./InputMovingPlaceholder";

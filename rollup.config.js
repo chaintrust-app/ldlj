@@ -2,11 +2,12 @@ import resolve from "@rollup/plugin-node-resolve";
 import commonjs from "@rollup/plugin-commonjs";
 import json from "@rollup/plugin-json";
 import image from '@rollup/plugin-image';
+import peerDepsExternal from 'rollup-plugin-peer-deps-external';
 import typescript from "rollup-plugin-typescript2";
 import dts from "rollup-plugin-dts";
-import { terser } from "rollup-plugin-terser";
-import peerDepsExternal from 'rollup-plugin-peer-deps-external';
+import url from '@rollup/plugin-url';
 import svgr from '@svgr/rollup'
+import { terser } from "rollup-plugin-terser";
 
 const packageJson = require("./package.json");
 
@@ -26,17 +27,18 @@ export default [
             },
         ],
         plugins: [
+            peerDepsExternal(),
             resolve(),
             commonjs(),
-            peerDepsExternal(),
+            typescript({ tsconfig: "./tsconfig.json" }),
+            url(),
+            svgr({ icon: true }),
+            json(),
             image({
                 extensions: /\.(png|jpg|jpeg|gif|svg)$/,
                 limit: 10000
             }),
-            json(),
-            terser(),
-            typescript({ tsconfig: "./tsconfig.json" }),
-            svgr({ icon: true })
+            terser()
         ],
         external: ["react", "react-dom", "styled-components"]
     },

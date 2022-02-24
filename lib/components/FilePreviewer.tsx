@@ -1,5 +1,5 @@
 import * as React from "react";
-import Eye from "../../assets/eyeSimple.svg";
+import { ReactComponent as Eye } from "../assets/eyeSimple.svg";
 
 interface FileProps {
   url: string;

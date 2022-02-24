@@ -1,5 +1,5 @@
 import { colors } from "../design.config"
-import styled from "styled-components/macro"
+import styled from "styled-components"
 import * as React from "react"
 
 interface TitleProps {

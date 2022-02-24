@@ -1,11 +1,11 @@
 import { colors, spacings } from "../design.config";
-import styled from "styled-components/macro";
+import styled from "styled-components";
 import * as React from "react";
 
-import Cross from "../assets/cross.svg";
-import Bulb from "../assets/bulb.svg";
-import ChaintrustLogo from "../assets/chaintrust-logo.svg";
-import Checked from "../assets/checked.svg";
+import { ReactComponent as Cross } from "../assets/cross.svg";
+import { ReactComponent as Bulb } from "../assets/bulb.svg";
+import { ReactComponent as ChaintrustLogo } from "../assets/chaintrust-logo.svg";
+import { ReactComponent as Checked } from "../assets/checked.svg";
 
 export interface AlertProps {
   children: React.ReactNode;

@@ -19,6 +19,5 @@
     "node_modules",
     "lib/**/*.test.tsx",
     "lib/**/*.stories.tsx"
-  ],
-  "include": ["types.d.ts"]
+  ]
 }

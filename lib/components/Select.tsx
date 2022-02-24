@@ -1,12 +1,12 @@
 import * as React from "react";
 import { components, default as ReactSelect } from "react-select";
 import { boxShadow, colors } from "../design.config";
-import ChevronDown from "../../assets/chevron-down.svg";
-import Down from "../../assets/down.svg";
-import styled from "styled-components/macro";
+import { ReactComponent as ChevronDown } from "../assets/chevron-down.svg";
+import { ReactComponent as Down } from "../assets/down.svg";
+import styled from "styled-components";
 import { useIntl } from "react-intl";
 import { useState } from "react";
-import LocationArrow from "../../assets/location-arrow.svg";
+import { ReactComponent as LocationArrow } from "../assets/location-arrow.svg";
 import { Row } from "./Flex";
 import { Spacer } from "./Spacer";
 import { Text } from "./Text";

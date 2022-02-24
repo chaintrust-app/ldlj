@@ -1,5 +1,5 @@
-import styled from "styled-components/macro";
-import GradiantWall from "../assets/gradient-wall.svg";
+import styled from "styled-components";
+import { ReactComponent as GradiantWall } from "../assets/gradient-wall.svg";
 import { ReactNode } from "react";
 import * as React from "react";
 

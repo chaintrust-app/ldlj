@@ -1,8 +1,8 @@
 import * as React from "react";
 import { useState } from "react";
-import styled from "styled-components/macro";
-import Eye from "../../assets/eye.svg";
-import EyeClosed from "../../assets/eye-closed.svg";
+import styled from "styled-components";
+import { ReactComponent as Eye } from "../assets/eye.svg";
+import { ReactComponent as EyeClosed } from "../assets/eye-closed.svg";
 import { colors } from "../design.config";
 import { BaseInputProps, Input } from "./Input";
 

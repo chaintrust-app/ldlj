@@ -1,6 +1,6 @@
 import * as React from "react";
-import CloseCrossSVG from "../../assets/close-cross.svg";
-import styled from "styled-components/macro";
+import { ReactComponent as CloseCrossSVG } from "../assets/close-cross.svg";
+import styled from "styled-components";
 import { useRef } from "react";
 import { Modal, ModalComponentsProps } from "./Modal";
 import { Spacer } from "./Spacer";

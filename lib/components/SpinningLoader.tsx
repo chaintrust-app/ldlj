@@ -1,7 +1,7 @@
 import * as React from "react";
-import styled from "styled-components/macro";
-import Loader from "../../assets/loader.svg";
-import LoaderShadow from "../../assets/loaderShadow.svg";
+import styled from "styled-components";
+import { ReactComponent as Loader } from "../assets/loader.svg";
+import { ReactComponent as LoaderShadow } from "../assets/loaderShadow.svg";
 import { colors, rotate } from "../design.config";
 
 export const SpinningLoader = styled((props) => <Loader {...props} />)<{

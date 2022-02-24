@@ -1,8 +1,8 @@
 import * as React from "react";
-import styled from "styled-components/macro";
+import styled from "styled-components";
 import { Text } from "./Text";
 
-import FileDownload from "../../assets/fileDownload.svg";
+import { ReactComponent as FileDownload } from "../assets/fileDownload.svg";
 
 interface FileProps {
   url: string;
