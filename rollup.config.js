@@ -35,7 +35,6 @@ export default [
             }),
             json(),
             terser(),
-            flatDts(),
             typescript({ tsconfig: "./tsconfig.json" }),
         ],
         external: ["react", "react-dom", "styled-components"]
