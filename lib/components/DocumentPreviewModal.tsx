@@ -1,24 +1,24 @@
-import * as React from "react"
-import { ReactComponent as CloseCrossSVG } from "../../assets/close-cross.svg"
-import styled from "styled-components/macro"
-import { useRef } from "react"
-import {Modal, ModalComponentsProps} from "./Modal";
-import {Spacer} from "./Spacer";
-import {Title} from "./Title";
-import {Card} from "./Card";
-import {fileExtensionOfString} from "../utils/string";
+import * as React from "react";
+import { ReactComponent as CloseCrossSVG } from "../assets/close-cross.svg";
+import styled from "styled-components";
+import { useRef } from "react";
+import { Modal, ModalComponentsProps } from "./Modal";
+import { Spacer } from "./Spacer";
+import { Title } from "./Title";
+import { Card } from "./Card";
+import { fileExtensionOfString } from "../utils/string";
 
 export interface displayPreviewParams {
-  isDisplayed: boolean
-  elementToDisplay: string
-  elementName: string
-  displayInvoice?: boolean
+  isDisplayed: boolean;
+  elementToDisplay: string;
+  elementName: string;
+  displayInvoice?: boolean;
 }
 
 interface DocumentPreviewModalParams extends ModalComponentsProps {
-  documentToDisplay: string
-  elementName: string
-  displayInvoice?: boolean
+  documentToDisplay: string;
+  elementName: string;
+  displayInvoice?: boolean;
 }
 
 export const DocumentPreviewModal = ({
@@ -28,7 +28,7 @@ export const DocumentPreviewModal = ({
   elementName,
   displayInvoice,
 }: DocumentPreviewModalParams) => {
-  const currentRef = useRef<HTMLIFrameElement | null>(null)
+  const currentRef = useRef<HTMLIFrameElement | null>(null);
   return (
     <Modal isDisplayed={isDisplayed} onClose={onClose} top="16rem">
       <StyledCard width="58vw" height={100}>
@@ -46,28 +46,28 @@ export const DocumentPreviewModal = ({
           src={documentToDisplay}
           ref={currentRef}
           onLoad={() => {
-            const doc = currentRef.current?.contentDocument
+            const doc = currentRef.current?.contentDocument;
             const isPdf =
-              displayInvoice || fileExtensionOfString(elementName) === "pdf"
+              displayInvoice || fileExtensionOfString(elementName) === "pdf";
             if (doc && !isPdf)
               doc.body.innerHTML =
-                doc.body.innerHTML + "<style> img {width: 100%;} </style>"
+                doc.body.innerHTML + "<style> img {width: 100%;} </style>";
           }}
         />
       </StyledCard>
     </Modal>
-  )
-}
+  );
+};
 
 const StyledIframe = styled.iframe`
   width: 100%;
   height: 100%;
   box-sizing: border-box;
-`
-const StyledCard = styled(Card)`
+`;
+const StyledCard = styled((props) => <Card {...props} />)`
   padding: 0;
   border-radius: 1rem;
-`
+`;
 
 const HeaderPreviewModal = styled.div`
   display: flex;
@@ -75,15 +75,15 @@ const HeaderPreviewModal = styled.div`
   flex-direction: row;
   align-items: center;
   justify-content: flex-end;
-`
+`;
 
 const CrossWrapper = styled.div`
   cursor: pointer;
   position: relative;
   right: 18px;
-`
+`;
 
 const TextWrapper = styled.div`
   display: flex;
   margin: auto;
-`
+`;

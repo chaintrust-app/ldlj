@@ -1,6 +1,6 @@
 import * as React from "react"
 import { boxShadow, colors, spacings } from "../design.config"
-import styled from "styled-components/macro"
+import styled from "styled-components"
 import { VFC } from "react"
 
 type trianglePosition = {

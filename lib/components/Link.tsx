@@ -1,11 +1,11 @@
-import * as React from "react"
-import { Link as RouterLink } from "react-router-dom"
-import styled from "styled-components/macro"
-import {Text} from "./Text"
+import * as React from "react";
+import { Link as RouterLink } from "react-router-dom";
+import styled from "styled-components";
+import { Text } from "./Text";
 
 interface LinkProps {
-  text: string
-  href: string
+  text: string;
+  href: string;
 }
 
 export const Link = ({ text, href }: LinkProps) => {
@@ -23,7 +23,7 @@ export const Link = ({ text, href }: LinkProps) => {
         }}
       />
     </StyledLink>
-  )
-}
+  );
+};
 
-const StyledLink = styled(RouterLink)``
+const StyledLink = styled((props) => <RouterLink {...props} />)``;

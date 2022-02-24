@@ -1,21 +1,21 @@
-import * as React from "react"
-import { useState } from "react"
-import styled from "styled-components/macro"
-import { ReactComponent as Eye } from "../../assets/eye.svg"
-import { ReactComponent as EyeClosed } from "../../assets/eye-closed.svg"
-import { colors } from "../design.config"
-import {BaseInputProps, Input} from "./Input";
+import * as React from "react";
+import { useState } from "react";
+import styled from "styled-components";
+import { ReactComponent as Eye } from "../assets/eye.svg";
+import { ReactComponent as EyeClosed } from "../assets/eye-closed.svg";
+import { colors } from "../design.config";
+import { BaseInputProps, Input } from "./Input";
 
 export const PasswordInput = (props: BaseInputProps) => {
-  const [type, setType] = useState<"password" | "text">("password")
+  const [type, setType] = useState<"password" | "text">("password");
 
   const toggleType = () => {
     if (type === "password") {
-      setType("text")
+      setType("text");
     } else {
-      setType("password")
+      setType("password");
     }
-  }
+  };
 
   return (
     <Input
@@ -30,14 +30,14 @@ export const PasswordInput = (props: BaseInputProps) => {
         />
       }
     />
-  )
-}
+  );
+};
 
 interface EyeButtonProps {
-  passwordStatus: "password" | "text"
-  onToggle: () => void
-  showError?: boolean
-  showWarning?: boolean
+  passwordStatus: "password" | "text";
+  onToggle: () => void;
+  showError?: boolean;
+  showWarning?: boolean;
 }
 
 const EyeButton = ({
@@ -54,12 +54,12 @@ const EyeButton = ({
         <StyledEye onClick={onToggle} />
       )}
     </StyledSVGWrapper>
-  )
-}
+  );
+};
 
 interface SVGWithError {
-  showError: boolean
-  showWarning: boolean
+  showError: boolean;
+  showWarning: boolean;
 }
 
 const StyledSVGWrapper = styled.div<SVGWithError>`
@@ -71,8 +71,8 @@ const StyledSVGWrapper = styled.div<SVGWithError>`
     fill: ${({ showError, showWarning }) =>
       showWarning ? colors.orange : showError ? colors.amaranth : colors.rock};
   }
-`
+`;
 
-const StyledEye = styled(Eye)``
+const StyledEye = styled((props) => <Eye {...props} />)``;
 
-const StyledClosedEye = styled(EyeClosed)``
+const StyledClosedEye = styled((props) => <EyeClosed {...props} />)``;

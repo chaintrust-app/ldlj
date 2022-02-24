@@ -1,19 +1,19 @@
-import * as React from "react"
-import { useState } from "react"
-import { FieldValues, UseFormRegister } from "react-hook-form"
-import styled from "styled-components/macro"
-import { ReactComponent as Calendar } from "../../assets/calendar.svg"
-import {colors, sizes} from "../design.config"
+import * as React from "react";
+import { useState } from "react";
+import { FieldValues, UseFormRegister } from "react-hook-form";
+import styled from "styled-components";
+import { ReactComponent as Calendar } from "../assets/calendar.svg";
+import { colors, sizes } from "../design.config";
 
 interface InputDateProps {
-  name: string
-  label: string
-  disabled: boolean
-  value: string
-  register: UseFormRegister<FieldValues>
-  minimum?: string
-  maximum?: string
-  onChangeValue: (value: string) => void
+  name: string;
+  label: string;
+  disabled: boolean;
+  value: string;
+  register: UseFormRegister<FieldValues>;
+  minimum?: string;
+  maximum?: string;
+  onChangeValue: (value: string) => void;
 }
 
 export const InputDate = (props: InputDateProps) => {
@@ -26,9 +26,9 @@ export const InputDate = (props: InputDateProps) => {
     register,
     maximum,
     minimum,
-  } = props
+  } = props;
 
-  const [isFocused, setIsFocused] = useState(false)
+  const [isFocused, setIsFocused] = useState(false);
 
   return (
     <DatePickerInput
@@ -36,11 +36,11 @@ export const InputDate = (props: InputDateProps) => {
       disabled={disabled}
       onFocus={() => {
         if (!isFocused) {
-          setIsFocused(true)
+          setIsFocused(true);
         }
       }}
       onBlur={() => {
-        setIsFocused(false)
+        setIsFocused(false);
       }}
       isFocused={isFocused}
     >
@@ -69,13 +69,13 @@ export const InputDate = (props: InputDateProps) => {
         <Calendar />
       </CalendarWrapper>
     </DatePickerInput>
-  )
-}
+  );
+};
 
 interface DatePicker {
-  value: string
-  disabled: boolean
-  isFocused: boolean
+  value: string;
+  disabled: boolean;
+  isFocused: boolean;
 }
 
 const CalendarWrapper = styled.div<DatePicker>`
@@ -94,11 +94,11 @@ const CalendarWrapper = styled.div<DatePicker>`
         ? colors.cornflower
         : colors.rock};
   }
-`
+`;
 
 interface InputProps {
-  value: string
-  isFocused: boolean
+  value: string;
+  isFocused: boolean;
 }
 
 const StyledInput = styled.input<InputProps>`
@@ -129,7 +129,7 @@ const StyledInput = styled.input<InputProps>`
     font-size: 1.75rem;
     font-weight: 50rem;
   }
-`
+`;
 
 const StyledLabel = styled.label<DatePicker>`
   position: absolute;
@@ -149,7 +149,7 @@ const StyledLabel = styled.label<DatePicker>`
   padding: 0 0.5rem;
   pointer-events: none;
   user-select: none;
-`
+`;
 
 const DatePickerInput = styled.div<DatePicker>`
   display: flex;
@@ -177,4 +177,4 @@ const DatePickerInput = styled.div<DatePicker>`
   @media (${sizes.screen.breakpoint}) {
     flex-direction: column;
   }
-`
+`;

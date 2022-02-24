@@ -1,9 +1,9 @@
-import * as React from "react"
-import { ReactComponent as Lock } from "../../assets/lock.svg"
-import {BaseInputProps, Input} from "./Input";
+import * as React from "react";
+import { ReactComponent as Lock } from "../assets/lock.svg";
+import { BaseInputProps, Input } from "./Input";
 
 interface LockableInputProps extends BaseInputProps {
-  locked: boolean
+  locked: boolean;
 }
 
 export const LockableInput = (props: LockableInputProps) => {
@@ -13,5 +13,5 @@ export const LockableInput = (props: LockableInputProps) => {
       onChange={props.locked ? () => {} : props.onChange}
       suffix={props.locked ? <Lock /> : undefined}
     />
-  )
-}
+  );
+};

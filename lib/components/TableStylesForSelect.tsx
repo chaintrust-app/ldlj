@@ -1,7 +1,7 @@
-import * as React from "react"
-import styled from "styled-components/macro"
-import { colors } from "../design.config"
-import { Text } from "./Text"
+import * as React from "react";
+import styled from "styled-components";
+import { colors } from "../design.config";
+import { Text } from "./Text";
 
 export const TableHeader = styled.header`
   display: flex;
@@ -15,14 +15,14 @@ export const TableHeader = styled.header`
   flex-shrink: 0;
   background-color: ${colors.lavender};
   overflow: hidden;
-`
+`;
 
 export const TableBody = styled.div`
   box-sizing: border-box;
   padding-bottom: 8rem;
   overflow-y: auto;
   height: 100%;
-`
+`;
 
 export const WrapperRows = styled.div`
   border-bottom: 1px solid ${colors.lavender};
@@ -30,15 +30,15 @@ export const WrapperRows = styled.div`
   :last-child {
     border-bottom: none;
   }
-`
+`;
 
-export const StyledTitles = styled(Text)`
+export const StyledTitles = styled((props) => <Text {...props} />)`
   display: flex;
   flex: 1 0;
   overflow: auto;
   justify-content: center;
   align-items: center;
-`
+`;
 
 export const TableWrapper = styled.div`
   border-radius: 2.5rem;
@@ -47,7 +47,7 @@ export const TableWrapper = styled.div`
   height: 100%;
   box-sizing: border-box;
   overflow: hidden;
-`
+`;
 
 export const Cell = styled.div`
   display: flex;
@@ -57,4 +57,4 @@ export const Cell = styled.div`
   overflow: auto;
   align-items: center;
   margin: 0;
-`
+`;

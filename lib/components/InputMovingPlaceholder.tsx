@@ -1,6 +1,6 @@
 import * as React from "react"
 import { colors } from "../design.config"
-import styled from "styled-components/macro"
+import styled from "styled-components"
 import { ReactNode } from "react"
 
 export interface inputLabelProps {

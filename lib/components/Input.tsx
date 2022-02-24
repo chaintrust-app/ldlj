@@ -1,56 +1,55 @@
-import * as React from "react"
+import * as React from "react";
 import {
   ChangeEventHandler,
   forwardRef,
   MutableRefObject,
   RefObject,
-} from "react"
-import { FieldValues, RegisterOptions, UseFormRegister } from "react-hook-form"
-import styled from "styled-components/macro"
-
-import { boxShadow, colors } from "../design.config"
-import { ReactComponent as Exclamation } from "../../assets/exclamation-mark.svg"
-import { ReactComponent as Remove } from "../../assets/remove.svg"
-import { ReactComponent as Check } from "../../assets/check.svg"
+} from "react";
+import { FieldValues, RegisterOptions, UseFormRegister } from "react-hook-form";
+import styled from "styled-components";
+import { boxShadow, colors } from "../design.config";
+import { ReactComponent as Exclamation } from "../assets/exclamation-mark.svg";
+import { ReactComponent as Remove } from "../assets/remove.svg";
+import { ReactComponent as Check } from "../assets/check.svg";
 
 export interface BaseInputProps {
-  label: string
-  name?: string
-  register?: UseFormRegister<FieldValues>
-  validations?: RegisterOptions
-  type?: "password" | "text" | "checkbox" | "email" | "number"
-  value: string
-  showError?: boolean
-  showWarning?: boolean
-  showSuccess?: boolean
-  autoFocus?: boolean
-  id?: string
-  isPrefilled?: boolean
-  disabled?: boolean
-  bypassDisabled?: boolean
-  maxWidth?: number | "auto"
-  onChange?: ChangeEventHandler<HTMLInputElement>
-  required?: boolean
-  borderRadius?: number
-  maxLength?: number
-  max?: string
-  min?: string
-  placeholder?: string
-  shadowed?: boolean
-  noBorder?: boolean
-  readOnly?: boolean
-  dataCy?: string
-  onInput?: () => void
+  label: string;
+  name?: string;
+  register?: UseFormRegister<FieldValues>;
+  validations?: RegisterOptions;
+  type?: "password" | "text" | "checkbox" | "email" | "number";
+  value: string;
+  showError?: boolean;
+  showWarning?: boolean;
+  showSuccess?: boolean;
+  autoFocus?: boolean;
+  id?: string;
+  isPrefilled?: boolean;
+  disabled?: boolean;
+  bypassDisabled?: boolean;
+  maxWidth?: number | "auto";
+  onChange?: ChangeEventHandler<HTMLInputElement>;
+  required?: boolean;
+  borderRadius?: number;
+  maxLength?: number;
+  max?: string;
+  min?: string;
+  placeholder?: string;
+  shadowed?: boolean;
+  noBorder?: boolean;
+  readOnly?: boolean;
+  dataCy?: string;
+  onInput?: () => void;
 }
 
 interface InputProps extends BaseInputProps {
-  suffix?: JSX.Element
+  suffix?: JSX.Element;
 }
 
 type DisplayedSuffixType = Pick<
   InputProps,
   "suffix" | "showWarning" | "showError" | "showSuccess"
->
+>;
 const displayedSuffix = ({
   suffix,
   showWarning,
@@ -58,18 +57,18 @@ const displayedSuffix = ({
   showSuccess,
 }: DisplayedSuffixType): JSX.Element | undefined => {
   if (suffix) {
-    return suffix
+    return suffix;
   }
   if (showError) {
-    return <Remove />
+    return <Remove />;
   }
   if (showWarning) {
-    return <Exclamation />
+    return <Exclamation />;
   }
   if (showSuccess) {
-    return <Check />
+    return <Check />;
   }
-}
+};
 
 // eslint-disable-next-line react/display-name
 export const Input = forwardRef<RefObject<HTMLInputElement>, InputProps>(
@@ -153,10 +152,10 @@ export const Input = forwardRef<RefObject<HTMLInputElement>, InputProps>(
             {displayedSuffix({ suffix, showWarning, showError, showSuccess })}
           </SuffixWrapper>
         </StyledInputWrapper>
-      )
+      );
     }
 
-    const { ref, ...rest } = register(name, validations)
+    const { ref, ...rest } = register(name, validations);
 
     return (
       <StyledInputWrapper
@@ -171,11 +170,11 @@ export const Input = forwardRef<RefObject<HTMLInputElement>, InputProps>(
         <StyledInput
           {...rest}
           ref={(e) => {
-            ref(e)
+            ref(e);
             if (forwardRef && e) {
               const inputRef =
-                forwardRef as unknown as MutableRefObject<HTMLInputElement>
-              inputRef.current = e
+                forwardRef as unknown as MutableRefObject<HTMLInputElement>;
+              inputRef.current = e;
             }
           }}
           required={required}
@@ -212,30 +211,30 @@ export const Input = forwardRef<RefObject<HTMLInputElement>, InputProps>(
           {displayedSuffix({ suffix, showWarning, showError, showSuccess })}
         </SuffixWrapper>
       </StyledInputWrapper>
-    )
+    );
   }
-)
+);
 
 interface LabelWithValue {
-  value: string
-  showError: boolean
-  showWarning: boolean
-  showSuccess: boolean
-  isPrefilled: boolean
-  disabled: boolean
-  bypassDisabled: boolean
+  value: string;
+  showError: boolean;
+  showWarning: boolean;
+  showSuccess: boolean;
+  isPrefilled: boolean;
+  disabled: boolean;
+  bypassDisabled: boolean;
 }
 
 interface InputWithError {
-  bypassDisabled: boolean
-  showWarning: boolean
-  showError: boolean
-  showSuccess: boolean
-  disabled: boolean
-  maxWidth?: number | "auto"
-  borderRadius?: number
-  shadowed?: boolean
-  noBorder?: boolean
+  bypassDisabled: boolean;
+  showWarning: boolean;
+  showError: boolean;
+  showSuccess: boolean;
+  disabled: boolean;
+  maxWidth?: number | "auto";
+  borderRadius?: number;
+  shadowed?: boolean;
+  noBorder?: boolean;
 }
 
 const StyledInputWrapper = styled.div<InputWithError>`
@@ -273,7 +272,7 @@ const StyledInputWrapper = styled.div<InputWithError>`
           : colors.cornflower};
     }
   }
-`
+`;
 
 const SuffixWrapper = styled.div`
   position: absolute;
@@ -281,7 +280,7 @@ const SuffixWrapper = styled.div`
   top: 2rem;
   max-height: 2rem;
   max-width: 2rem;
-`
+`;
 
 const StyledLabel = styled.label<LabelWithValue>`
   position: absolute;
@@ -311,7 +310,7 @@ const StyledLabel = styled.label<LabelWithValue>`
   padding: 0 0.5rem;
   pointer-events: none;
   user-select: none;
-`
+`;
 
 const StyledInput = styled.input<InputWithError>`
   flex: 1;
@@ -367,4 +366,4 @@ const StyledInput = styled.input<InputWithError>`
         ? `1px solid ${colors.shamrock};`
         : `1px solid ${colors.cornflower};`};
   }
-`
+`;

@@ -1,17 +1,17 @@
-import * as React from "react"
-import styled from "styled-components/macro"
+import * as React from "react";
+import styled from "styled-components";
 
-import { colors } from "../design.config"
-import { ReactComponent as CheckedSvg } from "../../assets/checked.svg"
-import {Spacer} from "./Spacer";
+import { colors } from "../design.config";
+import { ReactComponent as CheckedSvg } from "../assets/checked.svg";
+import { Spacer } from "./Spacer";
 
 interface CheckboxProps {
-  label: string
-  name: string
-  isChecked: boolean
-  onChange: () => void
-  id?: string
-  disabled?: boolean
+  label: string;
+  name: string;
+  isChecked: boolean;
+  onChange: () => void;
+  id?: string;
+  disabled?: boolean;
 }
 
 export const Checkbox = ({
@@ -46,26 +46,26 @@ export const Checkbox = ({
         <StyledInputLabel disabled={disabled}>{label}</StyledInputLabel>
       </StyledInput>
     </div>
-  )
-}
+  );
+};
 
 interface CheckedProp {
-  checked: boolean
-  disabled?: boolean
+  checked: boolean;
+  disabled?: boolean;
 }
 
 interface DisabledProp {
-  disabled: boolean
+  disabled: boolean;
 }
 
 const HiddenInput = styled.input`
   display: none;
-`
+`;
 const StyledInput = styled.label`
   display: flex;
   align-items: center;
   cursor: pointer;
-`
+`;
 const StyledSquare = styled.div<CheckedProp>`
   display: flex;
   align-items: center;
@@ -82,7 +82,7 @@ const StyledSquare = styled.div<CheckedProp>`
       ? colors.disabledGrey
       : colors.rock};
   border-radius: 0.5rem;
-`
+`;
 const StyledInputLabel = styled.label<DisabledProp>`
   cursor: pointer;
   font-family: "Roboto", sans-serif;
@@ -92,7 +92,7 @@ const StyledInputLabel = styled.label<DisabledProp>`
   transition: all 0.3s ease-in-out;
 
   color: ${({ disabled }) => (disabled ? colors.disabledGrey : colors.navy)};
-`
+`;
 
 const StyledChecked = styled.div`
   display: flex;
@@ -100,4 +100,4 @@ const StyledChecked = styled.div`
   & svg {
     fill: ${colors.white};
   }
-`
+`;

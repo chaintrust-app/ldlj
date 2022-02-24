@@ -1,40 +1,40 @@
-import * as React from "react"
-import { Fragment, ReactNode } from "react"
-import { useIntl } from "react-intl"
-import styled from "styled-components/macro"
+import * as React from "react";
+import { Fragment, ReactNode } from "react";
+import { useIntl } from "react-intl";
+import styled from "styled-components";
 
-import { colors } from "../design.config"
-import ReactTooltip from "react-tooltip"
-import {Separator} from "./Separator";
-import {Spacer} from "./Spacer";
-import {Alert} from "./Alert";
-import {Card} from "./Card";
-import {Text} from "./Text"
+import { colors } from "../design.config";
+import ReactTooltip from "react-tooltip";
+import { Separator } from "./Separator";
+import { Spacer } from "./Spacer";
+import { Alert } from "./Alert";
+import { Card } from "./Card";
+import { Text } from "./Text";
 
 export interface TableBuilder<T> {
-  headerText: string
-  flexGrow?: string
-  content: (rowData: T) => JSX.Element
+  headerText: string;
+  flexGrow?: string;
+  content: (rowData: T) => JSX.Element;
 }
 
 const Row = styled.div`
   display: flex;
   width: 100%;
   justify-content: space-evenly;
-`
+`;
 
 export interface TableProps<T> {
-  columns: TableBuilder<T>[]
-  rows: Array<T>
-  rowBackgroundColors?: Array<keyof typeof colors>
-  width?: string
-  height?: string
-  alignItems?: string
-  padding?: string
-  alertMessage?: string
-  rowTooltip?: (rowData: T) => { "data-tip": string } | {}
-  suffixContent?: ReactNode
-  keyBuilder?: (rowData: T, index: number) => string
+  columns: TableBuilder<T>[];
+  rows: Array<T>;
+  rowBackgroundColors?: Array<keyof typeof colors>;
+  width?: string;
+  height?: string;
+  alignItems?: string;
+  padding?: string;
+  alertMessage?: string;
+  rowTooltip?: (rowData: T) => { "data-tip": string } | {};
+  suffixContent?: ReactNode;
+  keyBuilder?: (rowData: T, index: number) => string;
 }
 
 export const Table = <T,>({
@@ -50,8 +50,8 @@ export const Table = <T,>({
   suffixContent,
   keyBuilder,
 }: TableProps<T>) => {
-  const bgColors = rowBackgroundColors || rows.map(() => "white")
-  const intl = useIntl()
+  const bgColors = rowBackgroundColors || rows.map(() => "white");
+  const intl = useIntl();
   return (
     <Wrapper width={width} height={height} padding={padding}>
       <Header>
@@ -64,19 +64,17 @@ export const Table = <T,>({
 
       <ContentSection dataLoaded={Object.keys(rows).length > 0}>
         {rows.map((row, index) => {
-          let additionalAttributes = {}
+          let additionalAttributes = {};
           if (rowTooltip) {
-            additionalAttributes = rowTooltip(row)
-            ReactTooltip.rebuild()
+            additionalAttributes = rowTooltip(row);
+            ReactTooltip.rebuild();
           }
 
           return (
             <Fragment
               key={keyBuilder ? keyBuilder(row, index) : `row-${index}`}
             >
-              {index > 0 && (
-                <Separator size="full" color={"lavender"} />
-              )}
+              {index > 0 && <Separator size="full" color={"lavender"} />}
               <RowWithPadding
                 backgroundColor={bgColors[index]}
                 alignItems={alignItems}
@@ -93,7 +91,7 @@ export const Table = <T,>({
                 ))}
               </RowWithPadding>
             </Fragment>
-          )
+          );
         })}
 
         {rows.length === 0 && alertMessage && (
@@ -111,13 +109,13 @@ export const Table = <T,>({
         {suffixContent}
       </ContentSection>
     </Wrapper>
-  )
-}
+  );
+};
 
 interface WrapperStyle {
-  width?: string
-  height?: string
-  padding?: string
+  width?: string;
+  height?: string;
+  padding?: string;
 }
 
 // need 2rem padding for table shadow
@@ -128,12 +126,12 @@ const Wrapper = styled.div<WrapperStyle>`
   height: ${({ height }) => (height ? height : `initial`)};
   overflow-y: auto;
   padding: ${({ padding }) => (padding ? padding : "0 2rem 2rem 2rem")};
-`
+`;
 
 export const TitleTable = ({ tid }: { tid: string }) => {
-  const intl = useIntl()
+  const intl = useIntl();
   return (
-      <Text
+    <Text
       text={intl.formatMessage({ id: tid })}
       textStyle={{
         fontWeight: 700,
@@ -142,8 +140,8 @@ export const TitleTable = ({ tid }: { tid: string }) => {
         textAlign: "center",
       }}
     />
-  )
-}
+  );
+};
 
 //     padding-right: 5.5rem; because of scrollbar
 //     TODO: add more padding right depending on scrollbar display
@@ -161,15 +159,15 @@ export const Header = styled.header`
   width: 100%;
   flex-shrink: 0;
   background-color: ${colors.lavender};
-`
+`;
 
 interface WithTransition {
-  dataLoaded: boolean
+  dataLoaded: boolean;
 }
 
 interface WithFlexGrow {
-  flexGrow?: string | null
-  justifyLeft?: boolean
+  flexGrow?: string | null;
+  justifyLeft?: boolean;
 }
 
 const Flex1 = styled.div<WithFlexGrow>`
@@ -179,20 +177,21 @@ const Flex1 = styled.div<WithFlexGrow>`
   align-items: center;
   justify-content: ${({ justifyLeft }) =>
     justifyLeft ? `flex-start` : "center"};
-`
+`;
 interface WithColor {
-  backgroundColor: keyof typeof colors
-  alignItems: string | undefined
+  backgroundColor: keyof typeof colors;
+  alignItems: string | undefined;
 }
 
-const RowWithPadding = styled(Row)<WithColor>`
+const RowWithPadding = styled((props) => <Row {...props} />)<WithColor>`
   padding: 3rem 4rem;
   box-sizing: border-box;
-  background-color: ${({ backgroundColor }) => colors[backgroundColor]};
+  background-color: ${({ backgroundColor }) =>
+    colors[backgroundColor as keyof typeof colors]};
   align-items: ${({ alignItems }) => (alignItems ? alignItems : "normal")};
-`
+`;
 
-const ContentSection = styled(Card)<WithTransition>`
+const ContentSection = styled((props) => <Card {...props} />)<WithTransition>`
   display: flex;
   justify-content: flex-start;
   width: 100%;
@@ -205,4 +204,4 @@ const ContentSection = styled(Card)<WithTransition>`
   transform: translateZ(0);
   border: 1px solid ${colors.lavender};
   box-shadow: none;
-`
+`;

@@ -1,4 +1,4 @@
-import { keyframes } from "styled-components/macro"
+import { keyframes } from "styled-components"
 
 export const colors = {
   cornflower: "#6B92FF",

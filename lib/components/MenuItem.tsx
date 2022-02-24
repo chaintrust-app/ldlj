@@ -1,6 +1,6 @@
 import * as React from "react"
 import { ReactNode } from "react"
-import styled from "styled-components/macro"
+import styled from "styled-components"
 
 import { colors, gradients } from "../design.config"
 import { useNavigate } from "react-router-dom"
