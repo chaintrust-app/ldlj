@@ -1,16 +1,16 @@
 import * as React from "react";
-import { Link as RouterLink } from "react-router-dom";
-import styled from "styled-components";
 import { Text } from "./Text";
+import { ElementType } from "react";
 
 interface LinkProps {
   text: string;
   href: string;
+  RouterLink: ElementType
 }
 
-export const Link = ({ text, href }: LinkProps) => {
+export const Link = ({ text, href, RouterLink }: LinkProps) => {
   return (
-    <StyledLink to={href}>
+    <RouterLink to={href}>
       <Text
         text={text}
         textStyle={{
@@ -22,8 +22,6 @@ export const Link = ({ text, href }: LinkProps) => {
           cursor: "pointer",
         }}
       />
-    </StyledLink>
+    </RouterLink>
   );
 };
-
-const StyledLink = styled((props) => <RouterLink {...props} />)``;

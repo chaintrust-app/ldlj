@@ -1,6 +1,6 @@
 /// <reference types="react" />
 import * as React from 'react';
-import { ReactNode, VFC, ChangeEventHandler } from 'react';
+import { ReactNode, VFC, ChangeEventHandler, ElementType } from 'react';
 import * as styled_components from 'styled-components';
 import { UseFormRegister, FieldValues, RegisterOptions } from 'react-hook-form';
 
@@ -261,8 +261,9 @@ declare const InputMovingPlaceholder: (props: inputLabelProps) => JSX.Element;
 interface LinkProps {
     text: string;
     href: string;
+    RouterLink: ElementType;
 }
-declare const Link: ({ text, href }: LinkProps) => JSX.Element;
+declare const Link: ({ text, href, RouterLink }: LinkProps) => JSX.Element;
 
 interface LockableInputProps extends BaseInputProps {
     locked: boolean;
