@@ -28,6 +28,7 @@ import {
     SpacedBetween,
     SpacedBetweenCenter,
     SpacedBetweenEnd,
+    Flex1,
 } from "./components/Flex"
 import {StyledForm} from "./components/Form"
 import {BaseInputProps, Input} from "./components/Input"
@@ -58,6 +59,8 @@ import {TabObject, Tabs} from "./components/Tabs"
 import {Text} from "./components/Text"
 import {Title} from "./components/Title"
 import {StyledToastContainer} from "./components/Toast"
+import { AmountTotals } from "./components/AmountTotals"
+import { CloseCross } from "./components/CloseCross"
 
 export {
     Alert,
@@ -75,6 +78,7 @@ export {
     SpacedBetween,
     SpacedBetweenCenter,
     SpacedBetweenEnd,
+    Flex1,
     FlexStart,
     FlexEnd,
     FlexShrinkZero,
@@ -129,6 +133,8 @@ export {
     WrapperRows,
     Cell,
     Counter,
+    AmountTotals,
+    CloseCross,
 }
 
 export type {

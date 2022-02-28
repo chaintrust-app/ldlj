@@ -92,3 +92,7 @@ export const SelfAlignedColumn = styled((props) => <Column {...props} />)`
   align-self: center;
   align-items: center;
 `;
+
+export const Flex1 = styled.div`
+  flex: 1;
+`

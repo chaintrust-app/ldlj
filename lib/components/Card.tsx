@@ -1,30 +1,31 @@
-import * as React from "react"
-import { boxShadow, colors, spacings } from "../design.config"
-import styled from "styled-components"
-import { VFC } from "react"
+import * as React from "react";
+import styled from "styled-components";
+
+import { boxShadow, colors, spacings } from "../design.config";
 
 type trianglePosition = {
-  position: "left" | "top"
-  size: 1.25 | 2.5
-  left?: number
-  right?: number
-  top?: number
-  bottom?: number
-} | null
+  position: "left" | "top";
+  size: 1.25 | 2.5;
+  left?: number;
+  right?: number;
+  top?: number;
+  bottom?: number;
+} | null;
 export interface CardProps {
-  children: React.ReactNode
-  width?: string
-  height?: number
-  trianglePosition?: trianglePosition
-  className?: string
-  backgroundColor?: keyof typeof colors
-  alignSelf?: "flex-start" | "flex-end" | "center" | "stretch"
-  overridePosition?: boolean
-  radius?: number
-  padding?: number
+  children: React.ReactNode;
+  width?: string;
+  height?: string;
+  trianglePosition?: trianglePosition;
+  className?: string;
+  backgroundColor?: keyof typeof colors;
+  alignSelf?: "flex-start" | "flex-end" | "center" | "stretch";
+  overridePosition?: boolean;
+  radius?: number;
+  padding?: string;
+  onBlur?: () => void;
 }
 
-export const Card: VFC<CardProps> = ({
+export const Card: React.VFC<CardProps> = ({
   className,
   children,
   width = "70rem",
@@ -35,6 +36,7 @@ export const Card: VFC<CardProps> = ({
   overridePosition = false,
   radius = 2.5,
   padding,
+  onBlur,
 }: CardProps) => (
   <StyledSection
     trianglePosition={trianglePosition}
@@ -46,20 +48,21 @@ export const Card: VFC<CardProps> = ({
     overridePosition={overridePosition}
     radius={radius}
     padding={padding}
+    onBlur={onBlur}
   >
     {children}
   </StyledSection>
-)
+);
 
 interface WithWidth {
-  width: string
-  height?: number
-  trianglePosition: trianglePosition
-  backgroundColor: keyof typeof colors
-  alignSelf: "flex-start" | "flex-end" | "center" | "stretch"
-  overridePosition: boolean
-  radius: number
-  padding?: number
+  width: string;
+  height?: string;
+  trianglePosition: trianglePosition;
+  backgroundColor: keyof typeof colors;
+  alignSelf: "flex-start" | "flex-end" | "center" | "stretch";
+  overridePosition: boolean;
+  radius: number;
+  padding?: string;
 }
 
 const StyledSection = styled.section<WithWidth>`
@@ -67,7 +70,7 @@ const StyledSection = styled.section<WithWidth>`
   position: ${({ overridePosition }) =>
     overridePosition ? "absolute" : "relative"};
   width: ${({ width }) => width};
-  height: ${({ height }) => (height === undefined ? "auto" : `${height}rem`)};
+  height: ${({ height }) => (height === undefined ? "auto" : `${height}`)};
   box-sizing: border-box;
   display: flex;
   align-items: center;
@@ -76,7 +79,7 @@ const StyledSection = styled.section<WithWidth>`
   background: ${({ backgroundColor }) => colors[backgroundColor]};
   border-radius: ${({ radius }) => radius}rem;
   padding: ${({ padding }) =>
-    padding === undefined ? spacings.defaultPadding : `${padding}rem`};
+    padding === undefined ? spacings.defaultPadding : `${padding}`};
   box-shadow: ${boxShadow};
 
   :after {
@@ -98,4 +101,4 @@ const StyledSection = styled.section<WithWidth>`
 
     transform: rotate(45deg);
   }
-`
+`;
