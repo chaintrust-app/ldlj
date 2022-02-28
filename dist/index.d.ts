@@ -3,7 +3,7 @@ import * as React from 'react';
 import { ReactNode, ChangeEventHandler, ElementType } from 'react';
 import * as styled_components from 'styled-components';
 import { UseFormRegister, FieldValues, RegisterOptions } from 'react-hook-form';
-import { NavigateFunction } from 'react-router-dom';
+import { NavigateFunction, useMatch, useResolvedPath, Link as Link$1 } from 'react-router-dom';
 import { IntlShape } from 'react-intl';
 
 interface AlertProps {
@@ -453,9 +453,13 @@ interface TabObject {
     isDisplayed: boolean;
     isSelected?: boolean;
 }
-declare const Tabs: ({ tabs }: {
+interface TabsProps {
+    useMatch: typeof useMatch;
+    useResolvedPath: typeof useResolvedPath;
+    Link: typeof Link$1;
     tabs: TabObject[];
-}) => JSX.Element;
+}
+declare const Tabs: ({ useMatch, useResolvedPath, tabs, Link }: TabsProps) => JSX.Element;
 
 declare type FontWeight = 400 | 500 | 600 | 700;
 interface TextProps {
