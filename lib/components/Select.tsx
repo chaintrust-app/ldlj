@@ -66,7 +66,6 @@ export function Select(props: SelectProps) {
   } = props;
 
   const [isFocused, setIsFocused] = useState(false);
-
   const CustomPlaceholder = () => <></>;
 
   // eslint-disable-next-line @typescript-eslint/no-explicit-any
@@ -94,7 +93,7 @@ export function Select(props: SelectProps) {
         <Spacer width={0.5} />
         <Text
           textStyle={{ color: "slateGrey" }}
-          text={intl.formatMessage({ id: "office.sort" })}
+          text={intl ? intl.formatMessage({ id: "office.sort" }) : ""}
         />
         <Spacer width={0.5} />
         <StyledSpan>{children}</StyledSpan>
