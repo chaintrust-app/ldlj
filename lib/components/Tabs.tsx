@@ -7,30 +7,19 @@ import * as React from "react";
 export interface TabObject {
   to: string;
   title: string;
-  icon: ReactNode;
+  iconIdle: ReactNode;
+  iconSelected?: ReactNode;
   isDisplayed: boolean;
+  isSelected?: boolean;
 }
 
-interface TabProps extends LinkProps {
-  useMatch: typeof useMatch;
-  useResolvedPath: typeof useResolvedPath;
-  Link: typeof Link;
-}
-
-const Tab = ({
-  useMatch,
-  useResolvedPath,
-  children,
-  to,
-  Link,
-  ...props
-}: TabProps) => {
+const Tab = ({ children, to, ...props }: LinkProps) => {
   let resolved = useResolvedPath(to);
   let match = useMatch({ path: resolved.pathname, end: true });
 
   return (
     <>
-      <StyledLink to={to} match={match} Link={Link} {...props}>
+      <StyledLink to={to} match={match} {...props}>
         {children}
       </StyledLink>
       <Underline match={match} />
@@ -40,16 +29,9 @@ const Tab = ({
 
 interface MatchingLink {
   match: unknown;
-  Link?: typeof Link;
 }
 
-interface TabsProps {
-  useMatch: typeof useMatch;
-  useResolvedPath: typeof useResolvedPath;
-  Link: typeof Link;
-  tabs: TabObject[];
-}
-export const Tabs = ({ useMatch, useResolvedPath, tabs, Link }: TabsProps) => {
+export const Tabs = ({ tabs }: { tabs: TabObject[] }) => {
   return (
     <>
       <nav>
@@ -58,13 +40,8 @@ export const Tabs = ({ useMatch, useResolvedPath, tabs, Link }: TabsProps) => {
             <Fragment key={i}>
               {tab.isDisplayed && (
                 <ListItem key={tab.to}>
-                  <Tab
-                    to={tab.to}
-                    useMatch={useMatch}
-                    useResolvedPath={useResolvedPath}
-                    Link={Link}
-                  >
-                    {tab.icon}
+                  <Tab to={tab.to}>
+                    {tab.isSelected ? tab.iconSelected : tab.iconIdle}
                     {tab.title}
                   </Tab>
                 </ListItem>
@@ -91,7 +68,7 @@ const ListItem = styled.li`
 `;
 
 // !important to override rsuite global css
-const StyledLink = styled((props) => <props.Link {...props} />)<MatchingLink>`
+const StyledLink = styled(Link)<MatchingLink>`
   font-family: "Poppins", sans-serif;
   font-weight: 600;
   font-size: 1.75rem;
@@ -120,8 +97,6 @@ const StyledLink = styled((props) => <props.Link {...props} />)<MatchingLink>`
         ? css`0.6s ${bump} 0.3s ease-in-out` /* stylelint-disable-line */
         : ""};
     transition: fill 0.6s ease-in-out;
-    fill: ${(props) =>
-      props.match ? `${colors.cornflower}` : `${colors.steelBlue}`};
   }
 `;
 

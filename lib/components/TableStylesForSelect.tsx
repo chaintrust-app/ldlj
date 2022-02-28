@@ -58,3 +58,13 @@ export const Cell = styled.div`
   align-items: center;
   margin: 0;
 `;
+
+export const CellStart = styled.div`
+  display: flex;
+  height: 11rem;
+  flex: 1 0;
+  justify-content: flex-start;
+  align-items: center;
+  margin: 0;
+  position: relative;
+`;

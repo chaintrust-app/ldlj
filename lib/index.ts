@@ -68,6 +68,7 @@ import { Switch } from "./components/Switch";
 import { Header, Table, TableBuilder, TitleTable } from "./components/Table";
 import {
   Cell,
+  CellStart,
   StyledTitles,
   TableBody,
   TableHeader,
@@ -156,6 +157,7 @@ export {
   AmountTotals,
   CloseCross,
   InvoiceRecapInfo,
+  CellStart,
 };
 
 export type {
