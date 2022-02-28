@@ -3,7 +3,7 @@ import * as React from 'react';
 import { ReactNode, VFC, ChangeEventHandler, ElementType } from 'react';
 import * as styled_components from 'styled-components';
 import { UseFormRegister, FieldValues, RegisterOptions } from 'react-hook-form';
-import { NavigateFunction, useMatch, useResolvedPath } from 'react-router-dom';
+import { NavigateFunction, useMatch, useResolvedPath, Link as Link$1 } from 'react-router-dom';
 
 interface AlertProps {
     children: React.ReactNode;
@@ -445,9 +445,10 @@ interface TabObject {
 interface TabsProps {
     useMatch: typeof useMatch;
     useResolvedPath: typeof useResolvedPath;
+    Link: typeof Link$1;
     tabs: TabObject[];
 }
-declare const Tabs: ({ useMatch, useResolvedPath, tabs }: TabsProps) => JSX.Element;
+declare const Tabs: ({ useMatch, useResolvedPath, tabs, Link }: TabsProps) => JSX.Element;
 
 declare type FontWeight = 400 | 500 | 600 | 700;
 interface TextProps {

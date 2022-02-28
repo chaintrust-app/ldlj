@@ -14,6 +14,7 @@ export interface TabObject {
 interface TabProps extends LinkProps {
   useMatch: typeof useMatch;
   useResolvedPath: typeof useResolvedPath;
+  Link: typeof Link;
 }
 
 const Tab = ({
@@ -21,6 +22,7 @@ const Tab = ({
   useResolvedPath,
   children,
   to,
+  Link,
   ...props
 }: TabProps) => {
   let resolved = useResolvedPath(to);
@@ -44,9 +46,10 @@ interface MatchingLink {
 interface TabsProps {
   useMatch: typeof useMatch;
   useResolvedPath: typeof useResolvedPath;
+  Link: typeof Link;
   tabs: TabObject[];
 }
-export const Tabs = ({ useMatch, useResolvedPath, tabs }: TabsProps) => {
+export const Tabs = ({ useMatch, useResolvedPath, tabs, Link }: TabsProps) => {
   return (
     <>
       <nav>
@@ -59,6 +62,7 @@ export const Tabs = ({ useMatch, useResolvedPath, tabs }: TabsProps) => {
                     to={tab.to}
                     useMatch={useMatch}
                     useResolvedPath={useResolvedPath}
+                    Link={Link}
                   >
                     {tab.icon}
                     {tab.title}
