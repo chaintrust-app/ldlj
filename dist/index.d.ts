@@ -1,9 +1,9 @@
 /// <reference types="react" />
 import * as React from 'react';
-import { ReactNode, VFC, ChangeEventHandler, ElementType } from 'react';
+import { ReactNode, ChangeEventHandler, ElementType } from 'react';
 import * as styled_components from 'styled-components';
 import { UseFormRegister, FieldValues, RegisterOptions } from 'react-hook-form';
-import { NavigateFunction, useMatch, useResolvedPath, Link as Link$1 } from 'react-router-dom';
+import { NavigateFunction } from 'react-router-dom';
 import { IntlShape } from 'react-intl';
 
 interface AlertProps {
@@ -91,16 +91,17 @@ declare type trianglePosition = {
 interface CardProps {
     children: React.ReactNode;
     width?: string;
-    height?: number;
+    height?: string;
     trianglePosition?: trianglePosition;
     className?: string;
     backgroundColor?: keyof typeof colors;
     alignSelf?: "flex-start" | "flex-end" | "center" | "stretch";
     overridePosition?: boolean;
     radius?: number;
-    padding?: number;
+    padding?: string;
+    onBlur?: () => void;
 }
-declare const Card: VFC<CardProps>;
+declare const Card: React.VFC<CardProps>;
 
 interface CheckboxProps {
     label: string;
@@ -201,6 +202,7 @@ declare const RowCenter: styled_components.StyledComponent<"div", any, {}, never
 declare const AlignSelfStart: styled_components.StyledComponent<"div", any, {}, never>;
 declare const AlignSelfCenter: styled_components.StyledComponent<"div", any, {}, never>;
 declare const SelfAlignedColumn: styled_components.StyledComponent<(props: any) => JSX.Element, any, {}, never>;
+declare const Flex1: styled_components.StyledComponent<"div", any, {}, never>;
 
 declare const StyledForm: styled_components.StyledComponent<"form", any, {}, never>;
 
@@ -363,12 +365,13 @@ interface SeparatorProps {
 declare const Separator: ({ size, color, }: SeparatorProps) => JSX.Element;
 declare const VerticalSeparator: styled_components.StyledComponent<"div", any, {}, never>;
 
-declare const SortButton: <T extends string>({ sortMethod, options, defaultOption, shadowed, dataCy, }: {
+declare const SortButton: <T extends string>({ sortMethod, options, defaultOption, shadowed, dataCy, intl, }: {
     sortMethod: (option: T) => void;
     options: OptionList<T>;
     defaultOption: Option<T>;
     shadowed?: boolean | undefined;
     dataCy?: string | undefined;
+    intl: IntlShape;
 }) => JSX.Element;
 
 declare type SpacingUnit = 0 | 0.25 | 0.5 | 1 | 1.25 | 1.5 | 1.75 | 2 | 2.25 | 2.5 | 3 | 3.75 | 4 | 5 | 6 | 8 | 9 | 11 | 12;
@@ -440,20 +443,19 @@ declare const WrapperRows: styled_components.StyledComponent<"div", any, {}, nev
 declare const StyledTitles: styled_components.StyledComponent<(props: any) => JSX.Element, any, {}, never>;
 declare const TableWrapper: styled_components.StyledComponent<"div", any, {}, never>;
 declare const Cell: styled_components.StyledComponent<"div", any, {}, never>;
+declare const CellStart: styled_components.StyledComponent<"div", any, {}, never>;
 
 interface TabObject {
     to: string;
     title: string;
-    icon: ReactNode;
+    iconIdle: ReactNode;
+    iconSelected?: ReactNode;
     isDisplayed: boolean;
+    isSelected?: boolean;
 }
-interface TabsProps {
-    useMatch: typeof useMatch;
-    useResolvedPath: typeof useResolvedPath;
-    Link: typeof Link$1;
+declare const Tabs: ({ tabs }: {
     tabs: TabObject[];
-}
-declare const Tabs: ({ useMatch, useResolvedPath, tabs, Link }: TabsProps) => JSX.Element;
+}) => JSX.Element;
 
 declare type FontWeight = 400 | 500 | 600 | 700;
 interface TextProps {
@@ -483,4 +485,29 @@ declare const Title: ({ text, size, className }: TitleProps) => JSX.Element;
 
 declare const StyledToastContainer: styled_components.StyledComponent<(props: any) => JSX.Element, any, {}, never>;
 
-export { Alert, AlignSelfCenter, AlignSelfStart, Background, Bar, BaseInputProps, Button, Card, CardProps, Cell, Checkbox, CircleNotifier, Column, ColumnCenter, ColumnCenterCenter, ColumnSpacedBetween, ColumnStretch, Counter, CreatableSelect, DocumentPreviewModal, FileDownloader, FilePreviewer, FileTrash, FlexEnd, FlexShrinkZero, FlexStart, Header, Input, InputDate, InputMovingPlaceholder, JustifyCenter, Link, LoadingStatus, LockableInput, MenuItem, Modal, ModalComponentsProps, MultiSelect, NestedMenuItem, Option, OptionList, PasswordInput, ProgressBar, Row, RowCenter, RowCheckbox, ScrollableOutlet, Select, SelfAlignedColumn, Separator, SortButton, SpacedBetween, SpacedBetweenCenter, SpacedBetweenEnd, Spacer, SpinningLoader, SpinningLoaderShadow, StyledDuoInput, StyledForm, StyledLoaderShadow, StyledTitles, StyledToastContainer, Subtitle, Switch, TabObject, Table, TableBody, TableBuilder, TableHeader, TableWrapper, Tabs, Text, Title, TitleTable, VerticalSeparator, WrapperRows, createOptionList, displayPreviewParams };
+interface ProducsWithPrice {
+    quantity: number;
+    price: number;
+    vatRate: string;
+}
+interface InvoiceRecap {
+    seller: string;
+    buyer: string;
+    invoiceDate: string;
+}
+
+interface AmountTotalsProps {
+    productsWithPrice: ProducsWithPrice[];
+    intl: IntlShape;
+}
+declare const AmountTotals: ({ productsWithPrice, intl, }: AmountTotalsProps) => JSX.Element;
+
+declare const CloseCross: styled_components.StyledComponent<React.FC<React.SVGProps<SVGSVGElement>>, any, {}, never>;
+
+interface InvoiceRecapInfoProps {
+    invoiceRecap: InvoiceRecap;
+    intl: IntlShape;
+}
+declare const InvoiceRecapInfo: ({ invoiceRecap, intl, }: InvoiceRecapInfoProps) => JSX.Element;
+
+export { Alert, AlignSelfCenter, AlignSelfStart, AmountTotals, Background, Bar, BaseInputProps, Button, Card, CardProps, Cell, CellStart, Checkbox, CircleNotifier, CloseCross, Column, ColumnCenter, ColumnCenterCenter, ColumnSpacedBetween, ColumnStretch, Counter, CreatableSelect, DocumentPreviewModal, FileDownloader, FilePreviewer, FileTrash, Flex1, FlexEnd, FlexShrinkZero, FlexStart, Header, Input, InputDate, InputMovingPlaceholder, InvoiceRecapInfo, JustifyCenter, Link, LoadingStatus, LockableInput, MenuItem, Modal, ModalComponentsProps, MultiSelect, NestedMenuItem, Option, OptionList, PasswordInput, ProgressBar, Row, RowCenter, RowCheckbox, ScrollableOutlet, Select, SelfAlignedColumn, Separator, SortButton, SpacedBetween, SpacedBetweenCenter, SpacedBetweenEnd, Spacer, SpinningLoader, SpinningLoaderShadow, StyledDuoInput, StyledForm, StyledLoaderShadow, StyledTitles, StyledToastContainer, Subtitle, Switch, TabObject, Table, TableBody, TableBuilder, TableHeader, TableWrapper, Tabs, Text, Title, TitleTable, VerticalSeparator, WrapperRows, createOptionList, displayPreviewParams };

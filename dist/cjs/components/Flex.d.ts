@@ -16,3 +16,4 @@ export declare const RowCenter: import("styled-components").StyledComponent<"div
 export declare const AlignSelfStart: import("styled-components").StyledComponent<"div", any, {}, never>;
 export declare const AlignSelfCenter: import("styled-components").StyledComponent<"div", any, {}, never>;
 export declare const SelfAlignedColumn: import("styled-components").StyledComponent<(props: any) => JSX.Element, any, {}, never>;
+export declare const Flex1: import("styled-components").StyledComponent<"div", any, {}, never>;

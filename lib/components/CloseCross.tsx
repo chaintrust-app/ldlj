@@ -1,6 +1,6 @@
 import styled from "styled-components";
 
-import { ReactComponent as Cross } from "../../assets/cross.svg";
+import { ReactComponent as Cross } from "../assets/cross.svg";
 import { colors } from "../design.config";
 
 export const CloseCross = styled(Cross)`

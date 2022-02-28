@@ -5,3 +5,4 @@ export declare const WrapperRows: import("styled-components").StyledComponent<"d
 export declare const StyledTitles: import("styled-components").StyledComponent<(props: any) => JSX.Element, any, {}, never>;
 export declare const TableWrapper: import("styled-components").StyledComponent<"div", any, {}, never>;
 export declare const Cell: import("styled-components").StyledComponent<"div", any, {}, never>;
+export declare const CellStart: import("styled-components").StyledComponent<"div", any, {}, never>;
