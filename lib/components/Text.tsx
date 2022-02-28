@@ -1,28 +1,29 @@
-import styled from "styled-components"
-import { colors } from "../design.config"
-import * as React from "react"
+import styled from "styled-components";
+import { colors } from "../design.config";
+import * as React from "react";
 
 type FontWeight =
   | 400 // Regular
   | 500 // Medium
   | 600 // SemiBold
-  | 700 // Bold
+  | 700; // Bold
 
 export interface TextProps {
-  text: string
+  text: string;
   textStyle?: {
-    color?: keyof typeof colors
-    fontSize?: number
-    lineHeight?: number
-    underline?: boolean
-    fontStyle?: "normal" | "italic"
-    fontFamily?: "Roboto" | "Poppins"
-    fontWeight?: FontWeight
-    textTransform?: "uppercase" | "lowercase" | "capitalize" | "initial"
-    cursor?: "pointer" | "auto" | "default"
-    textAlign?: "center"
-  }
-  dataCy?: string
+    color?: keyof typeof colors;
+    fontSize?: number;
+    lineHeight?: number;
+    underline?: boolean;
+    fontStyle?: "normal" | "italic";
+    fontFamily?: "Roboto" | "Poppins";
+    fontWeight?: FontWeight;
+    textTransform?: "uppercase" | "lowercase" | "capitalize" | "initial";
+    cursor?: "pointer" | "auto" | "default";
+    textAlign?: "center";
+  };
+  dataCy?: string;
+  onClick?: () => void;
 }
 
 const StyledText = styled.span<TextProps>`
@@ -52,12 +53,12 @@ const StyledText = styled.span<TextProps>`
     textStyle && textStyle.textAlign ? textStyle.textAlign : "start "};
   font-style: ${({ textStyle }) =>
     textStyle && textStyle.fontStyle ? textStyle.fontStyle : "normal"};
-`
+`;
 
 export const Text = (props: TextProps) => {
   return (
-      <StyledText data-cy={props.dataCy} {...props}>
-        {props.text}
-      </StyledText>
-  )
-}
+    <StyledText data-cy={props.dataCy} {...props}>
+      {props.text}
+    </StyledText>
+  );
+};

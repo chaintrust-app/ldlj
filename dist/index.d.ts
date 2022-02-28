@@ -473,6 +473,7 @@ interface TextProps {
         textAlign?: "center";
     };
     dataCy?: string;
+    onClick?: () => void;
 }
 declare const Text: (props: TextProps) => JSX.Element;
 
