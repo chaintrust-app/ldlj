@@ -3,6 +3,7 @@ import * as React from 'react';
 import { ReactNode, VFC, ChangeEventHandler, ElementType } from 'react';
 import * as styled_components from 'styled-components';
 import { UseFormRegister, FieldValues, RegisterOptions } from 'react-hook-form';
+import { NavigateFunction, useMatch, useResolvedPath } from 'react-router-dom';
 
 interface AlertProps {
     children: React.ReactNode;
@@ -276,8 +277,9 @@ interface MenuItemProps$1 {
     selected: boolean;
     iconIdle: ReactNode;
     iconSelected: ReactNode;
+    useNavigate: () => NavigateFunction;
 }
-declare const MenuItem: ({ label, selected, linkTo, iconIdle, iconSelected, }: MenuItemProps$1) => JSX.Element;
+declare const MenuItem: ({ label, selected, linkTo, iconIdle, iconSelected, useNavigate }: MenuItemProps$1) => JSX.Element;
 
 interface MultiSelectProps<T> {
     options: Array<T>;
@@ -297,8 +299,9 @@ interface MenuItemProps {
     linkTo: string;
     selected: boolean;
     blocked: boolean;
+    useNavigate: () => NavigateFunction;
 }
-declare const NestedMenuItem: ({ label, selected, linkTo, blocked, }: MenuItemProps) => JSX.Element;
+declare const NestedMenuItem: ({ label, selected, linkTo, blocked, useNavigate }: MenuItemProps) => JSX.Element;
 
 declare const PasswordInput: (props: BaseInputProps) => JSX.Element;
 
@@ -318,9 +321,10 @@ interface RowCheckboxProps {
 }
 declare const RowCheckbox: ({ label, name, isChecked, onChange, }: RowCheckboxProps) => JSX.Element;
 
-declare const ScrollableOutlet: ({ id, padding, }: {
+declare const ScrollableOutlet: ({ id, padding, Outlet }: {
     id?: string | undefined;
     padding?: string | undefined;
+    Outlet: ElementType;
 }) => JSX.Element;
 
 interface SelectProps {
@@ -438,9 +442,12 @@ interface TabObject {
     icon: ReactNode;
     isDisplayed: boolean;
 }
-declare const Tabs: ({ tabs }: {
+interface TabsProps {
+    useMatch: typeof useMatch;
+    useResolvedPath: typeof useResolvedPath;
     tabs: TabObject[];
-}) => JSX.Element;
+}
+declare const Tabs: ({ useMatch, useResolvedPath, tabs }: TabsProps) => JSX.Element;
 
 declare type FontWeight = 400 | 500 | 600 | 700;
 interface TextProps {

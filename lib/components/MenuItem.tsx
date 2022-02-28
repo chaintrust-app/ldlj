@@ -1,9 +1,8 @@
 import * as React from "react"
 import { ReactNode } from "react"
 import styled from "styled-components"
-
 import { colors, gradients } from "../design.config"
-import { useNavigate } from "react-router-dom"
+import {NavigateFunction} from "react-router-dom";
 
 export interface MenuItemProps {
   label: string
@@ -11,6 +10,7 @@ export interface MenuItemProps {
   selected: boolean
   iconIdle: ReactNode
   iconSelected: ReactNode
+  useNavigate: () => NavigateFunction
 }
 
 export const MenuItem = ({
@@ -19,6 +19,7 @@ export const MenuItem = ({
   linkTo,
   iconIdle,
   iconSelected,
+  useNavigate
 }: MenuItemProps) => {
   const navigate = useNavigate()
   const click = () => {

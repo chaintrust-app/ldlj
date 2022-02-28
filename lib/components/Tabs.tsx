@@ -11,13 +11,24 @@ export interface TabObject {
   isDisplayed: boolean;
 }
 
-const Tab = ({ children, to, ...props }: LinkProps) => {
+interface TabProps extends LinkProps {
+  useMatch: typeof useMatch;
+  useResolvedPath: typeof useResolvedPath;
+}
+
+const Tab = ({
+  useMatch,
+  useResolvedPath,
+  children,
+  to,
+  ...props
+}: TabProps) => {
   let resolved = useResolvedPath(to);
   let match = useMatch({ path: resolved.pathname, end: true });
 
   return (
     <>
-      <StyledLink to={to} match={match} {...props}>
+      <StyledLink to={to} match={match} Link={Link} {...props}>
         {children}
       </StyledLink>
       <Underline match={match} />
@@ -27,9 +38,15 @@ const Tab = ({ children, to, ...props }: LinkProps) => {
 
 interface MatchingLink {
   match: unknown;
+  Link?: typeof Link;
 }
 
-export const Tabs = ({ tabs }: { tabs: TabObject[] }) => {
+interface TabsProps {
+  useMatch: typeof useMatch;
+  useResolvedPath: typeof useResolvedPath;
+  tabs: TabObject[];
+}
+export const Tabs = ({ useMatch, useResolvedPath, tabs }: TabsProps) => {
   return (
     <>
       <nav>
@@ -38,7 +55,11 @@ export const Tabs = ({ tabs }: { tabs: TabObject[] }) => {
             <Fragment key={i}>
               {tab.isDisplayed && (
                 <ListItem key={tab.to}>
-                  <Tab to={tab.to}>
+                  <Tab
+                    to={tab.to}
+                    useMatch={useMatch}
+                    useResolvedPath={useResolvedPath}
+                  >
                     {tab.icon}
                     {tab.title}
                   </Tab>
@@ -66,7 +87,7 @@ const ListItem = styled.li`
 `;
 
 // !important to override rsuite global css
-const StyledLink = styled((props) => <Link {...props} />)<MatchingLink>`
+const StyledLink = styled((props) => <props.Link {...props} />)<MatchingLink>`
   font-family: "Poppins", sans-serif;
   font-weight: 600;
   font-size: 1.75rem;

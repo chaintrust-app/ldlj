@@ -1,13 +1,15 @@
 import * as React from "react"
-import { Outlet } from "react-router-dom"
 import styled from "styled-components"
+import {ElementType} from "react";
 
 export const ScrollableOutlet = ({
   id,
   padding,
+  Outlet
 }: {
   id?: string
   padding?: string
+  Outlet: ElementType
 }) => (
   <ScrollableContainer id={id} padding={padding}>
     <FullColumn>

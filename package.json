@@ -1,6 +1,6 @@
 {
   "name": "ldlj",
-  "version": "2.0.0",
+  "version": "2.1.0",
   "description": "la lib de la jungle",
   "main": "dist/cjs/index.js",
   "module": "dist/esm/index.js",
@@ -31,6 +31,7 @@
     "@svgr/rollup": "^6.2.1",
     "@types/react": "^17.0.39",
     "@types/styled-components": "^5.1.23",
+    "prettier": "^2.5.1",
     "react": "^17.0.2",
     "react-hook-form": "^7.27.1",
     "react-intl": "^5.24.6",

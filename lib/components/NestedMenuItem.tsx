@@ -1,6 +1,6 @@
 import * as React from "react"
 import styled from "styled-components"
-import { useNavigate } from "react-router-dom"
+import {NavigateFunction} from "react-router-dom"
 
 import { colors } from "../design.config"
 
@@ -9,6 +9,7 @@ export interface MenuItemProps {
   linkTo: string
   selected: boolean
   blocked: boolean
+  useNavigate: () => NavigateFunction
 }
 
 export const NestedMenuItem = ({
@@ -16,6 +17,7 @@ export const NestedMenuItem = ({
   selected,
   linkTo,
   blocked,
+  useNavigate
 }: MenuItemProps) => {
   const navigate = useNavigate()
   const click = () => {
