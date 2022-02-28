@@ -1,6 +1,6 @@
 /// <reference types="react" />
 import { colors } from "../design.config";
-declare type FontWeight = 400 | 500 | 600 | 700;
+export declare type FontWeight = 400 | 500 | 600 | 700;
 export interface TextProps {
     text: string;
     textStyle?: {
@@ -19,4 +19,3 @@ export interface TextProps {
     onClick?: () => void;
 }
 export declare const Text: (props: TextProps) => JSX.Element;
-export {};

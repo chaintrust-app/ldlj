@@ -8,7 +8,7 @@ import { Separator } from "./Separator";
 import { Spacer } from "./Spacer";
 import { Alert } from "./Alert";
 import { Card } from "./Card";
-import { Text } from "./Text";
+import { FontWeight, Text } from "./Text";
 import { IntlShape } from "react-intl";
 
 export interface TableBuilder<T> {
@@ -36,6 +36,9 @@ export interface TableProps<T> {
   suffixContent?: ReactNode;
   keyBuilder?: (rowData: T, index: number) => string;
   intl: IntlShape;
+  paddingHeader?: string;
+  paddingBody?: string;
+  fontWeightTitle?: FontWeight | undefined;
 }
 
 export const Table = <T,>({
@@ -51,19 +54,29 @@ export const Table = <T,>({
   suffixContent,
   keyBuilder,
   intl,
+  paddingHeader,
+  paddingBody,
+  fontWeightTitle,
 }: TableProps<T>) => {
   const bgColors = rowBackgroundColors || rows.map(() => "white");
   return (
     <Wrapper width={width} height={height} padding={padding}>
-      <Header>
+      <Header paddingHeader={paddingHeader}>
         {columns.map((column) => (
           <Flex1 key={column.headerText} flexGrow={column.flexGrow}>
-            <TitleTable tid={column.headerText} intl={intl} />
+            <TitleTable
+              tid={column.headerText}
+              intl={intl}
+              fontWeightTitle={fontWeightTitle}
+            />
           </Flex1>
         ))}
       </Header>
 
-      <ContentSection dataLoaded={Object.keys(rows).length > 0}>
+      <ContentSection
+        dataLoaded={Object.keys(rows).length > 0}
+        paddingBody={paddingBody}
+      >
         {rows.map((row, index) => {
           let additionalAttributes = {};
           if (rowTooltip) {
@@ -129,12 +142,20 @@ const Wrapper = styled.div<WrapperStyle>`
   padding: ${({ padding }) => (padding ? padding : "0 2rem 2rem 2rem")};
 `;
 
-export const TitleTable = ({ tid, intl }: { tid: string; intl: IntlShape }) => {
+export const TitleTable = ({
+  tid,
+  fontWeightTitle,
+  intl,
+}: {
+  tid: string;
+  fontWeightTitle?: FontWeight | undefined;
+  intl: IntlShape;
+}) => {
   return (
     <Text
       text={intl.formatMessage({ id: tid })}
       textStyle={{
-        fontWeight: 700,
+        fontWeight: fontWeightTitle ? fontWeightTitle : 700,
         fontFamily: "Poppins",
         textTransform: "uppercase",
         textAlign: "center",
@@ -145,14 +166,16 @@ export const TitleTable = ({ tid, intl }: { tid: string; intl: IntlShape }) => {
 
 //     padding-right: 5.5rem; because of scrollbar
 //     TODO: add more padding right depending on scrollbar display
-export const Header = styled.header`
+interface HeaderProps {
+  paddingHeader?: string;
+}
+
+export const Header = styled.header<HeaderProps>`
   display: flex;
   align-items: center;
   justify-content: space-evenly;
-
-  padding: 0 4rem;
+  padding: ${({ paddingHeader }) => (paddingHeader ? paddingHeader : "0 4rem")};
   box-sizing: border-box;
-
   border-top-left-radius: 2.5rem;
   border-top-right-radius: 2.5rem;
   height: 7rem;
@@ -160,7 +183,6 @@ export const Header = styled.header`
   flex-shrink: 0;
   background-color: ${colors.lavender};
 `;
-
 interface WithTransition {
   dataLoaded: boolean;
 }
@@ -195,7 +217,7 @@ const ContentSection = styled((props) => <Card {...props} />)<WithTransition>`
   display: flex;
   justify-content: flex-start;
   width: 100%;
-  padding: 0;
+  padding: ${({ paddingBody }) => (paddingBody ? paddingBody : "0")};
   border-top-right-radius: 0;
   border-top-left-radius: 0;
   height: 100%;

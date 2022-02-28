@@ -409,6 +409,26 @@ interface SwitchProps {
 }
 declare function Switch({ id, value, onToggle }: SwitchProps): JSX.Element;
 
+declare type FontWeight = 400 | 500 | 600 | 700;
+interface TextProps {
+    text: string;
+    textStyle?: {
+        color?: keyof typeof colors;
+        fontSize?: number;
+        lineHeight?: number;
+        underline?: boolean;
+        fontStyle?: "normal" | "italic";
+        fontFamily?: "Roboto" | "Poppins";
+        fontWeight?: FontWeight;
+        textTransform?: "uppercase" | "lowercase" | "capitalize" | "initial";
+        cursor?: "pointer" | "auto" | "default";
+        textAlign?: "center";
+    };
+    dataCy?: string;
+    onClick?: () => void;
+}
+declare const Text: (props: TextProps) => JSX.Element;
+
 interface TableBuilder<T> {
     headerText: string;
     flexGrow?: string;
@@ -429,13 +449,20 @@ interface TableProps<T> {
     suffixContent?: ReactNode;
     keyBuilder?: (rowData: T, index: number) => string;
     intl: IntlShape;
+    paddingHeader?: string;
+    paddingBody?: string;
+    fontWeightTitle?: FontWeight | undefined;
 }
-declare const Table: <T>({ columns, rows, rowBackgroundColors, width, height, alignItems, padding, alertMessage, rowTooltip, suffixContent, keyBuilder, intl, }: TableProps<T>) => JSX.Element;
-declare const TitleTable: ({ tid, intl }: {
+declare const Table: <T>({ columns, rows, rowBackgroundColors, width, height, alignItems, padding, alertMessage, rowTooltip, suffixContent, keyBuilder, intl, paddingHeader, paddingBody, fontWeightTitle, }: TableProps<T>) => JSX.Element;
+declare const TitleTable: ({ tid, fontWeightTitle, intl, }: {
     tid: string;
+    fontWeightTitle?: FontWeight | undefined;
     intl: IntlShape;
 }) => JSX.Element;
-declare const Header: styled_components.StyledComponent<"header", any, {}, never>;
+interface HeaderProps {
+    paddingHeader?: string;
+}
+declare const Header: styled_components.StyledComponent<"header", any, HeaderProps, never>;
 
 declare const TableHeader: styled_components.StyledComponent<"header", any, {}, never>;
 declare const TableBody: styled_components.StyledComponent<"div", any, {}, never>;
@@ -460,26 +487,6 @@ interface TabsProps {
     tabs: TabObject[];
 }
 declare const Tabs: ({ useMatch, useResolvedPath, tabs, Link }: TabsProps) => JSX.Element;
-
-declare type FontWeight = 400 | 500 | 600 | 700;
-interface TextProps {
-    text: string;
-    textStyle?: {
-        color?: keyof typeof colors;
-        fontSize?: number;
-        lineHeight?: number;
-        underline?: boolean;
-        fontStyle?: "normal" | "italic";
-        fontFamily?: "Roboto" | "Poppins";
-        fontWeight?: FontWeight;
-        textTransform?: "uppercase" | "lowercase" | "capitalize" | "initial";
-        cursor?: "pointer" | "auto" | "default";
-        textAlign?: "center";
-    };
-    dataCy?: string;
-    onClick?: () => void;
-}
-declare const Text: (props: TextProps) => JSX.Element;
 
 interface TitleProps {
     text: string;

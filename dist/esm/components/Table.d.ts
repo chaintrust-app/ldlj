@@ -1,5 +1,6 @@
 import { ReactNode } from "react";
 import { colors } from "../design.config";
+import { FontWeight } from "./Text";
 import { IntlShape } from "react-intl";
 export interface TableBuilder<T> {
     headerText: string;
@@ -21,10 +22,18 @@ export interface TableProps<T> {
     suffixContent?: ReactNode;
     keyBuilder?: (rowData: T, index: number) => string;
     intl: IntlShape;
+    paddingHeader?: string;
+    paddingBody?: string;
+    fontWeightTitle?: FontWeight | undefined;
 }
-export declare const Table: <T>({ columns, rows, rowBackgroundColors, width, height, alignItems, padding, alertMessage, rowTooltip, suffixContent, keyBuilder, intl, }: TableProps<T>) => JSX.Element;
-export declare const TitleTable: ({ tid, intl }: {
+export declare const Table: <T>({ columns, rows, rowBackgroundColors, width, height, alignItems, padding, alertMessage, rowTooltip, suffixContent, keyBuilder, intl, paddingHeader, paddingBody, fontWeightTitle, }: TableProps<T>) => JSX.Element;
+export declare const TitleTable: ({ tid, fontWeightTitle, intl, }: {
     tid: string;
+    fontWeightTitle?: FontWeight | undefined;
     intl: IntlShape;
 }) => JSX.Element;
-export declare const Header: import("styled-components").StyledComponent<"header", any, {}, never>;
+interface HeaderProps {
+    paddingHeader?: string;
+}
+export declare const Header: import("styled-components").StyledComponent<"header", any, HeaderProps, never>;
+export {};

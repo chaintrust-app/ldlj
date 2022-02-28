@@ -2,7 +2,7 @@ import styled from "styled-components";
 import { colors } from "../design.config";
 import * as React from "react";
 
-type FontWeight =
+export type FontWeight =
   | 400 // Regular
   | 500 // Medium
   | 600 // SemiBold
