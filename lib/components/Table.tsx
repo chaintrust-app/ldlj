@@ -1,6 +1,5 @@
 import * as React from "react";
 import { Fragment, ReactNode } from "react";
-import { useIntl } from "react-intl";
 import styled from "styled-components";
 
 import { colors } from "../design.config";
@@ -10,6 +9,7 @@ import { Spacer } from "./Spacer";
 import { Alert } from "./Alert";
 import { Card } from "./Card";
 import { Text } from "./Text";
+import { IntlShape } from "react-intl";
 
 export interface TableBuilder<T> {
   headerText: string;
@@ -35,6 +35,7 @@ export interface TableProps<T> {
   rowTooltip?: (rowData: T) => { "data-tip": string } | {};
   suffixContent?: ReactNode;
   keyBuilder?: (rowData: T, index: number) => string;
+  intl: IntlShape;
 }
 
 export const Table = <T,>({
@@ -49,15 +50,15 @@ export const Table = <T,>({
   rowTooltip,
   suffixContent,
   keyBuilder,
+  intl,
 }: TableProps<T>) => {
   const bgColors = rowBackgroundColors || rows.map(() => "white");
-  const intl = useIntl();
   return (
     <Wrapper width={width} height={height} padding={padding}>
       <Header>
         {columns.map((column) => (
           <Flex1 key={column.headerText} flexGrow={column.flexGrow}>
-            <TitleTable tid={column.headerText} />
+            <TitleTable tid={column.headerText} intl={intl} />
           </Flex1>
         ))}
       </Header>
@@ -128,8 +129,7 @@ const Wrapper = styled.div<WrapperStyle>`
   padding: ${({ padding }) => (padding ? padding : "0 2rem 2rem 2rem")};
 `;
 
-export const TitleTable = ({ tid }: { tid: string }) => {
-  const intl = useIntl();
+export const TitleTable = ({ tid, intl }: { tid: string; intl: IntlShape }) => {
   return (
     <Text
       text={intl.formatMessage({ id: tid })}

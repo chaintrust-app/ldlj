@@ -4,6 +4,7 @@ import { ReactNode, VFC, ChangeEventHandler, ElementType } from 'react';
 import * as styled_components from 'styled-components';
 import { UseFormRegister, FieldValues, RegisterOptions } from 'react-hook-form';
 import { NavigateFunction, useMatch, useResolvedPath, Link as Link$1 } from 'react-router-dom';
+import { IntlShape } from 'react-intl';
 
 interface AlertProps {
     children: React.ReactNode;
@@ -291,6 +292,7 @@ interface MultiSelectProps<T> {
     disabled?: boolean;
     onChange?: (newValue: ReadonlyArray<T>) => void;
     autoFocus?: boolean;
+    intl: IntlShape;
 }
 declare function MultiSelect<T>(props: MultiSelectProps<T>): JSX.Element;
 
@@ -342,6 +344,7 @@ interface SelectProps {
     isClearable?: boolean;
     dataCy?: string;
     customWidth?: string;
+    intl: IntlShape;
 }
 declare type Option<T extends string> = {
     value: T;
@@ -422,10 +425,12 @@ interface TableProps<T> {
     } | {};
     suffixContent?: ReactNode;
     keyBuilder?: (rowData: T, index: number) => string;
+    intl: IntlShape;
 }
-declare const Table: <T>({ columns, rows, rowBackgroundColors, width, height, alignItems, padding, alertMessage, rowTooltip, suffixContent, keyBuilder, }: TableProps<T>) => JSX.Element;
-declare const TitleTable: ({ tid }: {
+declare const Table: <T>({ columns, rows, rowBackgroundColors, width, height, alignItems, padding, alertMessage, rowTooltip, suffixContent, keyBuilder, intl, }: TableProps<T>) => JSX.Element;
+declare const TitleTable: ({ tid, intl }: {
     tid: string;
+    intl: IntlShape;
 }) => JSX.Element;
 declare const Header: styled_components.StyledComponent<"header", any, {}, never>;
 

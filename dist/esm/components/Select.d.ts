@@ -1,4 +1,5 @@
 /// <reference types="react" />
+import { IntlShape } from "react-intl";
 interface SelectProps {
     options: Array<Option<string>>;
     value: Option<string> | null;
@@ -14,6 +15,7 @@ interface SelectProps {
     isClearable?: boolean;
     dataCy?: string;
     customWidth?: string;
+    intl: IntlShape;
 }
 export declare type Option<T extends string> = {
     value: T;

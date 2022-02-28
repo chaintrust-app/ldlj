@@ -1,9 +1,9 @@
-import * as React from "react"
-import { components, default as ReactSelect } from "react-select"
-import { colors } from "../design.config"
-import styled from "styled-components"
-import { useIntl } from "react-intl"
-import {RowCheckbox} from "./RowCheckbox";
+import * as React from "react";
+import { components, default as ReactSelect } from "react-select";
+import { colors } from "../design.config";
+import styled from "styled-components";
+import { IntlShape } from "react-intl";
+import { RowCheckbox } from "./RowCheckbox";
 
 // eslint-disable-next-line @typescript-eslint/no-explicit-any
 const Option = (props: any) => {
@@ -18,26 +18,27 @@ const Option = (props: any) => {
         />
       </StyledDiv>
     </components.Option>
-  )
-}
+  );
+};
 
 const StyledDiv = styled.div`
   display: flex;
   flex-direction: column;
   justify-content: center;
   position: relative;
-`
+`;
 
 interface MultiSelectProps<T> {
-  options: Array<T>
-  value: ReadonlyArray<T> | null
-  field: unknown
-  label: string
-  domain: string
-  optionType: string
-  disabled?: boolean
-  onChange?: (newValue: ReadonlyArray<T>) => void
-  autoFocus?: boolean
+  options: Array<T>;
+  value: ReadonlyArray<T> | null;
+  field: unknown;
+  label: string;
+  domain: string;
+  optionType: string;
+  disabled?: boolean;
+  onChange?: (newValue: ReadonlyArray<T>) => void;
+  autoFocus?: boolean;
+  intl: IntlShape;
 }
 
 export function MultiSelect<T>(props: MultiSelectProps<T>) {
@@ -50,12 +51,12 @@ export function MultiSelect<T>(props: MultiSelectProps<T>) {
     optionType,
     disabled,
     onChange,
-  } = props
-  const intl = useIntl()
+    intl,
+  } = props;
 
-  const isValue: boolean = value ? value.length > 0 : false
+  const isValue: boolean = value ? value.length > 0 : false;
 
-  const CustomPlaceholder = () => <></>
+  const CustomPlaceholder = () => <></>;
 
   return (
     <StyledSelect value={value} disabled={disabled || false} isValue={isValue}>
@@ -91,13 +92,13 @@ export function MultiSelect<T>(props: MultiSelectProps<T>) {
         {intl.formatMessage({ id: `${domain}.${optionType}` })}
       </label>
     </StyledSelect>
-  )
+  );
 }
 
 interface Selector {
-  value: ReadonlyArray<unknown> | null
-  disabled: boolean
-  isValue: boolean
+  value: ReadonlyArray<unknown> | null;
+  disabled: boolean;
+  isValue: boolean;
 }
 
 // label always top, otherwise input research not updating
@@ -210,4 +211,4 @@ const StyledSelect = styled.div<Selector>`
   & div > [class*="MenuList"] {
     padding: 0;
   }
-`
+`;

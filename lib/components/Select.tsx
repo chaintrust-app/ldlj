@@ -4,7 +4,7 @@ import { boxShadow, colors } from "../design.config";
 import { ReactComponent as ChevronDown } from "../assets/chevron-down.svg";
 import { ReactComponent as Down } from "../assets/down.svg";
 import styled from "styled-components";
-import { useIntl } from "react-intl";
+import { IntlShape } from "react-intl";
 import { useState } from "react";
 import { ReactComponent as LocationArrow } from "../assets/location-arrow.svg";
 import { Row } from "./Flex";
@@ -26,6 +26,7 @@ interface SelectProps {
   isClearable?: boolean;
   dataCy?: string;
   customWidth?: string;
+  intl: IntlShape;
 }
 
 export type Option<T extends string> = {
@@ -61,9 +62,8 @@ export function Select(props: SelectProps) {
     isClearable = false,
     dataCy,
     customWidth,
+    intl,
   } = props;
-
-  const intl = useIntl();
 
   const [isFocused, setIsFocused] = useState(false);
 

@@ -1,5 +1,6 @@
 import { ReactNode } from "react";
 import { colors } from "../design.config";
+import { IntlShape } from "react-intl";
 export interface TableBuilder<T> {
     headerText: string;
     flexGrow?: string;
@@ -19,9 +20,11 @@ export interface TableProps<T> {
     } | {};
     suffixContent?: ReactNode;
     keyBuilder?: (rowData: T, index: number) => string;
+    intl: IntlShape;
 }
-export declare const Table: <T>({ columns, rows, rowBackgroundColors, width, height, alignItems, padding, alertMessage, rowTooltip, suffixContent, keyBuilder, }: TableProps<T>) => JSX.Element;
-export declare const TitleTable: ({ tid }: {
+export declare const Table: <T>({ columns, rows, rowBackgroundColors, width, height, alignItems, padding, alertMessage, rowTooltip, suffixContent, keyBuilder, intl, }: TableProps<T>) => JSX.Element;
+export declare const TitleTable: ({ tid, intl }: {
     tid: string;
+    intl: IntlShape;
 }) => JSX.Element;
 export declare const Header: import("styled-components").StyledComponent<"header", any, {}, never>;
