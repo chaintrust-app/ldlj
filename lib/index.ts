@@ -78,7 +78,6 @@ import {
 import { TabObject, Tabs } from "./components/Tabs";
 import { Text } from "./components/Text";
 import { Title } from "./components/Title";
-import { StyledToastContainer } from "./components/Toast";
 import { AmountTotals } from "./components/AmountTotals";
 import { CloseCross } from "./components/CloseCross";
 import { InvoiceRecapInfo } from "./components/InvoiceRecap";
@@ -146,7 +145,6 @@ export {
   Tabs,
   Text,
   Title,
-  StyledToastContainer,
   TableHeader,
   TableBody,
   StyledTitles,

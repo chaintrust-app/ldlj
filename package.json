@@ -1,6 +1,6 @@
 {
   "name": "ldlj",
-  "version": "3.0.3",
+  "version": "3.0.5",
   "description": "la lib de la jungle",
   "main": "dist/cjs/index.js",
   "module": "dist/esm/index.js",
@@ -39,7 +39,6 @@
     "react-router-dom": "^6.2.1",
     "react-scripts": "4.0.3",
     "react-select": "^5.2.2",
-    "react-toastify": "^8.2.0",
     "react-tooltip": "^4.2.21",
     "rollup": "^2.68.0",
     "rollup-plugin-dts": "^4.1.0",
