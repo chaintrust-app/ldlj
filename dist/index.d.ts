@@ -495,8 +495,6 @@ interface TitleProps {
 }
 declare const Title: ({ text, size, className }: TitleProps) => JSX.Element;
 
-declare const StyledToastContainer: styled_components.StyledComponent<(props: any) => JSX.Element, any, {}, never>;
-
 interface ProducsWithPrice {
     quantity: number;
     price: number;
@@ -522,4 +520,4 @@ interface InvoiceRecapInfoProps {
 }
 declare const InvoiceRecapInfo: ({ invoiceRecap, intl, }: InvoiceRecapInfoProps) => JSX.Element;
 
-export { Alert, AlignSelfCenter, AlignSelfStart, AmountTotals, Background, Bar, BaseInputProps, Button, Card, CardProps, Cell, CellStart, Checkbox, CircleNotifier, CloseCross, Column, ColumnCenter, ColumnCenterCenter, ColumnSpacedBetween, ColumnStretch, Counter, CreatableSelect, DocumentPreviewModal, FileDownloader, FilePreviewer, FileTrash, Flex1, FlexEnd, FlexShrinkZero, FlexStart, Header, Input, InputDate, InputMovingPlaceholder, InvoiceRecapInfo, JustifyCenter, Link, LoadingStatus, LockableInput, MenuItem, Modal, ModalComponentsProps, MultiSelect, NestedMenuItem, Option, OptionList, PasswordInput, ProgressBar, Row, RowCenter, RowCheckbox, ScrollableOutlet, Select, SelfAlignedColumn, Separator, SortButton, SpacedBetween, SpacedBetweenCenter, SpacedBetweenEnd, Spacer, SpinningLoader, SpinningLoaderShadow, StyledDuoInput, StyledForm, StyledLoaderShadow, StyledTitles, StyledToastContainer, Subtitle, Switch, TabObject, Table, TableBody, TableBuilder, TableHeader, TableWrapper, Tabs, Text, Title, TitleTable, VerticalSeparator, WrapperRows, createOptionList, displayPreviewParams };
+export { Alert, AlignSelfCenter, AlignSelfStart, AmountTotals, Background, Bar, BaseInputProps, Button, Card, CardProps, Cell, CellStart, Checkbox, CircleNotifier, CloseCross, Column, ColumnCenter, ColumnCenterCenter, ColumnSpacedBetween, ColumnStretch, Counter, CreatableSelect, DocumentPreviewModal, FileDownloader, FilePreviewer, FileTrash, Flex1, FlexEnd, FlexShrinkZero, FlexStart, Header, Input, InputDate, InputMovingPlaceholder, InvoiceRecapInfo, JustifyCenter, Link, LoadingStatus, LockableInput, MenuItem, Modal, ModalComponentsProps, MultiSelect, NestedMenuItem, Option, OptionList, PasswordInput, ProgressBar, Row, RowCenter, RowCheckbox, ScrollableOutlet, Select, SelfAlignedColumn, Separator, SortButton, SpacedBetween, SpacedBetweenCenter, SpacedBetweenEnd, Spacer, SpinningLoader, SpinningLoaderShadow, StyledDuoInput, StyledForm, StyledLoaderShadow, StyledTitles, Subtitle, Switch, TabObject, Table, TableBody, TableBuilder, TableHeader, TableWrapper, Tabs, Text, Title, TitleTable, VerticalSeparator, WrapperRows, createOptionList, displayPreviewParams };
