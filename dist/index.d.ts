@@ -285,16 +285,26 @@ interface MenuItemProps$1 {
 declare const MenuItem: ({ label, selected, linkTo, iconIdle, iconSelected, useNavigate }: MenuItemProps$1) => JSX.Element;
 
 interface MultiSelectProps<T> {
-    options: Array<T>;
-    value: ReadonlyArray<T> | null;
+    options: Array<{
+        value: T;
+        label: string;
+    }>;
+    value: ReadonlyArray<{
+        value: T | "all";
+        label: string;
+    }> | null;
     field: unknown;
     label: string;
     domain: string;
     optionType: string;
     disabled?: boolean;
-    onChange?: (newValue: ReadonlyArray<T>) => void;
+    onChange?: (newValue: ReadonlyArray<{
+        value: T | "all";
+        label: string;
+    }>) => void;
     autoFocus?: boolean;
     intl: IntlShape;
+    canToggleAllOptions?: boolean;
 }
 declare function MultiSelect<T>(props: MultiSelectProps<T>): JSX.Element;
 
