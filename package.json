@@ -1,6 +1,6 @@
 {
   "name": "ldlj",
-  "version": "3.0.4",
+  "version": "3.0.5",
   "description": "la lib de la jungle",
   "main": "dist/cjs/index.js",
   "module": "dist/esm/index.js",
@@ -21,9 +21,6 @@
     "url": "https://github.com/chaintrust-app/ldlj/issues"
   },
   "homepage": "https://github.com/chaintrust-app/ldlj#readme",
-  "dependencies": {
-    "react-toastify": "^8.2.0"
-  },
   "devDependencies": {
     "@rollup/plugin-commonjs": "^21.0.1",
     "@rollup/plugin-image": "^2.1.1",
