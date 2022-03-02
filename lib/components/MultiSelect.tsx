@@ -29,7 +29,7 @@ const StyledDiv = styled.div`
   position: relative;
 `;
 
-interface MultiSelectProps<T> {
+export interface MultiSelectProps<T> {
   options: Array<{ value: T; label: string }>;
   value: ReadonlyArray<{ value: T | "all"; label: string }> | null;
   field: unknown;
