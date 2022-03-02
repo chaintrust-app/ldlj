@@ -54,10 +54,10 @@ export const Cell = styled.div`
   height: 11rem;
   flex: 1 0;
   justify-content: center;
-  overflow: auto;
   align-items: center;
   margin: 0;
-`;
+  position: relative;
+`
 
 export const CellStart = styled.div`
   display: flex;
