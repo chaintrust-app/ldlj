@@ -1,20 +1,71 @@
 import React from "react";
-import { Meta } from "@storybook/react";
+import { Meta, Story } from "@storybook/react";
 
-import { Text } from "../components/Text";
+import { Text, TextProps } from "../components/Text";
+import { StoryBookWrapper } from "./config/StoryBookWrapper";
 
 export default {
-  title: "Example/Text",
+  title: "Ldlj/Text",
   component: Text,
 } as Meta<typeof Text>;
 
-export const TextStory = () => <Text text="Text" />;
+const Template: Story<TextProps> = (args) => (
+  <StoryBookWrapper>
+    <Text {...args} />
+  </StoryBookWrapper>
+);
+
+export const Primary = Template.bind({});
+Primary.args = {
+  variant: "primary",
+};
+
+export const ConfigurableTextStory = () => {
+  return (
+    <StoryBookWrapper>
+      <Text text="Text" />
+    </StoryBookWrapper>
+  );
+};
+
+export const TextStory = () => {
+  return (
+    <StoryBookWrapper>
+      <Text text="Text" />
+    </StoryBookWrapper>
+  );
+};
+
+export const TextBoldStory = () => (
+  <StoryBookWrapper>
+    <Text
+      text="Text"
+      textStyle={{
+        fontWeight: 700,
+      }}
+    />
+  </StoryBookWrapper>
+);
 
 export const TextColorStory = () => (
-  <Text
-    text="Text"
-    textStyle={{
-      color: "cornflower",
-    }}
-  />
+  <StoryBookWrapper>
+    <Text
+      text="Text"
+      textStyle={{
+        color: "cornflower",
+      }}
+    />
+  </StoryBookWrapper>
+);
+
+export const TextFontStory = () => (
+  <StoryBookWrapper>
+    <Text
+      text="Text"
+      textStyle={{
+        color: "cornflower",
+        fontFamily: "Poppins",
+      }}
+    />
+  </StoryBookWrapper>
 );
