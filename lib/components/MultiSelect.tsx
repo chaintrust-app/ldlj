@@ -4,6 +4,7 @@ import { colors } from "../design.config";
 import styled from "styled-components";
 import { IntlShape } from "react-intl";
 import { RowCheckbox } from "./RowCheckbox";
+import { useState } from "react";
 
 // eslint-disable-next-line @typescript-eslint/no-explicit-any
 const Option = (props: any) => {
@@ -29,16 +30,19 @@ const StyledDiv = styled.div`
 `;
 
 interface MultiSelectProps<T> {
-  options: Array<T>;
-  value: ReadonlyArray<T> | null;
+  options: Array<{ value: T; label: string }>;
+  value: ReadonlyArray<{ value: T | "all"; label: string }> | null;
   field: unknown;
   label: string;
   domain: string;
   optionType: string;
   disabled?: boolean;
-  onChange?: (newValue: ReadonlyArray<T>) => void;
+  onChange?: (
+    newValue: ReadonlyArray<{ value: T | "all"; label: string }>
+  ) => void;
   autoFocus?: boolean;
   intl: IntlShape;
+  canToggleAllOptions?: boolean;
 }
 
 export function MultiSelect<T>(props: MultiSelectProps<T>) {
@@ -52,9 +56,21 @@ export function MultiSelect<T>(props: MultiSelectProps<T>) {
     disabled,
     onChange,
     intl,
+    canToggleAllOptions,
   } = props;
 
+  const [selectAll, setSelectAll] = useState(false);
+
   const isValue: boolean = value ? value.length > 0 : false;
+
+  const selectAllOption: { value: "all"; label: string } = {
+    label: "Sélectionner tout",
+    value: "all",
+  };
+  const allOptions =
+    options.length > 1 && canToggleAllOptions
+      ? [selectAllOption, ...options]
+      : options;
 
   const CustomPlaceholder = () => <></>;
 
@@ -64,7 +80,7 @@ export function MultiSelect<T>(props: MultiSelectProps<T>) {
         {...field}
         isMulti
         isDisabled={disabled}
-        options={options}
+        options={allOptions}
         value={value}
         components={{
           Placeholder: CustomPlaceholder,
@@ -86,7 +102,24 @@ export function MultiSelect<T>(props: MultiSelectProps<T>) {
         closeMenuOnSelect={false}
         hideSelectedOptions={false}
         noOptionsMessage={() => "Aucune société"}
-        onChange={onChange}
+        onChange={(selectedValues, actionMeta) => {
+          if (!onChange) {
+            return;
+          }
+
+          if (actionMeta.option?.value === "all") {
+            if (!selectAll) {
+              setSelectAll(true);
+              onChange([...allOptions]);
+            } else {
+              setSelectAll(false);
+              onChange([]);
+            }
+          } else {
+            setSelectAll(false);
+            onChange(selectedValues);
+          }
+        }}
       />
       <label htmlFor={label}>
         {intl.formatMessage({ id: `${domain}.${optionType}` })}
