@@ -1,6 +1,6 @@
 {
   "name": "ldlj",
-  "version": "1.111.113",
+  "version": "1.111.114",
   "description": "la lib de la jungle",
   "main": "dist/cjs/index.js",
   "module": "dist/esm/index.js",
