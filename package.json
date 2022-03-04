@@ -1,8 +1,8 @@
 {
   "name": "ldlj",
-  "version": "1.111.111",
+  "version": "1.111.112",
   "description": "la lib de la jungle",
-  "main": "dist/esm/index.js",
+  "main": "dist/cjs/index.js",
   "module": "dist/esm/index.js",
   "directories": {
     "lib": "lib"
