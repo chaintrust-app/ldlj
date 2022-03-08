@@ -15,23 +15,16 @@ const Template: Story<TextProps> = (args) => (
   </StoryBookWrapper>
 );
 
-export const Primary = Template.bind({});
-Primary.args = {
+export const ConfigurableTextStory = Template.bind({});
+ConfigurableTextStory.args = {
   variant: "primary",
-};
-
-export const ConfigurableTextStory = () => {
-  return (
-    <StoryBookWrapper>
-      <Text text="Text" />
-    </StoryBookWrapper>
-  );
+  text: "Text !!!",
 };
 
 export const TextStory = () => {
   return (
     <StoryBookWrapper>
-      <Text text="Text" />
+      <Text text="Coucou tout le monde" />
     </StoryBookWrapper>
   );
 };
@@ -52,7 +45,7 @@ export const TextColorStory = () => (
     <Text
       text="Text"
       textStyle={{
-        color: "cornflower",
+        color: "shamrock",
       }}
     />
   </StoryBookWrapper>
