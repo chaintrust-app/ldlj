@@ -18,7 +18,7 @@ export const AmountTotals = ({
 }: AmountTotalsProps) => {
   return (
     <TotalWrapper>
-      <TotalCell>
+      <TotalCellBorder>
         <Text
           text={intl.formatMessage({ id: "invoicing.issuance.total-HT" })}
           textStyle={{
@@ -38,8 +38,8 @@ export const AmountTotals = ({
       €`}
           textStyle={{ fontWeight: 600 }}
         />
-      </TotalCell>
-      <TotalCell>
+      </TotalCellBorder>
+      <TotalCellBorder>
         <Text
           text={intl.formatMessage({ id: "invoicing.issuance.total-VAT" })}
           textStyle={{
@@ -63,7 +63,7 @@ export const AmountTotals = ({
       €`}
           textStyle={{ fontWeight: 600 }}
         />
-      </TotalCell>
+      </TotalCellBorder>
       <TotalCell>
         <Text
           text={intl.formatMessage({
@@ -105,6 +105,11 @@ const TotalCell = styled.div`
   width: 20rem;
 `;
 
+const TotalCellBorder = styled(TotalCell)`
+  border-right: 1px solid ${colors.cornflower};
+  height: 100%;
+`
+
 const TotalWrapper = styled.div`
   max-width: 60rem;
   height: 7.5rem;
@@ -114,9 +119,4 @@ const TotalWrapper = styled.div`
   display: flex;
   justify-content: space-evenly;
   align-items: center;
-
-  ${TotalCell} :not(:last-child) {
-    border-right: 1px solid ${colors.cornflower};
-    height: 100%;
-  }
 `;
