@@ -154,6 +154,64 @@ export const Input = forwardRef<RefObject<HTMLInputElement>, InputProps>(
         </StyledInputWrapper>
       );
     }
+    if(label.toLowerCase() === "rechercher"){
+        const { ref, ...rest } = register(name, validations);
+        return (
+            <StyledInputWrapper
+                showError={showError}
+                showWarning={showWarning}
+                showSuccess={showSuccess}
+                disabled={disabled}
+                maxWidth={maxWidth}
+                bypassDisabled={bypassDisabled}
+                shadowed={shadowed}
+            >
+                <StyledInput
+                    {...rest}
+                    ref={(e) => {
+                        ref(e);
+                        if (forwardRef && e) {
+                            const inputRef =
+                                forwardRef as unknown as MutableRefObject<HTMLInputElement>;
+                            inputRef.current = e;
+                        }
+                    }}
+                    required={required}
+                    type={type}
+                    showWarning={showWarning}
+                    showError={showError}
+                    showSuccess={showSuccess}
+                    autoFocus={autoFocus}
+                    disabled={disabled}
+                    onInput={onInput}
+                    borderRadius={borderRadius}
+                    bypassDisabled={bypassDisabled}
+                    id={id}
+                    maxLength={maxLength}
+                    max={max}
+                    min={min}
+                    placeholder={placeholder}
+                    noBorder={noBorder}
+                    readOnly={readOnly}
+                    data-cy={dataCy}
+                />
+                <StyledLabel
+                    value={value || ""}
+                    showError={showError}
+                    showWarning={showWarning}
+                    showSuccess={showSuccess}
+                    disabled={disabled}
+                    isPrefilled={isPrefilled}
+                    bypassDisabled={bypassDisabled}
+                >
+                    {label}
+                </StyledLabel>
+                <SuffixWrapper labelValue={label}>
+                    {displayedSuffix({ suffix, showWarning, showError, showSuccess })}
+                </SuffixWrapper>
+            </StyledInputWrapper>
+        );
+    }
 
     const { ref, ...rest } = register(name, validations);
 
@@ -207,7 +265,7 @@ export const Input = forwardRef<RefObject<HTMLInputElement>, InputProps>(
         >
           {label}
         </StyledLabel>
-        <SuffixWrapper>
+        <SuffixWrapper >
           {displayedSuffix({ suffix, showWarning, showError, showSuccess })}
         </SuffixWrapper>
       </StyledInputWrapper>
@@ -223,6 +281,10 @@ interface LabelWithValue {
   isPrefilled: boolean;
   disabled: boolean;
   bypassDisabled: boolean;
+}
+
+interface SuffixProps {
+  labelValue?: string;
 }
 
 interface InputWithError {
@@ -274,12 +336,12 @@ const StyledInputWrapper = styled.div<InputWithError>`
   }
 `;
 
-const SuffixWrapper = styled.div`
+const SuffixWrapper = styled.div<SuffixProps>`
   position: absolute;
   right: 1.25rem;
   top: 2rem;
-  max-height: 2rem;
-  max-width: 2rem;
+  max-width: ${(props) => props.labelValue?.toLowerCase() === "rechercher" ? "3rem" : "2rem"};
+  max-height: ${(props) => props.labelValue?.toLowerCase() === "rechercher" ? "3rem" : "2rem"};
 `;
 
 const StyledLabel = styled.label<LabelWithValue>`
@@ -304,8 +366,12 @@ const StyledLabel = styled.label<LabelWithValue>`
       : props.bypassDisabled
       ? colors.rock
       : props.disabled
-      ? colors.disabledGrey
+      ? colors.disabledGrey 
+      : props.value.toLowerCase() === "rechercher" 
+      ? colors.slateGrey 
       : colors.rock};
+  
+  font-style: ${(props) => props.value.toLowerCase() === "rechercher" ? "italic" : "normal"};
 
   padding: 0 0.5rem;
   pointer-events: none;
