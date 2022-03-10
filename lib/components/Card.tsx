@@ -18,6 +18,7 @@ export interface CardProps {
   trianglePosition?: trianglePosition;
   className?: string;
   backgroundColor?: keyof typeof colors;
+  justifyContent?: "flex-start" | "flex-end" | "center" | "stretch";
   alignSelf?: "flex-start" | "flex-end" | "center" | "stretch";
   overridePosition?: boolean;
   radius?: number;
@@ -33,6 +34,7 @@ export const Card: React.VFC<CardProps> = ({
   trianglePosition = null,
   backgroundColor = "white",
   alignSelf = "center",
+  justifyContent = "center",
   overridePosition = false,
   radius = 2.5,
   padding,
@@ -45,6 +47,7 @@ export const Card: React.VFC<CardProps> = ({
     className={className}
     backgroundColor={backgroundColor}
     alignSelf={alignSelf}
+    justifyContent={justifyContent}
     overridePosition={overridePosition}
     radius={radius}
     padding={padding}
@@ -60,6 +63,7 @@ interface WithWidth {
   trianglePosition: trianglePosition;
   backgroundColor: keyof typeof colors;
   alignSelf: "flex-start" | "flex-end" | "center" | "stretch";
+  justifyContent: "flex-start" | "flex-end" | "center" | "stretch";
   overridePosition: boolean;
   radius: number;
   padding?: string;
@@ -75,7 +79,7 @@ const StyledSection = styled.section<WithWidth>`
   display: flex;
   align-items: center;
   flex-direction: column;
-  justify-content: center;
+  justify-content: ${({ justifyContent }) => justifyContent};
   background: ${({ backgroundColor }) => colors[backgroundColor]};
   border-radius: ${({ radius }) => radius}rem;
   padding: ${({ padding }) =>
