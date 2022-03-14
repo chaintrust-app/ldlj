@@ -185,6 +185,9 @@ export const Header = styled.header<HeaderProps>`
   width: 100%;
   flex-shrink: 0;
   background-color: ${colors.lavender};
+  :first-child {
+    justify-content: ${({ paddingHeader }) => (paddingHeader ? "flex-start" : "space-evenly")};
+  }
 `;
 interface WithTransition {
   dataLoaded: boolean;

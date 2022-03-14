@@ -110,17 +110,17 @@ export function Select(props: SelectProps) {
           {props?.data?.sortType && (
               <>
                 {props.data.sortType === "number" && asc ? (
-                    <NumberAsc />
+                    <NumberAsc id={"sortIcon"} />
                 ) : props.data.sortType === "number" && !asc ? (
-                    <NumberDesc />
+                    <NumberDesc id={"sortIcon"} />
                 ) : props.data.sortType === "string" && asc ? (
-                    <StringAsc />
+                    <StringAsc id={"sortIcon"} />
                 ) : props.data.sortType === "string" && !asc ? (
-                    <StringDesc />
+                    <StringDesc id={"sortIcon"} />
                 ) : props.data.sortType === "date" && asc ? (
-                    <DateAsc />
+                    <DateAsc id={"sortIcon"} />
                 ) : props.data.sortType === "date" && !asc ? (
-                    <DateDesc />
+                    <DateDesc id={"sortIcon"} />
                 ) : (
                     <LocationArrow />
                 )}
@@ -363,6 +363,12 @@ export const StyledSelect = styled.div<Selector>`
       height: 3rem;
       padding-left: 0.75rem;
     }
+  }
+  
+  #sortIcon {
+    width: 3rem;
+    height: 3rem;
+    padding-left: 0.75rem;
   }
 
   & div > [class*="IndicatorsContainer"] {
