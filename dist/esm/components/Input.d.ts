@@ -29,9 +29,10 @@ export interface BaseInputProps {
     readOnly?: boolean;
     dataCy?: string;
     onInput?: () => void;
+    padding?: string;
+    isSearch?: boolean;
 }
-interface InputProps extends BaseInputProps {
+export interface InputProps extends BaseInputProps {
     suffix?: JSX.Element;
 }
 export declare const Input: React.ForwardRefExoticComponent<InputProps & React.RefAttributes<React.RefObject<HTMLInputElement>>>;
-export {};

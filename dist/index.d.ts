@@ -95,6 +95,7 @@ interface CardProps {
     trianglePosition?: trianglePosition;
     className?: string;
     backgroundColor?: keyof typeof colors;
+    justifyContent?: "flex-start" | "flex-end" | "center" | "stretch";
     alignSelf?: "flex-start" | "flex-end" | "center" | "stretch";
     overridePosition?: boolean;
     radius?: number;
@@ -234,6 +235,8 @@ interface BaseInputProps {
     readOnly?: boolean;
     dataCy?: string;
     onInput?: () => void;
+    padding?: string;
+    isSearch?: boolean;
 }
 interface InputProps extends BaseInputProps {
     suffix?: JSX.Element;
@@ -357,11 +360,13 @@ interface SelectProps {
     dataCy?: string;
     customWidth?: string;
     intl: IntlShape;
+    asc?: boolean;
 }
 declare type Option<T extends string> = {
     value: T;
     label: string;
     disabled?: boolean;
+    sortType?: "string" | "number" | "date";
 };
 declare type OptionList<T extends string> = Array<Option<T>>;
 declare function createOptionList<T extends string>(optionList: Array<[T, string, boolean?]>): OptionList<T>;
@@ -375,13 +380,14 @@ interface SeparatorProps {
 declare const Separator: ({ size, color, }: SeparatorProps) => JSX.Element;
 declare const VerticalSeparator: styled_components.StyledComponent<"div", any, {}, never>;
 
-declare const SortButton: <T extends string>({ sortMethod, options, defaultOption, shadowed, dataCy, intl, }: {
+declare const SortButton: <T extends string>({ sortMethod, options, defaultOption, shadowed, dataCy, intl, asc, }: {
     sortMethod: (option: T) => void;
     options: OptionList<T>;
     defaultOption: Option<T>;
     shadowed?: boolean | undefined;
     dataCy?: string | undefined;
     intl: IntlShape;
+    asc?: boolean | undefined;
 }) => JSX.Element;
 
 declare type SpacingUnit = 0 | 0.25 | 0.5 | 1 | 1.25 | 1.5 | 1.75 | 2 | 2.25 | 2.5 | 3 | 3.75 | 4 | 5 | 6 | 8 | 9 | 11 | 12;
@@ -461,9 +467,10 @@ interface TableProps<T> {
     intl: IntlShape;
     paddingHeader?: string;
     paddingBody?: string;
+    paddingRows?: string;
     fontWeightTitle?: FontWeight | undefined;
 }
-declare const Table: <T>({ columns, rows, rowBackgroundColors, width, height, alignItems, padding, alertMessage, rowTooltip, suffixContent, keyBuilder, intl, paddingHeader, paddingBody, fontWeightTitle, }: TableProps<T>) => JSX.Element;
+declare const Table: <T>({ columns, rows, rowBackgroundColors, width, height, alignItems, padding, alertMessage, rowTooltip, suffixContent, keyBuilder, intl, paddingHeader, paddingBody, paddingRows, fontWeightTitle, }: TableProps<T>) => JSX.Element;
 declare const TitleTable: ({ tid, fontWeightTitle, intl, }: {
     tid: string;
     fontWeightTitle?: FontWeight | undefined;

@@ -16,11 +16,13 @@ interface SelectProps {
     dataCy?: string;
     customWidth?: string;
     intl: IntlShape;
+    asc?: boolean;
 }
 export declare type Option<T extends string> = {
     value: T;
     label: string;
     disabled?: boolean;
+    sortType?: "string" | "number" | "date";
 };
 export declare type OptionList<T extends string> = Array<Option<T>>;
 export declare function createOptionList<T extends string>(optionList: Array<[T, string, boolean?]>): OptionList<T>;

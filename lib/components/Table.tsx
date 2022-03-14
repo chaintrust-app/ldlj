@@ -38,6 +38,7 @@ export interface TableProps<T> {
   intl: IntlShape;
   paddingHeader?: string;
   paddingBody?: string;
+  paddingRows?: string
   fontWeightTitle?: FontWeight | undefined;
 }
 
@@ -56,6 +57,7 @@ export const Table = <T,>({
   intl,
   paddingHeader,
   paddingBody,
+  paddingRows,
   fontWeightTitle,
 }: TableProps<T>) => {
   const bgColors = rowBackgroundColors || rows.map(() => "white");
@@ -93,6 +95,7 @@ export const Table = <T,>({
                 backgroundColor={bgColors[index]}
                 alignItems={alignItems}
                 {...additionalAttributes}
+                paddingRows={paddingRows}
               >
                 {columns.map((column, index) => (
                   <Flex1
@@ -206,7 +209,7 @@ interface WithColor {
 }
 
 const RowWithPadding = styled((props) => <Row {...props} />)<WithColor>`
-  padding: 3rem 4rem;
+  padding: ${({ paddingRows }) => (paddingRows ? paddingRows : "3rem 4rem")};
   box-sizing: border-box;
   background-color: ${({ backgroundColor }) =>
     colors[backgroundColor as keyof typeof colors]};

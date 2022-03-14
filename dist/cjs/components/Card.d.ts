@@ -15,6 +15,7 @@ export interface CardProps {
     trianglePosition?: trianglePosition;
     className?: string;
     backgroundColor?: keyof typeof colors;
+    justifyContent?: "flex-start" | "flex-end" | "center" | "stretch";
     alignSelf?: "flex-start" | "flex-end" | "center" | "stretch";
     overridePosition?: boolean;
     radius?: number;
