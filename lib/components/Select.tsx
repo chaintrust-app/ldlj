@@ -7,6 +7,12 @@ import styled from "styled-components";
 import { IntlShape } from "react-intl";
 import { useState } from "react";
 import { ReactComponent as LocationArrow } from "../assets/location-arrow.svg";
+import { ReactComponent as StringAsc } from "../assets/sort-icons/string-asc.svg";
+import { ReactComponent as StringDesc } from "../assets/sort-icons/string-desc.svg";
+import { ReactComponent as NumberAsc } from "../assets/sort-icons/numbers-asc.svg";
+import { ReactComponent as NumberDesc } from "../assets/sort-icons/numbers-desc.svg";
+import { ReactComponent as DateAsc } from "../assets/sort-icons/date-asc.svg";
+import { ReactComponent as DateDesc } from "../assets/sort-icons/date-desc.svg";
 import { Row } from "./Flex";
 import { Spacer } from "./Spacer";
 import { Text } from "./Text";
@@ -27,22 +33,25 @@ interface SelectProps {
   dataCy?: string;
   customWidth?: string;
   intl: IntlShape;
+  asc?: boolean;
 }
 
 export type Option<T extends string> = {
   value: T;
   label: string;
   disabled?: boolean;
-};
-export type OptionList<T extends string> = Array<Option<T>>;
+  sortType?: "string" | "number" | "date";
+}
+export type OptionList<T extends string> = Array<Option<T>>
 
 export function createOptionList<T extends string>(
-  optionList: Array<[T, string, boolean?]>
+    optionList: Array<[T, string, boolean?]>
 ): OptionList<T> {
-  return optionList.map(([key, value, disabled = false]) => ({
+  return optionList.map(([key, value, disabled = false, type = undefined]) => ({
     value: key,
     label: value.toLowerCase(),
     disabled: disabled,
+    sortType: type,
   }));
 }
 
@@ -63,6 +72,7 @@ export function Select(props: SelectProps) {
     dataCy,
     customWidth,
     intl,
+    asc,
   } = props;
 
   const [isFocused, setIsFocused] = useState(false);
@@ -71,145 +81,163 @@ export function Select(props: SelectProps) {
   // eslint-disable-next-line @typescript-eslint/no-explicit-any
   const DropdownIndicatorSort = (props: any) => {
     return (
-      <components.DropdownIndicator {...props}>
-        <ChevronDown />
-      </components.DropdownIndicator>
+        <components.DropdownIndicator {...props}>
+          <ChevronDown />
+        </components.DropdownIndicator>
     );
   };
 
   // eslint-disable-next-line @typescript-eslint/no-explicit-any
   const DropdownIndicator = (props: any) => {
     return (
-      <components.DropdownIndicator {...props}>
-        <Down />
-      </components.DropdownIndicator>
+        <components.DropdownIndicator {...props}>
+          <Down />
+        </components.DropdownIndicator>
     );
   };
 
   // eslint-disable-next-line @typescript-eslint/no-explicit-any
   const SingleValue = ({ children, ...props }: any) => (
-    <components.SingleValue {...props}>
-      <Row>
-        <Spacer width={0.5} />
-        <Text
-          textStyle={{ color: "slateGrey" }}
-          text={intl ? intl.formatMessage({ id: "office.sort" }) : ""}
-        />
-        <Spacer width={0.5} />
-        <StyledSpan>{children}</StyledSpan>
-        <LocationArrow />
-      </Row>
-    </components.SingleValue>
+      <components.SingleValue {...props}>
+        <Row>
+          <Spacer width={0.5} />
+          <Text
+              textStyle={{ color: "slateGrey" }}
+              text={intl ? intl.formatMessage({ id: "office.sort" }) : ""}
+          />
+          <Spacer width={0.5} />
+          <StyledSpan>{children}</StyledSpan>
+          {props?.data?.sortType && (
+              <>
+                {props.data.sortType === "number" && asc ? (
+                    <NumberAsc />
+                ) : props.data.sortType === "number" && !asc ? (
+                    <NumberDesc />
+                ) : props.data.sortType === "string" && asc ? (
+                    <StringAsc />
+                ) : props.data.sortType === "string" && !asc ? (
+                    <StringDesc />
+                ) : props.data.sortType === "date" && asc ? (
+                    <DateAsc />
+                ) : props.data.sortType === "date" && !asc ? (
+                    <DateDesc />
+                ) : (
+                    <LocationArrow />
+                )}
+              </>
+          )}
+        </Row>
+      </components.SingleValue>
   );
 
   return (
-    <StyledSelect
-      isFocused={isFocused}
-      value={value ? value.value : null}
-      disabled={disabled || false}
-      selectType={selectType}
-      shadowed={shadowed}
-      myDefaultValue={defaultValue ? defaultValue.value : null}
-      customWidth={customWidth}
-    >
-      {selectType === "sort" ? (
-        <ReactSelect
-          {...field}
-          onFocus={() => {
-            setIsFocused(true);
-          }}
-          onBlur={() => {
-            setIsFocused(false);
-          }}
-          value={
-            (field as { value: string })?.value || value ? value : defaultValue
-          }
-          isDisabled={disabled}
-          isClearable={isClearable}
-          options={options}
-          components={{
-            Placeholder: CustomPlaceholder,
-            DropdownIndicator: DropdownIndicatorSort,
-            SingleValue,
-          }}
-          styles={{
-            menu: (provided) => ({ ...provided, zIndex: 2 }), // Fixes the overlapping problem of the component
-            option: (defaultOptions, selectState) => ({
-              ...defaultOptions,
-              backgroundColor: selectState.isSelected
-                ? colors.cornflower
-                : colors.white,
-            }),
-            control: (defaultOptions) => ({
-              ...defaultOptions,
-              backgroundColor: colors.white,
-              borderRadius: "1.25rem",
-              border: "0px",
-            }),
-            dropdownIndicator: (defaultOptions) => ({
-              ...defaultOptions,
-            }),
-          }}
-          // eslint-disable-next-line @typescript-eslint/no-explicit-any
-          onChange={(e: any) => {
-            return onChangeCallback && onChangeCallback(e);
-          }}
-          data-cy={dataCy}
-        />
-      ) : (
-        <>
-          <ReactSelect
-            {...field}
-            onFocus={() => {
-              setIsFocused(true);
-            }}
-            isOptionDisabled={(option) => option.disabled as boolean}
-            onBlur={() => {
-              setIsFocused(false);
-            }}
-            value={
-              ((field as { value: string })?.value || value) &&
-              value?.value?.length &&
-              value?.value?.length > 0
-                ? value
-                : defaultValue
-            }
-            isDisabled={disabled}
-            isClearable={isClearable}
-            options={options}
-            components={{
-              Placeholder: CustomPlaceholder,
-              DropdownIndicator,
-            }}
-            styles={{
-              menu: (provided) => ({ ...provided, zIndex: 2 }), // Fixes the overlapping problem of the component
-              option: (defaultOptions, selectState) => ({
-                ...defaultOptions,
-                backgroundColor: selectState.isSelected
-                  ? colors.cornflower
-                  : colors.white,
-              }),
-              control: (defaultOptions) => ({
-                ...defaultOptions,
-                backgroundColor: colors.white,
-                borderRadius: "1.25rem",
-              }),
-              dropdownIndicator: (defaultOptions) => ({
-                ...defaultOptions,
-              }),
-            }}
-            // eslint-disable-next-line @typescript-eslint/no-explicit-any
-            onChange={(e: any) => {
-              return onChangeCallback && onChangeCallback(e);
-            }}
-            data-cy={dataCy}
-          />
-          <label htmlFor={label}>
-            {intl.formatMessage({ id: `${domain}.${optionType}` })}
-          </label>
-        </>
-      )}
-    </StyledSelect>
+      <StyledSelect
+          isFocused={isFocused}
+          value={value ? value.value : null}
+          disabled={disabled || false}
+          selectType={selectType}
+          shadowed={shadowed}
+          myDefaultValue={defaultValue ? defaultValue.value : null}
+          customWidth={customWidth}
+      >
+        {selectType === "sort" ? (
+            <ReactSelect
+                {...field}
+                onFocus={() => {
+                  setIsFocused(true);
+                }}
+                onBlur={() => {
+                  setIsFocused(false);
+                }}
+                value={
+                  (field as { value: string })?.value || value ? value : defaultValue
+                }
+                isDisabled={disabled}
+                isClearable={isClearable}
+                options={options}
+                components={{
+                  Placeholder: CustomPlaceholder,
+                  DropdownIndicator: DropdownIndicatorSort,
+                  SingleValue,
+                }}
+                styles={{
+                  menu: (provided) => ({ ...provided, zIndex: 2 }), // Fixes the overlapping problem of the component
+                  option: (defaultOptions, selectState) => ({
+                    ...defaultOptions,
+                    backgroundColor: selectState.isSelected
+                        ? colors.cornflower
+                        : colors.white,
+                  }),
+                  control: (defaultOptions) => ({
+                    ...defaultOptions,
+                    backgroundColor: colors.white,
+                    borderRadius: "1.25rem",
+                    border: "0px",
+                  }),
+                  dropdownIndicator: (defaultOptions) => ({
+                    ...defaultOptions,
+                  }),
+                }}
+                // eslint-disable-next-line @typescript-eslint/no-explicit-any
+                onChange={(e: any) => {
+                  return onChangeCallback && onChangeCallback(e);
+                }}
+                data-cy={dataCy}
+            />
+        ) : (
+            <>
+              <ReactSelect
+                  {...field}
+                  onFocus={() => {
+                    setIsFocused(true);
+                  }}
+                  isOptionDisabled={(option) => option.disabled as boolean}
+                  onBlur={() => {
+                    setIsFocused(false);
+                  }}
+                  value={
+                    ((field as { value: string })?.value || value) &&
+                    value?.value?.length &&
+                    value?.value?.length > 0
+                        ? value
+                        : defaultValue
+                  }
+                  isDisabled={disabled}
+                  isClearable={isClearable}
+                  options={options}
+                  components={{
+                    Placeholder: CustomPlaceholder,
+                    DropdownIndicator,
+                  }}
+                  styles={{
+                    menu: (provided) => ({ ...provided, zIndex: 2 }), // Fixes the overlapping problem of the component
+                    option: (defaultOptions, selectState) => ({
+                      ...defaultOptions,
+                      backgroundColor: selectState.isSelected
+                          ? colors.cornflower
+                          : colors.white,
+                    }),
+                    control: (defaultOptions) => ({
+                      ...defaultOptions,
+                      backgroundColor: colors.white,
+                      borderRadius: "1.25rem",
+                    }),
+                    dropdownIndicator: (defaultOptions) => ({
+                      ...defaultOptions,
+                    }),
+                  }}
+                  // eslint-disable-next-line @typescript-eslint/no-explicit-any
+                  onChange={(e: any) => {
+                    return onChangeCallback && onChangeCallback(e);
+                  }}
+                  data-cy={dataCy}
+              />
+              <label htmlFor={label}>
+                {intl.formatMessage({ id: `${domain}.${optionType}` })}
+              </label>
+            </>
+        )}
+      </StyledSelect>
   );
 }
 
@@ -231,10 +259,10 @@ export interface Selector {
 export const StyledSelect = styled.div<Selector>`
   display: flex;
   width: ${({ selectType, customWidth }) =>
-    selectType === "sort" ? "32rem" : customWidth ? customWidth : "100%"};
+      selectType === "sort" ? "auto" : customWidth ? customWidth : "100%"};
   flex-direction: row;
   flex-grow: ${({ selectType, customWidth }) =>
-    selectType === "sort" ? "" : customWidth ? "unset" : 1};
+      selectType === "sort" ? "" : customWidth ? "unset" : 1};
   position: relative;
   font-family: "Roboto", sans-serif;
   border-radius: 1.25rem;
@@ -244,19 +272,19 @@ export const StyledSelect = styled.div<Selector>`
     position: absolute;
     left: 1.25rem;
     top: ${({ value, myDefaultValue }) =>
-      value?.length === 0 && !myDefaultValue ? "2rem" : "-0.75rem"};
+        value?.length === 0 && !myDefaultValue ? "2rem" : "-0.75rem"};
     transition: top 0.15s ease-in-out, color 0.5s ease-in-out,
-      font-size 0.5s ease-in-out;
+    font-size 0.5s ease-in-out;
     background-color: ${colors.white};
     color: ${({ disabled, isFocused }) =>
-      disabled
-        ? colors.disabledGrey
-        : isFocused
-        ? colors.cornflower
-        : colors.rock};
+        disabled
+            ? colors.disabledGrey
+            : isFocused
+                ? colors.cornflower
+                : colors.rock};
 
     font-size: ${({ value, myDefaultValue }) =>
-      value?.length === 0 && !myDefaultValue ? "1.75rem" : "1.5rem"};
+        value?.length === 0 && !myDefaultValue ? "1.75rem" : "1.5rem"};
 
     padding: 0 0.5rem;
     pointer-events: none;
@@ -270,11 +298,11 @@ export const StyledSelect = styled.div<Selector>`
   & [class*="indicatorContainer"] svg {
     transition: 0.5s fill ease-in-out;
     fill: ${({ disabled, isFocused }) =>
-      disabled
-        ? `${colors.disabledGrey}`
-        : isFocused
-        ? `${colors.cornflower}`
-        : `${colors.rock}`};
+        disabled
+            ? `${colors.disabledGrey}`
+            : isFocused
+                ? `${colors.cornflower}`
+                : `${colors.rock}`};
   }
 
   & [class*="indicatorContainer"]:hover {
@@ -295,11 +323,11 @@ export const StyledSelect = styled.div<Selector>`
     font-size: 1.75rem;
     width: 100%;
     border: ${({ disabled, isFocused, selectType }) =>
-      selectType === "sort"
-        ? `0px`
-        : disabled
-        ? `1px solid ${colors.disabledGrey}`
-        : `1px solid ${isFocused ? colors.cornflower : colors.rock}`};
+        selectType === "sort"
+            ? `0px`
+            : disabled
+                ? `1px solid ${colors.disabledGrey}`
+                : `1px solid ${isFocused ? colors.cornflower : colors.rock}`};
     box-sizing: border-box;
   }
 
@@ -314,12 +342,27 @@ export const StyledSelect = styled.div<Selector>`
   }
 
   &
-    div
-    > [class*="control"]
-    > [class*="ValueContainer"]
-    > [class*="singleValue"] {
+  div
+  > [class*="control"]
+  > [class*="ValueContainer"]
+  > [class*="singleValue"] {
     color: ${({ disabled }) =>
-      disabled ? `${colors.disabledGrey}` : `${colors.navy}`};
+        disabled ? `${colors.disabledGrey}` : `${colors.navy}`};
+  }
+
+  &
+  div
+  > [class*="control"]
+  > [class*="ValueContainer"]
+  > [class*="singleValue"]
+  > div {
+    align-items: center;
+
+    & svg {
+      width: 3rem;
+      height: 3rem;
+      padding-left: 0.75rem;
+    }
   }
 
   & div > [class*="IndicatorsContainer"] {
