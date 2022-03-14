@@ -64,8 +64,8 @@ export const Table = <T,>({
   return (
     <Wrapper width={width} height={height} padding={padding}>
       <Header paddingHeader={paddingHeader}>
-        {columns.map((column) => (
-          <Flex1 key={column.headerText} flexGrow={column.flexGrow}>
+        {columns.map((column, index) => (
+          <Flex1 justifyLeft={index === 0} key={column.headerText} flexGrow={column.flexGrow}>
             <TitleTable
               tid={column.headerText}
               intl={intl}

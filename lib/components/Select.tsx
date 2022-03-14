@@ -13,7 +13,7 @@ import { ReactComponent as NumberAsc } from "../assets/sort-icons/numbers-asc.sv
 import { ReactComponent as NumberDesc } from "../assets/sort-icons/numbers-desc.svg";
 import { ReactComponent as DateAsc } from "../assets/sort-icons/date-asc.svg";
 import { ReactComponent as DateDesc } from "../assets/sort-icons/date-desc.svg";
-import { Row } from "./Flex";
+import {RowCenter} from "./Flex";
 import { Spacer } from "./Spacer";
 import { Text } from "./Text";
 
@@ -99,7 +99,7 @@ export function Select(props: SelectProps) {
   // eslint-disable-next-line @typescript-eslint/no-explicit-any
   const SingleValue = ({ children, ...props }: any) => (
       <components.SingleValue {...props}>
-        <Row>
+        <RowCenter>
           <Spacer width={0.5} />
           <Text
               textStyle={{ color: "slateGrey" }}
@@ -110,23 +110,23 @@ export function Select(props: SelectProps) {
           {props?.data?.sortType && (
               <>
                 {props.data.sortType === "number" && asc ? (
-                    <NumberAsc />
+                    <NumberAsc id={"sortIcon"} />
                 ) : props.data.sortType === "number" && !asc ? (
-                    <NumberDesc />
+                    <NumberDesc id={"sortIcon"} />
                 ) : props.data.sortType === "string" && asc ? (
-                    <StringAsc />
+                    <StringAsc id={"sortIcon"} />
                 ) : props.data.sortType === "string" && !asc ? (
-                    <StringDesc />
+                    <StringDesc id={"sortIcon"} />
                 ) : props.data.sortType === "date" && asc ? (
-                    <DateAsc />
+                    <DateAsc id={"sortIcon"} />
                 ) : props.data.sortType === "date" && !asc ? (
-                    <DateDesc />
+                    <DateDesc id={"sortIcon"} />
                 ) : (
                     <LocationArrow />
                 )}
               </>
           )}
-        </Row>
+        </RowCenter>
       </components.SingleValue>
   );
 
@@ -349,20 +349,11 @@ export const StyledSelect = styled.div<Selector>`
     color: ${({ disabled }) =>
         disabled ? `${colors.disabledGrey}` : `${colors.navy}`};
   }
-
-  &
-  div
-  > [class*="control"]
-  > [class*="ValueContainer"]
-  > [class*="singleValue"]
-  > div {
-    align-items: center;
-
-    & svg {
-      width: 3rem;
-      height: 3rem;
-      padding-left: 0.75rem;
-    }
+  
+  #sortIcon {
+    width: 3rem;
+    height: 3rem;
+    padding-left: 0.75rem;
   }
 
   & div > [class*="IndicatorsContainer"] {
