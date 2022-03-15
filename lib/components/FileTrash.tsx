@@ -20,12 +20,19 @@ export const FileTrash = ({ disabled, onClick }: FileProps) => {
   );
 };
 
-const Trash = styled((props) => <TrashCan {...props} />)`
+const StyledTrashIcon = styled((props) => <TrashCan {...props} />)`
+  width: 3rem;
+  height: 3rem;
+`
+
+
+const Trash = styled(StyledTrashIcon)`
   cursor: pointer;
 `;
 
-const TrashStyled = styled((props) => <TrashCan {...props} />)`
+const TrashStyled = styled(StyledTrashIcon)`
   & path {
     fill: ${colors.lightBlueGrey};
   }
 `;
+

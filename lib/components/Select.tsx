@@ -82,7 +82,7 @@ export function Select(props: SelectProps) {
   const DropdownIndicatorSort = (props: any) => {
     return (
         <components.DropdownIndicator {...props}>
-          <ChevronDown />
+          <StyledChevronDown />
         </components.DropdownIndicator>
     );
   };
@@ -372,3 +372,8 @@ export const StyledSelect = styled.div<Selector>`
     top: -0.75rem;
   }
 `;
+
+const StyledChevronDown = styled(ChevronDown)`
+  width: 2rem;
+  height: 2rem;
+`

@@ -66,7 +66,7 @@ export const InputDate = (props: InputDateProps) => {
         onChange={(event) => onChangeValue(event.target.value)}
       />
       <CalendarWrapper value="" disabled={disabled} isFocused={isFocused}>
-        <Calendar />
+        <StyledCalendar />
       </CalendarWrapper>
     </DatePickerInput>
   );
@@ -100,6 +100,11 @@ interface InputProps {
   value: string;
   isFocused: boolean;
 }
+
+const StyledCalendar = styled(Calendar)`
+  width: 2rem;
+  height: 2rem;
+`
 
 const StyledInput = styled.input<InputProps>`
   outline: none;
