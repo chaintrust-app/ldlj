@@ -81,7 +81,7 @@ interface DatePicker {
 const CalendarWrapper = styled.div<DatePicker>`
   position: absolute;
   right: 2rem;
-  top: 1.5rem;
+  top: 2rem;
   max-width: 2rem;
   max-height: 2rem;
 

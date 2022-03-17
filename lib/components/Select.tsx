@@ -34,6 +34,7 @@ interface SelectProps {
   customWidth?: string;
   intl: IntlShape;
   asc?: boolean;
+  alignSelf?: string
 }
 
 export type Option<T extends string> = {
@@ -55,7 +56,7 @@ export function createOptionList<T extends string>(
   }));
 }
 
-export function Select(props: SelectProps) {
+export const Select = (props: SelectProps) => {
   const {
     options,
     value,
@@ -73,6 +74,7 @@ export function Select(props: SelectProps) {
     customWidth,
     intl,
     asc,
+    alignSelf,
   } = props;
 
   const [isFocused, setIsFocused] = useState(false);
@@ -91,7 +93,7 @@ export function Select(props: SelectProps) {
   const DropdownIndicator = (props: any) => {
     return (
         <components.DropdownIndicator {...props}>
-          <Down />
+          <StyledDown />
         </components.DropdownIndicator>
     );
   };
@@ -108,23 +110,23 @@ export function Select(props: SelectProps) {
           <Spacer width={0.5} />
           <StyledSpan>{children}</StyledSpan>
           {props?.data?.sortType && (
-              <>
-                {props.data.sortType === "number" && asc ? (
-                    <NumberAsc id={"sortIcon"} />
-                ) : props.data.sortType === "number" && !asc ? (
-                    <NumberDesc id={"sortIcon"} />
-                ) : props.data.sortType === "string" && asc ? (
-                    <StringAsc id={"sortIcon"} />
-                ) : props.data.sortType === "string" && !asc ? (
-                    <StringDesc id={"sortIcon"} />
-                ) : props.data.sortType === "date" && asc ? (
-                    <DateAsc id={"sortIcon"} />
-                ) : props.data.sortType === "date" && !asc ? (
-                    <DateDesc id={"sortIcon"} />
-                ) : (
-                    <LocationArrow />
-                )}
-              </>
+            <>
+              {props.data.sortType === "number" && asc ? (
+                  <NumberAsc id={"sortIcon"} />
+              ) : props.data.sortType === "number" && !asc ? (
+                  <NumberDesc id={"sortIcon"} />
+              ) : props.data.sortType === "string" && asc ? (
+                  <StringAsc id={"sortIcon"} />
+              ) : props.data.sortType === "string" && !asc ? (
+                  <StringDesc id={"sortIcon"} />
+              ) : props.data.sortType === "date" && asc ? (
+                  <DateAsc id={"sortIcon"} />
+              ) : props.data.sortType === "date" && !asc ? (
+                  <DateDesc id={"sortIcon"} />
+              ) : (
+                  <LocationArrow />
+              )}
+            </>
           )}
         </RowCenter>
       </components.SingleValue>
@@ -139,6 +141,7 @@ export function Select(props: SelectProps) {
           shadowed={shadowed}
           myDefaultValue={defaultValue ? defaultValue.value : null}
           customWidth={customWidth}
+          alignSelf={alignSelf}
       >
         {selectType === "sort" ? (
             <ReactSelect
@@ -254,6 +257,7 @@ export interface Selector {
   shadowed: boolean;
   myDefaultValue: string | null;
   customWidth: string | undefined;
+  alignSelf?: string
 }
 
 export const StyledSelect = styled.div<Selector>`
@@ -266,7 +270,8 @@ export const StyledSelect = styled.div<Selector>`
   position: relative;
   font-family: "Roboto", sans-serif;
   border-radius: 1.25rem;
-  align-self: flex-end;
+  align-self: ${({ alignSelf }) =>
+      alignSelf ? alignSelf : "flex-end"}; 
 
   & label {
     position: absolute;
@@ -374,6 +379,10 @@ export const StyledSelect = styled.div<Selector>`
 `;
 
 const StyledChevronDown = styled(ChevronDown)`
+  width: 2rem;
+  height: 2rem;
+`
+const StyledDown = styled(Down)`
   width: 2rem;
   height: 2rem;
 `
