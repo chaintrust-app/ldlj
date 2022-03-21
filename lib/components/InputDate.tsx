@@ -10,7 +10,7 @@ interface InputDateProps {
   label: string;
   disabled: boolean;
   value: string;
-  register: UseFormRegister<FieldValues>;
+  register?: UseFormRegister<FieldValues>;
   minimum?: string;
   maximum?: string;
   onChangeValue: (value: string) => void;
@@ -57,7 +57,7 @@ export const InputDate = (props: InputDateProps) => {
       <StyledInput
         value={value}
         isFocused={isFocused}
-        {...register(name)}
+        {...(register ? register(name) : {})}
         type="date"
         name={name}
         id={name}
@@ -104,7 +104,7 @@ interface InputProps {
 const StyledCalendar = styled(Calendar)`
   width: 2rem;
   height: 2rem;
-`
+`;
 
 const StyledInput = styled.input<InputProps>`
   outline: none;
