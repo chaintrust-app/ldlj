@@ -109,7 +109,7 @@ const StyledCalendar = styled(Calendar)`
 const StyledInput = styled.input<InputProps>`
   outline: none;
   border: none;
-  border-radius: 0.75rem;
+  border-radius: 1.25rem;
   font-family: "Roboto", sans-serif;
   padding: 1.75rem 14rem 1.75rem 1.25rem;
   color: ${colors.rock};
