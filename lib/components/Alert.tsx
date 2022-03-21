@@ -68,7 +68,7 @@ export const Alert = ({
 };
 
 const StyledChaintrustLogo = styled(ChaintrustLogo)`
-  height: 1.75rem;
+  height: 2.75rem;
   width: 3.75rem;
 `
 

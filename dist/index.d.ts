@@ -362,6 +362,8 @@ interface SelectProps {
     intl: IntlShape;
     asc?: boolean;
     alignSelf?: string;
+    isSearch?: boolean;
+    height?: string;
 }
 declare type Option<T extends string> = {
     value: T;
@@ -381,7 +383,7 @@ interface SeparatorProps {
 declare const Separator: ({ size, color, }: SeparatorProps) => JSX.Element;
 declare const VerticalSeparator: styled_components.StyledComponent<"div", any, {}, never>;
 
-declare const SortButton: <T extends string>({ sortMethod, options, defaultOption, shadowed, dataCy, intl, asc, }: {
+declare const SortButton: <T extends string>({ sortMethod, options, defaultOption, shadowed, dataCy, intl, asc, height, }: {
     sortMethod: (option: T) => void;
     options: OptionList<T>;
     defaultOption: Option<T>;
@@ -389,6 +391,7 @@ declare const SortButton: <T extends string>({ sortMethod, options, defaultOptio
     dataCy?: string | undefined;
     intl: IntlShape;
     asc?: boolean | undefined;
+    height?: string | undefined;
 }) => JSX.Element;
 
 declare type SpacingUnit = 0 | 0.25 | 0.5 | 1 | 1.25 | 1.5 | 1.75 | 2 | 2.25 | 2.5 | 3 | 3.75 | 4 | 5 | 6 | 7 | 8 | 9 | 10 | 11 | 12;
