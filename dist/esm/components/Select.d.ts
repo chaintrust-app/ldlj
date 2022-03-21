@@ -1,6 +1,6 @@
 /// <reference types="react" />
 import { IntlShape } from "react-intl";
-interface SelectProps {
+export interface SelectProps {
     options: Array<Option<string>>;
     value: Option<string> | null;
     label?: string;
@@ -18,6 +18,8 @@ interface SelectProps {
     intl: IntlShape;
     asc?: boolean;
     alignSelf?: string;
+    isSearch?: boolean;
+    height?: string;
 }
 export declare type Option<T extends string> = {
     value: T;
@@ -37,6 +39,7 @@ export interface Selector {
     myDefaultValue: string | null;
     customWidth: string | undefined;
     alignSelf?: string;
+    isSearch?: boolean;
+    height?: string;
 }
 export declare const StyledSelect: import("styled-components").StyledComponent<"div", any, Selector, never>;
-export {};

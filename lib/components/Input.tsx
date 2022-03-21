@@ -290,7 +290,7 @@ const StyledInputWrapper = styled.div<InputWithError>`
 const SuffixWrapper = styled.div<SuffixProps>`
   position: absolute;
   right: ${(props) => (props.isSearch ? "1rem" : "1.25rem")};
-  top: 2rem;
+  top: ${(props) => (props.isSearch ? "1.5rem" : "2rem")};
   max-width: ${(props) => (props.isSearch ? "3rem" : "2rem")};
   max-height: ${(props) => (props.isSearch ? "3rem" : "2rem")};
 `
@@ -298,8 +298,11 @@ const SuffixWrapper = styled.div<SuffixProps>`
 const StyledLabel = styled.label<LabelWithValue>`
   position: absolute;
   left: ${(props) => (props.isSearch ? "2rem" : "1.25rem")};
-  top: ${({ value, isPrefilled }) =>
-          isPrefilled ? "-0.75rem" : value.length === 0 ? "2rem" : "-0.75rem"};
+  top: ${({ value, isPrefilled, isSearch }) =>
+          isPrefilled ? "-0.75rem" :
+          isSearch ? "1.5rem" :
+          value.length === 0 ? "2rem" : 
+           "-0.75rem"};
   font-size: ${({ value, isPrefilled }) =>
           isPrefilled ? "1.5rem" : value.length === 0 ? "1.75rem" : "1.5rem"};
 
@@ -331,7 +334,7 @@ const StyledLabel = styled.label<LabelWithValue>`
 
 const StyledInput = styled.input<InputWithError>`
   flex: 1;
-  height: 6rem;
+  height: ${({ isSearch }) => isSearch ? "5rem" : "6rem"};
   transition: border 0.3s ease-in-out;
   outline: none;
   border-radius: ${({ borderRadius }) => `${borderRadius}rem`};

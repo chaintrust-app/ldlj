@@ -34,7 +34,7 @@ const Wrapper = styled.div`
   align-items: center;
   justify-content: space-between;
   width: 16.5rem;
-  height: 6.25rem;
+  height: 5rem;
   box-sizing: border-box;
   border: 1px solid ${colors.rock};
   border-radius: 1.25rem;

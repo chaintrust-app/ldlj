@@ -36,7 +36,7 @@ export const AmountTotals = ({
             .toFixed(2)
             .replace(".00", "")}
       €`}
-          textStyle={{ fontWeight: 600 }}
+          textStyle={{ fontWeight: 600, fontFamily: "Poppins", }}
         />
       </TotalCellBorder>
       <TotalCellBorder>
@@ -61,7 +61,7 @@ export const AmountTotals = ({
             .toFixed(2)
             .replace(".00", "")}
       €`}
-          textStyle={{ fontWeight: 600 }}
+          textStyle={{ fontWeight: 600, fontFamily: "Poppins", }}
         />
       </TotalCellBorder>
       <TotalCell>
@@ -89,7 +89,7 @@ export const AmountTotals = ({
             .toFixed(2)
             .replace(".00", "")}
         €`}
-          textStyle={{ fontWeight: 600 }}
+          textStyle={{ fontWeight: 600, fontFamily: "Poppins", }}
         />
       </TotalCell>
     </TotalWrapper>

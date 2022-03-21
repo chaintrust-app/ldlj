@@ -362,6 +362,8 @@ interface SelectProps {
     intl: IntlShape;
     asc?: boolean;
     alignSelf?: string;
+    isSearch?: boolean;
+    height?: string;
 }
 declare type Option<T extends string> = {
     value: T;
