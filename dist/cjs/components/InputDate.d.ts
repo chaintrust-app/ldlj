@@ -5,7 +5,7 @@ interface InputDateProps {
     label: string;
     disabled: boolean;
     value: string;
-    register: UseFormRegister<FieldValues>;
+    register?: UseFormRegister<FieldValues>;
     minimum?: string;
     maximum?: string;
     onChangeValue: (value: string) => void;
