@@ -12,6 +12,7 @@ export const SortButton = <T extends string>({
    dataCy,
    intl,
    asc,
+   height,
  }: {
   sortMethod: (option: T) => void
   options: OptionList<T>
@@ -20,6 +21,7 @@ export const SortButton = <T extends string>({
   dataCy?: string
   intl: IntlShape
   asc?: boolean
+  height?: string
 }) => {
   const [selection, setSelection] = useState<Option<T>>(defaultOption);
   return (
@@ -40,6 +42,7 @@ export const SortButton = <T extends string>({
             shadowed={shadowed}
             dataCy={dataCy}
             asc={asc}
+            height={height}
         />
       </DropShadowContainer>
   )
