@@ -24,9 +24,10 @@ export interface TableProps<T> {
     intl: IntlShape;
     paddingHeader?: string;
     paddingBody?: string;
+    paddingRows?: string;
     fontWeightTitle?: FontWeight | undefined;
 }
-export declare const Table: <T>({ columns, rows, rowBackgroundColors, width, height, alignItems, padding, alertMessage, rowTooltip, suffixContent, keyBuilder, intl, paddingHeader, paddingBody, fontWeightTitle, }: TableProps<T>) => JSX.Element;
+export declare const Table: <T>({ columns, rows, rowBackgroundColors, width, height, alignItems, padding, alertMessage, rowTooltip, suffixContent, keyBuilder, intl, paddingHeader, paddingBody, paddingRows, fontWeightTitle, }: TableProps<T>) => JSX.Element;
 export declare const TitleTable: ({ tid, fontWeightTitle, intl, }: {
     tid: string;
     fontWeightTitle?: FontWeight | undefined;

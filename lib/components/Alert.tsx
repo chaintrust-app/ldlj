@@ -67,6 +67,11 @@ export const Alert = ({
   );
 };
 
+const StyledChaintrustLogo = styled(ChaintrustLogo)`
+  height: 1.75rem;
+  width: 3.75rem;
+`
+
 const SVGColorWrapper = styled.div<WithColor>`
   display: flex;
   justify-content: center;
@@ -88,7 +93,7 @@ const iconsByAlertType: Record<alertType, JSX.Element> = {
   ),
   info: (
     <SVGColorWrapper>
-      <ChaintrustLogo />
+      <StyledChaintrustLogo />
     </SVGColorWrapper>
   ),
   success: (
@@ -150,3 +155,4 @@ const StyledLogo = styled.div`
   background-color: white;
   box-shadow: 0px 0px 4px rgba(2, 76, 248, 0.1);
 `;
+

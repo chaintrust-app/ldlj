@@ -1,6 +1,6 @@
 /// <reference types="react" />
 import { IntlShape } from "react-intl";
-interface MultiSelectProps<T> {
+export interface MultiSelectProps<T> {
     options: Array<{
         value: T;
         label: string;
@@ -23,4 +23,3 @@ interface MultiSelectProps<T> {
     canToggleAllOptions?: boolean;
 }
 export declare function MultiSelect<T>(props: MultiSelectProps<T>): JSX.Element;
-export {};
