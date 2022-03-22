@@ -17,7 +17,7 @@ import {RowCenter} from "./Flex";
 import { Spacer } from "./Spacer";
 import { Text } from "./Text";
 
-interface SelectProps {
+export interface SelectProps {
   options: Array<Option<string>>;
   value: Option<string> | null;
   label?: string;
@@ -34,7 +34,9 @@ interface SelectProps {
   customWidth?: string;
   intl: IntlShape;
   asc?: boolean;
-  alignSelf?: string
+  alignSelf?: string;
+  isSearch?: boolean;
+  height?: string;
 }
 
 export type Option<T extends string> = {
@@ -75,6 +77,8 @@ export const Select = (props: SelectProps) => {
     intl,
     asc,
     alignSelf,
+    isSearch,
+    height,
   } = props;
 
   const [isFocused, setIsFocused] = useState(false);
@@ -105,7 +109,7 @@ export const Select = (props: SelectProps) => {
           <Spacer width={0.5} />
           <Text
               textStyle={{ color: "slateGrey" }}
-              text={intl ? intl.formatMessage({ id: "office.sort" }) : ""}
+              text={intl ? intl.formatMessage({ id: "office.sort" }) : "" }
           />
           <Spacer width={0.5} />
           <StyledSpan>{children}</StyledSpan>
@@ -142,6 +146,8 @@ export const Select = (props: SelectProps) => {
           myDefaultValue={defaultValue ? defaultValue.value : null}
           customWidth={customWidth}
           alignSelf={alignSelf}
+          isSearch={isSearch}
+          height={height}
       >
         {selectType === "sort" ? (
             <ReactSelect
@@ -236,7 +242,7 @@ export const Select = (props: SelectProps) => {
                   data-cy={dataCy}
               />
               <label htmlFor={label}>
-                {intl.formatMessage({ id: `${domain}.${optionType}` })}
+                {intl ? intl.formatMessage({ id: `${domain}.${optionType}` }) : ""}
               </label>
             </>
         )}
@@ -258,6 +264,8 @@ export interface Selector {
   myDefaultValue: string | null;
   customWidth: string | undefined;
   alignSelf?: string
+  isSearch?: boolean
+  height?: string
 }
 
 export const StyledSelect = styled.div<Selector>`
@@ -276,8 +284,8 @@ export const StyledSelect = styled.div<Selector>`
   & label {
     position: absolute;
     left: 1.25rem;
-    top: ${({ value, myDefaultValue }) =>
-        value?.length === 0 && !myDefaultValue ? "2rem" : "-0.75rem"};
+    top: ${({ value, myDefaultValue, height }) =>
+        value?.length === 0 && !myDefaultValue ? "2rem" : height ? "1.5rem" : "-0.75rem"};
     transition: top 0.15s ease-in-out, color 0.5s ease-in-out,
     font-size 0.5s ease-in-out;
     background-color: ${colors.white};
@@ -308,6 +316,8 @@ export const StyledSelect = styled.div<Selector>`
             : isFocused
                 ? `${colors.cornflower}`
                 : `${colors.rock}`};
+    width: 3rem;
+    height: 3rem;
   }
 
   & [class*="indicatorContainer"]:hover {
@@ -321,7 +331,7 @@ export const StyledSelect = styled.div<Selector>`
     flex-grow: 1;
     box-shadow: ${({ shadowed }) => (shadowed ? `${boxShadow}` : "0 0 0 0")};
     color: ${colors.navy};
-    height: 6rem;
+    height: ${({ isSearch, height }) => (isSearch ? "5rem" : height ? height : "6rem")};
     transition: border 0.3s ease-in-out;
     outline: none;
     border-radius: 1.25rem;
@@ -334,6 +344,7 @@ export const StyledSelect = styled.div<Selector>`
                 ? `1px solid ${colors.disabledGrey}`
                 : `1px solid ${isFocused ? colors.cornflower : colors.rock}`};
     box-sizing: border-box;
+    min-height: ${({ isSearch, height }) => (isSearch ? "4rem" : height ? height : "4.75rem")};
   }
 
   & div > [class*="MenuList"] {
